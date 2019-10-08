@@ -1,0 +1,90 @@
+<div class="widgets">
+	<form class="form-horizontal" name="addForm" novalidate>
+		<loading></loading>
+		<div class="col-md-12" >
+			<div class="panel panel-primary">
+			 <div class="panel-heading"><font color="white">选择商机</font></div>
+                <div class="panel-body">
+
+        <form class="form-horizontal" name="modifyForm" novalidate>
+            <div class="row">
+                <div class="col-md-2">
+                    <label class="grid-title">商机列表</label>
+                </div>
+                <div class="add-row-editable-table z_cusmnt" style="float: right">
+                    <button class="btn btn-primary btn-with-icon" ng-click="selectBusiOppList()"><i class="ion-search"></i>查询</button>
+					<button class="btn btn-primary btn-with-icon" ng-click="resetSearchBusiOpp()"><i class="ion-refresh"></i>重置</button>
+                </div>
+				<div class="col-sm-3 z_custmnt_padding" style="float: right;">
+					<input type="text" class="form-control" ng-model="searchObj.busiOppName" placeholder="商机名称">
+				</div>
+            </div>
+        </form>
+
+		<table class="table table-bordered table-hover table-condensed" st-table="busiOpp" st-safe-src="busiOppList">
+			<thead>
+				<tr class="black-muted-bg">
+					<th>#</th>
+					<th st-sort="busiOppNo">商机编码</th>
+					<th st-sort="busiOppName">商机名称</th>
+					<th st-sort="custNam">客户姓名</th>
+					<th st-sort="custType">客户类型</th>
+					<th st-sort="custTel">客户电话</th>
+         			<th st-sort="busiOppSrc">商机来源</th>
+					<th st-sort="busiOppStageNam">商机阶段</th>
+					<th st-sort="busiOppCreateDate">创建时间</th>
+					<th st-sort="assignDate">分配时间</th>
+					<th st-sort="custAgent">负责人</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in busiOpp" ng-click="selectRptRow(item)" >
+					<td>
+						<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="{{ item.busiOppNo }}" ng-change="selectRptOne($index)" ng-model="radioRptOptions.select" >
+					</td>
+					<td><span>{{ item.busiOppNo }}</span></td>
+					<td><span>{{ item.busiOppName }}</span></td>
+					<td><span>{{ item.custNam }}</span></td>
+					<td><span>{{ item.custType }}</span></td>
+					<td><span>{{ item.custTel }}</span></td>
+					<td><span>{{ item.busiOppSrc }}</span></td>
+					<td><span>{{ item.busiOppStageNam }}</span></td>
+					<td><span>{{ item.busiOppCreateDate }}</span></td>
+					<td><span>{{ item.assignDate }}</span></td>
+					<td><span>{{ item.custAgent }}</span></td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+					<td colspan="11" class="text-left">
+					<div class="row">
+						<div class="col-md-5">
+							<div>
+							每页
+							<label>
+								<select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
+										ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
+								</select>
+							</label>
+							条&nbsp;&nbsp;&nbsp;
+							共{{total}}条
+						</div>
+						</div>
+						<div class="col-md-7">
+							<div st-pagination="" st-items-by-page="5" st-displayed-pages="5"></div>
+						</div>
+					</div>
+					</td>
+				</tr>
+			</tfoot>
+		</table>
+		<br/>
+				<div class="row zaddperassets_textcenter">
+					<button type="button" class="btn btn-default btn-with-icon" ng-click="$dismiss()">关闭</button>
+					<button type="button" class="btn btn-primary btn-with-icon" ng-click="ok()">确定</button>
+				</div>
+			</div>
+			</div>
+		</div>
+	</form>
+</div>

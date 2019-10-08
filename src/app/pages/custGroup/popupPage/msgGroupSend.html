@@ -1,0 +1,95 @@
+<div class="widgets" xmlns:width="http://www.w3.org/1999/xhtml">
+	<form class="form-horizontal" name="addForm" novalidate>
+		<loading></loading>
+		<div class="col-md-12" ng-controller="msgGroupSendCtrl">
+			<div ba-panel ba-panel-title="短信群发" ba-panel-class="panel-primary">
+				<div class="row">
+					<div class="col-sm-8">
+						<div class="form-group">
+							<label for="msgTopic" class="col-sm-3 control-label">信息标题</label>
+							<div class="col-sm-9" ng-class="form-control">
+								<input type="text" class="form-control input-normal" id="msgTopic" name="msgTopic"
+									ng-model="msgSendInfo.msgTopic">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-8">
+						<div class="form-group">
+							<label for="templateContent" class="col-sm-3 control-label">发送内容</label>
+							<div class="col-sm-9" ng-class="form-control">
+								<a href="" ng-click="selectTemplate()"> <i class="ion-search"></i>请选择模板
+								</a>
+								<textarea ng-model="msgSendInfo.templateContent" class="form-control input-normal" id="templateContent"
+									placeholder="" ng-readonly="readFlg"></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-8">
+						<div class="form-group">
+							<label for="cc" class="col-sm-3 control-label">抄送</label>
+							<div class="col-sm-9" ng-class="form-control">
+								<p class="input-group input-normal">
+									<input type="text" class="form-control" id="ccUsers" name="ccUsers" ng-model="msgSendInfo.ccUsers"
+										placeholder="选择客户经理" readOnly><span class="input-group-btn">
+										<button type="button" class="btn btn-default " ng-click="getEmployee()">
+											<i class="ion-search"></i>
+										</button>
+									</span>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-8">
+						<div class="form-group">
+							<label for="inlineRadio" class="col-sm-3 control-label">发送方式</label>
+							<div class="input-demo radio-demo row">
+								<div class="col-md-3">
+									<label class="radio-inline custom-radio nowrap"> <input type="radio" ng-change="radioChecked()"
+										id="inlineRadio1" value="direct" ng-model="radioOptions.select"> <span>直接发送</span>
+									</label>
+								</div>
+								<div class="col-md-4">
+									<label class="radio-inline custom-radio nowrap"> <input type="radio" ng-change="radioChecked()"
+										id="inlineRadio2" value="frequency" ng-model="radioOptions.select" placeholder=""> <span>定时发送</span>
+									</label>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row" ng-hide="isShow">
+					<div class="col-sm-8">
+						<div class="form-group">
+							<label for="fixTime" class="col-sm-3 control-label">定时时间</label>
+							<div class="col-sm-9" ng-class="form-control">
+								<p class="input-group input-normal">
+									<input type="text" class="form-control" uib-datepicker-popup="yyyy-MM-dd hh:mm:ss" datepicker-options="options"
+										ng-model="searchOper.startDate" placeholder="定时时间" is-open="opened2" ng-required="false" close-text="Close"
+										alt-input-formats="altInputFormats" show-button-bar="false" /> <span class="input-group-btn">
+										<button type="button" class="btn btn-default" ng-click="open2()">
+											<i class="glyphicon glyphicon-calendar"></i>
+										</button>
+									</span>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger btn-with-icon" ng-click="closePage()">
+						<i class="ion-power"></i>关闭
+					</button>
+					<button type="button" class="btn btn-success btn-with-icon" ng-click="doSend()">
+						<i class="ion-android-checkmark-circle"></i>保存
+					</button>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

@@ -1,0 +1,38 @@
+<style>
+
+        /* 日历 */
+        #calendar {
+            margin: 40px auto;
+            padding: 0 10px;
+        }
+        /* Event 参数 className 的值 */
+        .done:before {
+            content:"【 已完成 】";
+              background-color:yellow; 
+             color:green; 
+            text-align:center;
+            font-weight:bold;
+            width:100%;
+        }
+        /* Event 参数 className 的值 */
+        .doing:before {
+            content:"【 未完成 】";
+             background-color:yellow;
+            color:red; 
+            text-align:center;
+            font-weight:bold;
+        }
+
+</style>
+
+<div class="widgets" ng-controller="myCalendarCtrl">
+ <div class="z_home_flex">
+	  <div class="z_home_row">
+	    <div class="col-lg-12 col-md-12 " style="padding:0;padding-right:3px;"
+	         ba-panel
+	         ba-panel-title="工作日程"
+	         ba-panel-class="with-scroll cla viewport100">
+				<div id='calendar' data-ng-init="loadCalendar()"></div>
+	    </div>
+	  </div>
+</div>

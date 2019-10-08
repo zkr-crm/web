@@ -1,0 +1,92 @@
+<div class="widgets">
+	<form class="form-horizontal" name="modifyForm" novalidate>
+		<loading></loading>
+		<div class="col-md-12" ng-controller="updRelaCtrl">
+			<!-- <div ba-panel ba-panel-title="调度作业短信修改" ba-panel-class="panel-primary"> -->
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<font color="white">调度作业短信修改</font>
+				</div>	
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="schedName" class="col-sm-4 control-label">调度名称</label>
+								<div class="col-sm-8" >
+									<input type="text" class="form-control input-normal" id="schedName" name="schedName" ng-model="updRela.schedName"
+										ng-disabled="true">
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="jobName" class="col-sm-4 control-label">作业名称</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control input-normal" id="jobName" name="jobName" ng-model="updRela.jobName"
+										ng-disabled="true">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="jobGroup" class="col-sm-4 control-label">作业组</label>
+								<div class="col-sm-8" >
+									<input type="text" class="form-control input-normal" id="jobGroup" name="jobGroup" ng-model="updRela.jobGroup"
+										ng-disabled="true">
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="msgCode" class="col-sm-4 control-label">信息编码</label>
+								<div class="col-sm-8">
+									<div class="select-normal">
+										<ui-select ng-model="updRela.msgCode" class="btn-group bootstrap-select form-control" 
+										ng-class="{'has-error': !modifyForm.msgCode}" append-to-body="false" id="msgCode" 
+										name="msgCode" search-enabled="false"   ng-required="true" ng-disabled="true"> 
+											 <ui-select-match > 
+											 	<span> {{$select.selected.label}}</span> 
+											 </ui-select-match> 
+											 <ui-select-choices repeat="code in msgCodes"> 
+											 	<span ng-bind-html="code.label"></span> 
+											 </ui-select-choices> 
+										 </ui-select>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="remindCode" class="col-sm-4 control-label">提醒编码</label>
+								<div class="col-sm-8">
+								
+									<div class="select-normal">
+										<ui-select ng-model="updRela.remindCode" class="btn-group bootstrap-select form-control" 
+										append-to-body="false" id="remindCode"  name="remindCode" search-enabled="false"   > 
+											 <ui-select-match > 
+											 	<span> {{$select.selected.label}}</span> 
+											 </ui-select-match> 
+											 <ui-select-choices repeat="code in remCodes"> 
+											 	<span ng-bind-html="code.label"></span> 
+											 </ui-select-choices> 
+										 </ui-select>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+				        <button type="button" class="btn btn-default btn-with-icon" ng-click="$dismiss()">关闭</button>
+				        <button type="button" class="btn btn-primary btn-with-icon" ng-click="saveValue(modifyForm.$valid)">保存</button>
+					</div>
+				</div>	
+				
+
+			</div>
+		</div>
+	</form>
+</div>

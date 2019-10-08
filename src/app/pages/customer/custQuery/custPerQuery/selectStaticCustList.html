@@ -1,0 +1,75 @@
+<div  ba-panel ba-panel-class="with-scroll">
+  <form class="form-horizontal" name="modifyForm" novalidate>
+    <div class="row">
+      <div class="col-md-2">
+        <label class="grid-title">静态客群列表</label>
+      </div>
+      <div class="add-row-editable-table" style="float: right;margin-right:15px;">
+        <button class="btn btn-primary btn-with-icon" ng-click="search()">
+          <i class="ion-search"></i>查询
+        </button>
+      </div>
+      <!-- <div class="col-sm-3 zcustrelmnt_right" style="float: right; margin-right: 5px;">
+				<select ng-init="selected=custGroupTyp[0]" ng-model="selected" class="form-control"
+					ng-options="x.label for x in custGroupTyp" ng-change="selectCustGroupTyp(selected)"></select>
+			</div> -->
+			<div class="col-sm-3" style="float: right; margin-right: 5px;">
+				<input type="text" class="form-control" ng-model="searchObj.groupName" placeholder="客群名称" />
+			</div>
+    </div>
+  </form>
+
+  <table class="table table-bordered table-hover table-condensed" st-table="smartTableData" st-safe-src="RowCollection">
+    <thead>
+    <tr class="black-muted-bg">
+      <!--<th><label for="flag"><input id="flag" type="checkbox" ng-model="select_all" ng-change="selectAll()">-->
+      <!--</label></th>-->
+      <th>#</th>
+      <th st-sort="item.groupId" st-sort-default="true">群组ID</th>
+							<th st-sort="item.groupName">群组名称</th>
+							<th st-sort="item.groupType">客群类型</th>
+							<th st-sort="item.groupDesc">群组描述</th>
+							<th st-sort="item.establishType">创建方式</th>
+							<th st-sort="item.memberType">成员类型</th>
+							<th st-sort="item.establishUser">创建用户</th>
+							<th st-sort="item.establishTime">创建时间</th>
+      <!-- <th>操作</th> -->
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="item in smartTableData" class="editable-row">
+      <td><input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="{{ item.groupId }}" ng-change="selectOne($index)" ng-model="radioRptOptions.select" ><span></span></td>
+      <td>{{item.groupId}}</td>
+							<td ng-click='showDetail(item)'><a>{{item.groupName}}</a></td>
+							<td>{{showCustGroupTyp(item)}}</td>
+							<td title="{{item.groupDesc}}"><span class="nowap-ellipsis relationDesc">{{item.groupDesc}}</span></td>
+							<td>{{showEstablishType(item)}}</td>
+							<td>{{showGroupMemberType(item)}}</td>
+							<td>{{item.establishUser}}</td>
+							<td>{{item.establishTime}}</td>
+     <!--  <td>
+        <form editable-form name="rowform" ng-show="rowform.$visible" class="form-buttons form-inline">
+          <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary editable-table-button btn-xs">保存</button>
+          <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()"
+                  class="btn btn-default editable-table-button btn-xs">取消</button>
+        </form>
+      </td> -->
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+      <td colspan="12">
+        <div class="row">
+          <div class="col-md-12" style="float: right">
+            <st-pager opts="queryStaticGroupOpts"></st-pager>
+          </div>
+        </div>
+      </td>
+    </tr>
+    </tfoot>
+  </table>
+  <div class="panel-body footer zaddperassets_textcenter">
+	 <button type="button" class="btn btn-default btn-with-icon" ng-click="$dismiss()">关闭</button>
+     <button type="button" class="btn btn-primary btn-with-icon" ng-click="ok()">确定</button>
+  </div>
+</div>

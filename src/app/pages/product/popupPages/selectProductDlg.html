@@ -1,0 +1,75 @@
+<div class="widgets">
+	<form class="form-horizontal" name="addForm" novalidate>
+		<loading></loading>
+		<div class="col-md-12" >
+			<div class="panel panel-primary">
+			 <div class="panel-heading"><font color="white">产品信息列表</font></div>
+                <div class="panel-body">
+
+		<form class="form-horizontal" name="modifyForm" novalidate>
+            <div class="row">
+                <div class="col-md-2">
+                    <label class="grid-title">产品信息列表</label>
+                </div>
+                <div class="add-row-editable-table z_cusmnt" style="float: right">
+                    <button class="btn btn-primary btn-with-icon" ng-click="searchProduct()"><i class="ion-search"></i>查询</button>
+					 <button class="btn btn-primary btn-with-icon" ng-click="resetCustCntr()"><i class="ion-refresh"></i>重置</button>
+                </div>
+				<div class="col-sm-3 z_custmnt_padding" style="float: right;">
+					<input type="text" class="form-control" ng-model="searchProduct.productNam" placeholder="产品名称">
+				</div>
+				<div class="col-sm-3 z_custmnt_padding" style="float: right">
+					<input type="text" class="form-control" ng-model="searchProduct.productCd" placeholder="产品代码">
+				</div>
+            </div>
+        </form>
+
+		<table class="table table-bordered table-hover table-condensed" st-table="smartTableData" st-safe-src="RowCollection">
+			<thead>
+				<tr class="black-muted-bg">
+					<th>#</th>
+					<th st-sort="productCd">产品代码</th>
+					<th st-sort="productNam">产品名称</th>
+					<th st-sort="productTyp">产品分类</th>
+					<th st-sort="productVer">产品版本</th>
+					<th st-sort="premium">保费</th>
+					<th st-sort="amount">保额</th>
+					<th st-sort="saleChnl">销售渠道</th>
+					<th st-sort="effDate">生效日期</th>
+					<th st-sort="expDate">失效日期</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in smartTableData" ng-click="selectRptRow(item)" >
+					<td>
+						<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="{{ item.productCd }}" ng-change="selectRptOne($index)" ng-model="radioRptOptions.select" >
+					</td>
+					<td><span>{{ item.productCd }}</span></td>
+					<td><span>{{ item.productNam }}</span></td>
+					<td><span>{{ ShowProductTyp(item) }}</span></td>
+					<td><span>{{ item.productVer }}</span></td>
+					<td><span>{{ item.premium }}</span></td>
+					<td><span>{{ item.amount }}</span></td>
+					<td><span>{{ ShowSaleChnl(item) }}</span></td>
+					<td><span>{{ item.effDate }}</span></td>
+					<td><span>{{ item.expDate }}</span></td>
+				</tr>
+			</tbody>
+			<tfoot>
+				    <tr>
+				      <td colspan="10" class="text-center">
+            	        <st-pager opts = "queryProductOptions" pageSize = "5" ></st-pager>
+				      </td>
+				    </tr>
+			</tfoot>
+		</table>
+		<br/>
+				<div class="row zaddperassets_textcenter">
+					<button type="button" class="btn btn-default btn-with-icon" ng-click="$dismiss()">关闭</button>
+					<button type="button" class="btn btn-primary btn-with-icon" ng-click="doConfirm()">确定</button>
+				</div>
+			</div>
+			</div>
+		</div>
+	</form>
+</div>

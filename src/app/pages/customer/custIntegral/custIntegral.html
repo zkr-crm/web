@@ -1,0 +1,64 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<div ng-controller="custIntegralCtrl">
+	<div class="horizontal-scroll">
+		<table class="table table-bordered table-hover table-condensed" st-table="custTableData" st-safe-src="custIntegralDts">
+			<thead>
+				<tr class="sortable ">
+					<div>积分信息列表</div>
+					<th class="table-id" st-sort="id" st-sort-default="true">#</th>
+					<th st-sort="customerNo">客户号</th>
+					<th st-sort="customerName">姓名</th>
+					<th st-sort="integralChangeQuo">积分变化额度</th>
+					<th st-sort="integralName">积分名称</th>
+					<th st-sort="integralChangeTime">积分变化时间</th>
+					<th st-sort="productName">产品名称</th>
+					<th st-sort="policyNo">保单号</th>
+					<th st-sort="integralChangeType">积分变化类型</th>
+					<th st-sort="remark">备注</th>
+				</tr>
+				<tr>
+			      <th></th>
+			      <th><input st-search="customerNo" placeholder="客户号" class="input-sm form-control search-input" type="search"/></th>
+			      <th><input st-search="customerName" placeholder="姓名" class="input-sm form-control search-input" type="search"/></th>
+			      <th><input st-search="integralChangeQuo" placeholder="积分变化额度" class="input-sm form-control search-input" type="search"/></th>
+			      <th><input st-search="integralName" placeholder="积分名称" class="input-sm form-control search-input" type="search"/></th>
+			      <th><input st-search="integralChangeTime" placeholder="积分变化时间" class="input-sm form-control search-input" type="search"/></th>
+			      <th><input st-search="productName" placeholder="产品名称" class="input-sm form-control search-input" type="search"/></th>
+			      <th><input st-search="policyNo" placeholder="保单号" class="input-sm form-control search-input" type="search"/></th>
+			      <th><input st-search="integralChangeType" placeholder="积分变化类型" class="input-sm form-control search-input" type="search"/></th>
+			      <th><input st-search="remark" placeholder="备注" class="input-sm form-control search-input" type="search"/></th>
+			      <th></th>
+			    </tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in custTableData" class="editable-row">
+					<td class="table-id">{{item.id}}</td>
+					<td><span>{{ item.customerNo }}</span></td>
+					<td><span>{{ item.customerName }}</span></td>
+					<td><span>{{ item.integralChangeQuo }}</span></td>
+					<td><span>{{ item.integralName }}</span></td>
+					<td><span>{{ item.integralChangeTime }}</span></td>
+					<td><span>{{ item.productName }}</span></td>
+					<td><span>{{ item.policyNo }}</span></td>
+					<td><span>{{ item.integralChangeType }}</span></td>
+					<td><span>{{ item.remark }}</span></td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+					<td colspan="10" class="text-center">
+						<div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
+					</td>
+				</tr>
+			</tfoot>
+		</table>
+	</div>
+	<div class="row">
+		<div style="float:left">显示行数</div>
+		<div style="float:left">
+			    <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
+			            ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
+			    </select>
+		</div>
+	</div>
+</div>

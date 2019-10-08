@@ -1,0 +1,149 @@
+<div class="widgets">
+	<form class="form-horizontal" name="addForm" novalidate>
+		<loading></loading>
+		<div class="col-md-12" >
+			<div class="panel panel-primary">
+			 <div class="panel-heading"><font color="white">客户代理人新增</font></div>
+                <div class="panel-body">
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="custAgent.origSysAgentNo" class="col-sm-4 control-label">代理人编号</label>
+							<div class="col-sm-8" >
+								<input type="text" class="form-control input-normal" id="origSysAgentNo" name="origSysAgentNo" ng-model="custAgent.origSysAgentNo" required> 
+								<span class="help-block error-block basic-block">必录</span>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="custAgent.custNam" class="col-sm-4 control-label">代理人姓名</label>
+							<div class="col-sm-8" >
+								<input type="text" class="form-control input-normal" id="custNam" name="custNam" ng-model="custAgent.custNam" >
+								 <span class="help-block error-block basic-block">必录</span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="custAgent.agentDevcomCd" class="col-sm-4 control-label">代理人展业机构</label>
+							<div class="col-sm-8" >
+								<input type="text" class="form-control input-normal" id="agentDevcomCd" name="agentDevcomCd" ng-model="custAgent.agentDevcomCd" >
+								 <span class="help-block error-block basic-block">必录</span>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="custAgent.agentKind" class="col-sm-4 control-label">代理人类别</label>
+							<div class="col-sm-8" >
+								<!-- <input type="text" class="form-control input-normal" id="agentKind" name="agentKind" ng-model="custAgent.agentKind" required> --> 
+								<select ng-model="custAgent.agentKind" class="form-control input-normal" ng-options="x.label for x in AgentKind" ng-change="selectAgentKind(custAgent.agentKind)"  id="agentKind"></select>
+								<span class="help-block error-block basic-block">必录</span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="custAgent.blnChnl" class="col-sm-4 control-label">所属渠道</label>
+							<div class="col-sm-8" >
+								<!-- <input type="text" class="form-control input-normal" id="blnChnl" name="blnChnl" ng-model="custAgent.blnChnl" required> --> 
+								<select ng-model="custAgent.blnChnl" class="form-control input-normal" ng-options="x.label for x in BelongChannel" ng-change="selectBlnChnl(custAgent.blnChnl)"  id="blnChnl"></select>
+								<span class="help-block error-block basic-block">必录</span>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="custAgent.perfGrade" class="col-sm-4 control-label">绩优等级</label>
+							<div class="col-sm-8" >
+								<!-- <input type="text" class="form-control input-normal" id="perfGrade" name="perfGrade" ng-model="custAgent.perfGrade" required> --> 
+								<select ng-model="custAgent.perfGrade" class="form-control input-normal" ng-options="x.label for x in Rating" ng-change="selectPerfGrade(custAgent.perfGrade)"  id="perfGrade"></select>
+								<span class="help-block error-block basic-block">必录</span>
+							</div>
+						</div>
+					</div>
+				</div>
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="custAgent.positGrade" class="col-sm-4 control-label">职级</label>
+								<div class="col-sm-8" >
+									<select ng-model="custAgent.positGrade" class="form-control input-normal" ng-options="x.label for x in PositionGrade" ng-change="selectPositGrade(custAgent.positGrade)"  id="positGrade"></select>
+									<span class="help-block error-block basic-block">必录</span>
+								</div>
+							</div>
+						</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="custAgent.creditGrade" class="col-sm-4 control-label">信用等级</label>
+							<div class="col-sm-8" >
+								<!-- <input type="text" class="form-control input-normal" id="creditGrade" name="creditGrade" ng-model="custAgent.creditGrade" required> --> 
+								<select ng-model="custAgent.creditGrade" class="form-control input-normal" ng-options="x.label for x in CreditGrade" ng-change="selectCreditGrade(custAgent.creditGrade)"  id="creditGrade"></select>
+								<span class="help-block error-block basic-block">必录</span>
+							</div>
+						</div>
+					</div>
+					</div>
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="custAgent.inworkDate" class="col-sm-4 control-label">入司日期</label>
+							<div class="col-sm-8">
+                                    <p  class="input-group">
+                                        <input type="text" class="form-control " uib-datepicker-popup="yyyy-MM-dd" datepicker-options="options" ng-model="custAgent.inworkDate" 
+                                        			is-open="inworkOpened" ng-required="false" close-text="Close" alt-input-formats="altInputFormats" show-button-bar="false" id="inworkDate" />
+                                      <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default" ng-click="inworkOpen()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                      </span>
+                                    </p>
+							</div>
+						</div>
+					</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="custAgent.agentSts" class="col-sm-4 control-label">代理人状态</label>
+								<div class="col-sm-8" >
+									<select ng-model="custAgent.agentSts" class="form-control input-normal" ng-options="x.label for x in AgentStat" ng-change="selectAgentSts(custAgent.agentSts)"  id="agentSts"></select>
+									<span class="help-block error-block basic-block">必录</span>
+								</div>
+							</div>
+						</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="custAgent.outworkDate" class="col-sm-4 control-label">离司日期</label>
+							<div class="col-sm-8">
+                                    <p  class="input-group">
+                                        <input type="text" class="form-control " uib-datepicker-popup="yyyy-MM-dd" datepicker-options="options" ng-model="custAgent.outworkDate" 
+                                        			is-open="outworkOpened" ng-required="false" close-text="Close" alt-input-formats="altInputFormats" show-button-bar="false" id="outworkDate" />
+                                      <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default" ng-click="outworkOpen()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                      </span>
+                                    </p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="form-group">
+							<div class="col-sm-offset-8 col-sm-4">
+								<button type="button" class="btn btn-danger btn-with-icon" ng-click="$dismiss()"><i class="ion-power"></i>关闭</button>
+								<button type="button" class="btn btn-success btn-with-icon" ng-click="addAgent()"><i class="ion-android-checkmark-circle"></i>保存</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			</div>
+		</div>
+	</form>
+</div>

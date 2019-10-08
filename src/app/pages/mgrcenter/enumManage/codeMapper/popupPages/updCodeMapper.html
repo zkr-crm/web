@@ -1,0 +1,98 @@
+<div class="widgets">
+	<form class="form-horizontal" name="addForm" novalidate>
+		<loading></loading>
+		<div class="col-md-12" ng-controller="updCodeMapperCtrl">
+			<div class="panel panel-primary">
+				<div class="panel-heading"><font color="white">码值映射参数新增</font></div>			
+                 <div class="panel-body">
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="codeType" class="col-sm-4 control-label">代码类型</label>
+							<div class="col-sm-8" >
+								<input type="text" class="form-control input-normal" id="codeType" name="codeType" ng-model="codeMapper.codeType"
+									required>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="typeName" class="col-sm-4 control-label">类型名称</label>
+							<div class="col-sm-8" >
+								<input type="text" class="form-control input-normal" id="typeName" name="typeName" ng-model="codeMapper.typeName"
+									required> 
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="codeVal" class="col-sm-4 control-label">代码值</label>
+							<div class="col-sm-8" >
+								<input type="text" class="form-control input-normal" id="codeVal" name="codeVal" ng-model="codeMapper.codeVal"
+									required>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="codeName" class="col-sm-4 control-label">代码名称</label>
+							<div class="col-sm-8" >
+								<input type="text" class="form-control input-normal" id="codeName" name="codeName" ng-model="codeMapper.codeName"
+									required> 
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="extSysFlg" class="col-sm-4 control-label">源系统标志</label>
+							<div class="col-sm-8" >
+								<input type="text" class="form-control input-normal" id="extSysFlg" name="extSysFlg" ng-model="codeMapper.extSysFlg"
+									required>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="extCodeType" class="col-sm-4 control-label">源代码类型</label>
+							<div class="col-sm-8" >
+								<input type="text" class="form-control input-normal" id="extCodeType" name="extCodeType" ng-model="codeMapper.extCodeType"
+									required> 
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="extCodeVal" class="col-sm-4 control-label">源代码值</label>
+							<div class="col-sm-8" >
+								<input type="text" class="form-control input-normal" id="extCodeVal" name="extCodeVal" ng-model="codeMapper.extCodeVal"
+									required>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="remark" class="col-sm-4 control-label">备注</label>
+							<div class="col-sm-8" >
+								<input type="text" class="form-control input-normal" id="remark" name="remark" ng-model="codeMapper.remark"
+									required> 
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="modal-footer">
+			        <button type="button" class="btn btn-default btn-with-icon" ng-click="closePage()">关闭</button>
+			        <button type="button" class="btn btn-primary btn-with-icon" ng-click="saveValue(addForm.$valid)">保存</button>
+				</div>
+
+			</div>
+			</div>
+		</div>
+	</form>
+</div>

@@ -1,0 +1,28 @@
+<div class="widgets">
+	<form class="form-horizontal" name="addForm" novalidate>
+		<loading></loading>
+		<div class="col-md-12" >
+			<div class="panel panel-primary">
+			 <div class="panel-heading"><font color="white">取消分配</font></div>
+                <div class="panel-body">
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="col-sm-12" style="float: right;margin-right:20px;">
+ 							<label for="cancelDesc" class="col-sm-2 control-label" style="font-weight:lighter">取消原因</label>
+							<div class="col-sm-10" >
+								<textarea ng-model="consult.cancelDesc" class="form-control" id="cancelDesc" rows="5" 
+									maxlength="200" placeholder="" ></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+				<br/>
+				<div class="row zaddperassets_textcenter">
+					<button type="button" class="btn btn-default btn-with-icon" ng-click="$dismiss()">关闭</button>
+					<button type="button" class="btn btn-primary btn-with-icon" ng-click="ok()">保存</button>
+				</div>
+			</div>
+			</div>
+		</div>
+	</form>
+</div>

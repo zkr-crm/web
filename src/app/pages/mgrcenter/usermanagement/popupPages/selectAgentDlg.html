@@ -1,0 +1,86 @@
+<div class="widgets">
+	<form class="form-horizontal" name="addForm" novalidate>
+		<loading></loading>
+		<div class="col-md-12" >
+			<div class="panel panel-primary">
+			 <div class="panel-heading"><font color="white">选择客户经理</font></div>
+                <div class="panel-body">
+
+        <form class="form-horizontal" name="modifyForm" novalidate>
+            <div class="row">
+                <div class="col-md-2">
+                    <label class="grid-title">员工列表</label>
+                </div>
+                <div class="add-row-editable-table z_cusmnt" style="float: right">
+                    <button class="btn btn-primary btn-with-icon" ng-click="search()"><i class="ion-search"></i>查询</button>
+					<button class="btn btn-primary btn-with-icon" ng-click="resetSearchUser()"><i class="ion-refresh"></i>重置</button>
+                </div>
+				<div class="col-sm-3 z_custmnt_padding" style="float: right;">
+					<input type="text" class="form-control" ng-model="searchObj.userName" placeholder="员工姓名">
+				</div>
+				<div class="col-sm-3 z_custmnt_padding" style="float: right;">
+					<input type="text" class="form-control" ng-model="searchObj.employeeId" placeholder="员工编号">
+				</div>
+            </div>
+        </form>
+
+		<table class="table table-bordered table-hover table-condensed" st-table="smartTableData" st-safe-src="UserRowCollection">
+			<thead>
+				<tr class="black-muted-bg">
+					<th>#</th>
+					<th st-sort="employeeId">员工编号</th>
+					<th st-sort="userName">员工姓名</th>
+					<th st-sort="enterName">所属机构</th>
+					<th st-sort="userStat">用户状态</th>
+					<!--<th st-sort="deptName">所属部门</th>
+					<th st-sort="posiName">所属岗位</th>-->
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in smartTableData" ng-click="selectRptRow(item)" >
+					<td>
+						<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="{{ item.userId }}" ng-change="selectRptOne($index)" ng-model="radioRptOptions.select" >
+					</td>
+					<td>{{item.employeeId}}</td>
+					<td>{{item.userName}}</td>
+					<td>{{item.enterName}}</td> 
+					<td>{{ ShowUserStat(item) }}</td>
+					<!--<td>{{item.deptName}}</td>
+					<td>{{item.posiName}}</td>-->
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+					<td colspan="9" class="text-left">
+					<div class="row">
+						<!--<div class="col-md-5">
+							<div>
+							每页
+							<label>
+								<select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
+										ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
+								</select>
+							</label>
+							条&nbsp;&nbsp;&nbsp;
+							共{{total}}条
+						</div>
+						</div>
+						<div class="col-md-7">
+							<div st-pagination="" st-items-by-page="5" st-displayed-pages="5"></div>
+						</div>-->
+						<st-pager opts="searchUsersOpts"></st-pager>
+					</div>
+					</td>
+				</tr>
+			</tfoot>
+		</table>
+		<br/>
+				<div class="row zaddperassets_textcenter">
+					<button type="button" class="btn btn-default btn-with-icon" ng-click="$dismiss()">关闭</button>
+					<button type="button" class="btn btn-primary btn-with-icon" ng-click="ok()">确定</button>
+				</div>
+			</div>
+			</div>
+		</div>
+	</form>
+</div>

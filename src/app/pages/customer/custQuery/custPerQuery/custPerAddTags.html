@@ -1,0 +1,43 @@
+<div class="widgets">
+	<form class="form-horizontal" name="addForm" novalidate>
+		<loading></loading>
+		<div class="col-md-12" >
+			<div class="panel panel-primary">
+			 <div class="panel-heading"><font color="white">批量增加标签</font></div>
+                <div class="panel-body">
+					<form class="form-horizontal" name="modifyForm" novalidate>					  
+						<div class="row">
+							<div class="col-sm-6 section-block cust_per_addtag">
+		                        <h5>标签</h5>
+		                        <div class="" >
+		                        	<tags-input class="myTag" 
+										min-length="1"
+		                                ng-model="tagData"
+		                                placeholder="添加"
+		                                display-property="tagName"
+		                                replace-spaces-with-dashes="false"
+		                                add-from-autocomplete-only="true"
+		                                on-tag-added="tagAdded($tag)"
+		                                >
+		                                <auto-complete source="loadDatas($query)"
+			                                min-length="0"
+								    		max-results-to-show="999"
+			                                debounce-delay="0">
+		                                </auto-complete>
+		                            </tags-input>
+		                        </div>
+		                    </div>
+						</div>
+					</form>
+					
+
+					<div style="padding: 0 0 15px" class="row zaddperassets_textcenter">
+						<div class="col-sm-12">
+					        <button type="button" class="btn btn-primary btn-with-icon" ng-click="$dismiss()">确定</button>
+						</div>					
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

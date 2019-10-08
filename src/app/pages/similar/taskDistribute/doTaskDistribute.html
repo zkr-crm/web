@@ -1,0 +1,76 @@
+<div class="widgets">
+	<form class="form-horizontal" name="addForm" novalidate>
+		<loading></loading>
+		<div class="col-md-12" ng-controller="doTaskDistributeCtrl">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<font color="white">相似客户合并申请</font>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="add-row-editable-table" style="float: right; margin-right: 15px;">
+							<button class="btn btn-primary btn-with-icon" ng-click="search()">
+								<i class="ion-search"></i>查询
+							</button>
+						</div>
+						<div class="col-sm-2 zpercusportra_paleft" style="float: right">
+							<input type="text" class="form-control" ng-model="searchObj.employeeId" placeholder="员工编号">
+						</div>
+						<div class="col-sm-2 zpercusportra_paleft" style="float: right">
+							<input type="text" class="form-control" ng-model="searchObj.userName" placeholder="用户姓名">
+						</div>
+						<div class="col-sm-2 zpercusportra_paleft" style="float: right">
+							<input type="text" class="form-control" ng-model="searchObj.userId" placeholder="用户账号">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12">
+							<br />
+						</div>
+					</div>
+					<div class="">
+
+						<table class="table table-bordered table-hover table-condensed" st-table="smartTableData" st-safe-src="UserRowCollection">
+							<thead>
+								<tr class="black-muted-bg">
+									<th st-sort="userId">用户账号</th>
+									<th st-sort="userName">用户姓名</th>
+									<th st-sort="employeeId">员工编号</th>
+									<!-- <th st-sort="sex">性别</th>
+									<th st-sort="userStat">用户状态</th> -->
+									<th st-sort="enterName">所属机构</th>
+									<th st-sort="deptName">所属部门</th>
+									<th st-sort="posiName">所属岗位</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="item in smartTableData" ng-click="changeCurrents(item)">
+									<td><span e-name="userId" e-form="rowform" blur="cancel">{{ item.userId }}</span></td>
+									<td><span e-name="userName" e-form="rowform" blur="cancel">{{ item.userName }}</span></td>
+									<td><span e-name="employeeId" e-form="rowform" blur="cancel">{{ item.employeeId }}</span></td>
+									<!-- <td><span e-name="sex" e-form="rowform" blur="cancel"> {{ ShowGender(item) }} </span></td>
+									<td><span e-name="userStat" e-form="rowform" blur="cancel"> {{ ShowUserStat(item) }} </span></td> -->
+									<td><span e-name="enterName" e-form="rowform" blur="cancel">{{ item.enterName }}</span></td>
+									<td><span e-name="deptName" e-form="rowform" blur="cancel">{{ item.deptName }}</span></td>
+									<td><span e-name="posiName" e-form="rowform" blur="cancel">{{ item.posiName }}</span></td>
+								</tr>
+							</tbody>
+							<tfoot>
+								<tr>
+									<td colspan="12">
+										<div class="row">
+											<st-pager opts="searchUsersOpts"></st-pager>
+										</div>
+									</td>
+								</tr>
+							</tfoot>
+						</table>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default btn-with-icon" ng-click="closePage()">关闭</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

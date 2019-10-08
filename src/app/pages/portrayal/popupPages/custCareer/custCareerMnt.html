@@ -1,0 +1,91 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<div class="widgets">
+	<form class="form-horizontal" name="uptForm" novalidate>
+		<loading></loading>
+		<div class="col-md-12" >
+			<div class="panel panel-primary">
+			 <div class="panel-heading"><font color="white">客户职业信息</font></div>
+                <div class="panel-body">
+
+        <form class="form-horizontal" name="modifyForm" novalidate>
+            <div class="row">
+                <div class="col-md-2">
+                    <label class="grid-title"></label>
+                </div>
+                <div class="add-row-editable-table z_cusmnt" style="float: right">
+							<button class="btn btn-primary btn-with-icon" ng-click="searchCustCareer()"><i class="ion-search"></i>查询</button>
+							<button class="btn btn-primary btn-with-icon" ng-click="clearCustCareerSearch()"><i class="ion-refresh"></i>重置</button>
+							<button class="btn btn-primary btn-with-icon" ng-click="addCustCareer()"><i class="ion-plus-round"></i>新增</button>
+							<button type="button" class="btn btn-danger btn-with-icon" ng-click="$dismiss()"><i class="ion-power"></i>关闭</button>                </div>
+				<div class="col-sm-3 z_custmnt_padding" style="float: right;">
+					<input type="text" class="form-control" ng-model="searchCustCareerObj.unitName" placeholder="单位名称">
+				</div>
+				<div class="col-sm-3 z_custmnt_padding" style="float: right;">
+					<input type="text" class="form-control" ng-model="searchCustCareerObj.unitName" placeholder="岗位名称">
+				</div>
+            </div>
+        </form>
+		<table class="table table-bordered table-hover table-condensed" st-table="custCareer" st-safe-src="custCareerList">
+			<thead>
+			<tr class="black-muted-bg">
+				<td style="text-align:left;text-align:center;" st-sort="unitNam">单位名称</th>
+				<th style="text-align:center;" st-sort="trade">行业</th>
+				<th style="text-align:center;" st-sort="unitNature">单位性质</th>
+				<th style="text-align:center;" st-sort="department">部门</th>
+				<th style="text-align:center;" st-sort="headship">职务</th>
+				<th style="text-align:center;" st-sort="position">岗位</th>
+				<th style="text-align:center;" st-sort="postGrade">职级</th>
+				<th style="text-align:center;" st-sort="entryDate">入职日期</th>
+				<th style="text-align:center;" st-sort="leaveDate">离职日期</th>
+				<th style="text-align:center;" st-sort="workNature">工作性质</th>
+				<th style="text-align:center;" >操作</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr ng-repeat="item in custCareer">
+				<td>{{item.unitNam}}</td>
+				<td>{{item.trade}}</td>
+				<td>{{item.unitNature}}</td>
+				<td>{{item.department}}</td>
+				<td>{{item.headship}}</td>
+				<td>{{item.position}}</td>
+				<td>{{item.postGrade}}</td>
+				<td>{{item.entryDate}}</td>
+				<td>{{item.leaveDate}}</td>
+				<td>{{item.workNature}}</td>
+				<td>
+					<div class="buttons" ng-show="!rowform.$visible">
+							<button class="btn btn-info btn-icon" ng-click=""><i class="ion-eye"></i></button>
+							<button class="btn btn-primary btn-icon" ng-click="getCustCareer(item.custNo, item.certSqn)"><i class="ion-compose"></i></button>
+					</div>
+				</td>
+			</tr>
+			</tbody>
+			<tfoot>
+			<tr>
+				<td colspan="12">
+					<div class="row">
+						<div class="col-md-7" style="float: right">
+							<div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
+						</div>
+						<div class="col-md-5" style="float: right">
+							每页
+							<label>
+								<select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
+										ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
+								</select>
+							</label>
+							条&nbsp;&nbsp;&nbsp;
+							共{{careerTotal||0}}条
+						</div>
+					</div>
+				</td>
+			</tr>
+			</tfoot>
+			</table>
+
+			</div>
+			</div>
+		</div>
+	</form>
+</div>

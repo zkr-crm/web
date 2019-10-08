@@ -1,0 +1,88 @@
+<div ng-controller="baseruleCtrl">
+
+	<div class="horizontal-scroll" ba-panel ba-panel-class="with-scroll">
+		<form class="form-horizontal" name="modifyForm" novalidate>
+			<div class="row">
+				<div class="col-md-2">
+					<label class="grid-title">基本规则配置</label>
+				</div>
+				<div class="add-row-editable-table zmarg_right" style="float: right">
+					<button class="btn btn-primary btn-with-icon" ng-click="searchBaseRule()">
+						<i class="ion-search"></i>查询
+					</button>
+					<button class="btn btn-primary btn-with-icon" ng-click="addBaseRule()">
+						<i class="ion-plus-round"></i>新增
+					</button>
+					<!-- TODO：批量删除规则，暂时注释，是否需要该功能后续斟酌
+					<button class="btn btn-danger btn-with-icon" ng-click="batchRemoveBaseRule()">
+						<i class="ion-trash-a"></i>删除
+					</button> -->
+				</div>
+				
+				<div class="col-sm-3" style="float: right">
+					<input type="text" class="form-control" ng-model="searchObj.ruleName" placeholder="基本规则名称">
+				</div>
+				<div class="col-sm-2" style="float: right">
+					<div class="form-group">
+						<div class="">
+							<ui-select id="res_data_type" name="res_data_type"
+									   class="btn-group bootstrap-select form-control"
+									   ng-change="showTreeInfo($select.selected)"
+									   ng-model="isUsed.value">
+								<ui-select-match>
+									<span ng-bind="$select.selected.name"></span>
+								</ui-select-match>
+								<ui-select-choices repeat="item in itemArray">
+									<span ng-bind="item.name"></span>
+								</ui-select-choices>
+							</ui-select>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+
+		<table class="table  table-hover table-condensed" st-table="smartTableData" st-safe-src="BaseRuleRowCollection">
+			<thead>
+				<tr class="black-muted-bg">
+					<!-- TODO：批量删除规则，暂时注释，是否需要该功能后续斟酌
+					<th><label for="flag"><input id="flag" type="checkbox" ng-model="select_all" ng-change="selectAll()">
+					</label></th> -->
+					<th st-sort="ruleName">基本规则名称</th>
+					<th st-sort="expression">基本规则表达式</th>
+					<th st-sort="isUsed">是否被使用</th>
+					<th class="baserule_width">操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in smartTableData" class="editable-row">
+					<!--TODO：批量删除规则，暂时注释，是否需要该功能后续斟酌
+					<td><input type="checkbox" ng-model="item.checked" ng-change="selectOne()"> <span></span></td> -->
+					<td><span>{{ item.ruleName }}</span></td>
+					<td><span>{{item.remark }}</span></td>
+					<td><span>{{item.isUsed }}</span></td>
+					<td>
+						<div class="buttons" >
+							<button class="btn btn-success btn-icon" ng-click="viewRule(item)">
+								<i class="ion-eye"></i>
+							</button>
+							<button class="btn btn-primary btn-icon" ng-click="updRule(item)">
+								<i class="ion-compose"></i>
+							</button>
+							<button class="btn btn-danger btn-icon" ng-click="removeRule(item)">
+								<i class="ion-trash-a"></i>
+							</button>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+					<td colspan="11" class="text-center">
+						<div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
+					</td>
+				</tr>
+			</tfoot>
+		</table>
+	</div>
+</div>

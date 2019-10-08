@@ -1,0 +1,86 @@
+<div class="modal-content posi_content" >
+    <div class="modal-header bg-warning">
+        <i class="ion-plus modal-icon"></i><span> 新增作业</span>
+    </div>
+    <div class="modal-body">
+        <form class="form-horizontal" name="jobForm" novalidate>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="jobDescription" class="col-sm-3 control-label">作业描述</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" id="jobDescription" name="jobDescription"
+                                   placeholder="中文描述" ng-model="job.jobDescription" required>
+                        </div>
+                        <div class=" col-sm-1 control-label" ng-if = "jobForm.jobDescription.$invalid "><font color="red"><i class="ion-asterisk"></i></font></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="jobId" class="col-sm-3 control-label">作业id</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" id="jobId" name="jobId"
+                                   placeholder="唯一标识" ng-model="job.jobId" required>
+                        </div>
+                        <div class=" col-sm-1 control-label" ng-if = "jobForm.jobId.$invalid "><font color="red"><i class="ion-asterisk"></i></font></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="jobGroup" class="col-sm-3 control-label">所属组</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" id="jobGroup" name="jobGroup"
+                                   placeholder="ecif/manage" ng-model="job.jobGroup" required>
+                        </div>
+                        <div class=" col-sm-1 control-label" ng-if = "jobForm.jobGroup.$invalid "><font color="red"><i class="ion-asterisk"></i></font></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="cron" class="col-sm-3 control-label">cron表达式</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" id="cron" name="cron"
+                                   placeholder="例如：0/20 * * * * ?" ng-model="job.cron" required>
+                        </div>
+                        <div class=" col-sm-1 control-label" ng-if = "jobForm.cron.$invalid "><font color="red"><i class="ion-asterisk"></i></font></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="targetUrl" class="col-sm-3 control-label">目标url</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" id="targetUrl" name="targetUrl"
+                                   placeholder="例如：/crm/ecif/users" ng-model="job.targetUrl" required>
+                        </div>
+                        <div class=" col-sm-1 control-label" ng-if = "jobForm.targetUrl.$invalid "><font color="red"><i class="ion-asterisk"></i></font></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="params" class="col-sm-3 control-label">参数</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" id="params" name="params"
+                                   placeholder="json格式" ng-model="job.params">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default btn-with-icon" ng-click="$dismiss()">关闭</button>
+        <button type="button" class="btn btn-primary btn-with-icon" ng-click="save()">保存</button>
+    </div>
+</div>
+
+

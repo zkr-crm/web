@@ -1,0 +1,62 @@
+<div class="widgets" ng-controller="loginLogSearchCtrl">
+	<div ba-panel ba-panel-class="with-scroll" >
+		<form class="form-horizontal" name="addForm" novalidate>
+			<div class="row">
+				<div class="col-md-2">
+					<label class="grid-title">登录日志列表</label>
+				</div>
+				<div class="add-row-editable-table zmargin_right" style="float: right">
+					<button class="btn btn-primary btn-with-icon" ng-click="search()">
+						<i class="ion-search"></i>查询
+					</button>
+				</div>
+				<div class="col-sm-2" style="float: right">
+					<input type="text" class="form-control" ng-model="searchLogin.userId" placeholder="用户账号">
+				</div>
+				<div class="col-sm-2 zcustrelmnt_right" style="float: right">
+					<p class="input-group">
+                       <input type="text" class="form-control" uib-datepicker-popup="yyyy-MM-dd" datepicker-options="options" ng-model="searchLogin.endDate" placeholder="终止日期" is-open="opened3.opened" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" show-button-bar="false" />
+                       <span class="input-group-btn">
+                          <button type="button" class="btn btn-default" ng-click="open3()"><i class="glyphicon glyphicon-calendar"></i></button>
+                       </span>
+                    </p>
+				</div>
+				<div class="col-sm-2 zcustrelmnt_right" style="float: right">
+					<p class="input-group">
+                       <input type="text" class="form-control" uib-datepicker-popup="yyyy-MM-dd" datepicker-options="options" ng-model="searchLogin.startDate"  placeholder="起始日期" is-open="opened4.opened" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" show-button-bar="false" />
+                       <span class="input-group-btn">
+                          <button type="button" class="btn btn-default" ng-click="open4()"><i class="glyphicon glyphicon-calendar"></i></button>
+                       </span>
+                    </p>
+				</div>
+			</div>
+		</form>
+		<table class="table  table-hover table-condensed" st-table="smartTableData2" st-safe-src="LoginRowCollection">
+			<thead>
+				<tr class="black-muted-bg">
+					<th st-sort="userId">用户账号</th>
+					<th st-sort="logType">日志类型</th>
+					<th st-sort="logContent">日志内容</th>
+					<th st-sort="clientIp">客户端IP</th>
+					<th st-sort="logTime">日志时间</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in smartTableData2" class="editable-row">
+					<td><span>{{ item.userId }}</span></td>
+					<td><span> {{ Show(item) }}</span></td>
+					<td><span>{{ item.logContent }}</span></td>
+					<td><span>{{ item.clientIp }}</span></td>
+					<td><span>{{ item.logTime }}</span></td>
+				</tr>
+					</tbody>
+			<tfoot>
+	        <tr>
+	            <td colspan="6" class="text-center">
+	                <st-pager opts = "queryLoginLogOptions" pageSize = "10"></st-pager>
+	            </td>
+	        </tr>
+	        </tfoot>
+		</table>
+	</div>
+</div>

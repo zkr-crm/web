@@ -1,0 +1,83 @@
+<div ng-controller="myTaskCtrl">
+	<div class="horizontal-scroll" ba-panel ba-panel-class="with-scroll">
+		<form class="form-horizontal" name="modifyForm" novalidate>
+			<div class="">
+				<label class="grid-title">任务列表</label>
+			</div>
+			<div class="row">
+				<div class="add-row-editable-table " style="float: right;margin-right:14px">
+					<button class="btn btn-primary btn-with-icon" ng-click="searchTask()"><i class="ion-search"></i>查询</button>
+					<button class="btn btn-primary btn-with-icon" ng-click="addMyTask()"><i class="ion-plus-round"></i>新增</button>
+					<button class="btn btn-success btn-with-icon" ng-click="batchFinishMyTask()"><i class="ion-checkmark-round"></i>完成</button>
+				</div>
+				<div class="col-sm-3" style="float: right;padding-right:5px;">
+					<input type="text" class="form-control" ng-model="searchTaskObj.taskName" placeholder="任务名称">
+				</div>
+				<div class="btn-group" role="group" aria-label="Basic example" style="margin-left:14px">
+					<button type="button" class="btn btn-info btn-with-icon button-wrapper" ng-click="initData(0)" ng-class="{'allTask_class':index_ == 0}"><i class="ion-navicon-round"></i>我的</button>
+					<button type="button" class="btn btn-info btn-with-icon button-wrapper" ng-click="initData(1)" ng-class="{'allTask_class':index_ == 1}"><i class="ion-navicon-round"></i>进行	</button>
+					<button type="button" class="btn btn-info btn-with-icon button-wrapper" ng-click="initData(2)" ng-class="{'allTask_class':index_ == 2}"><i class="ion-navicon-round"></i>完成	</button>
+					<button type="button" class="btn btn-info btn-with-icon button-wrapper" ng-click="initData(3)" ng-class="{'allTask_class':index_ == 3}"><i class="ion-navicon-round"></i>取消	</button>
+					<button type="button" class="btn btn-info btn-with-icon button-wrapper" ng-click="initData(4)" ng-class="{'allTask_class':index_ == 4}"><i class="ion-navicon-round"></i>重开	</button>
+			</div>
+			</div>
+		</form>
+
+		<table class="table  table-hover table-condensed" st-table="myTask" st-safe-src="myTaskList">
+			<thead>
+				<tr class="black-muted-bg z_taskService_name">
+					<th>
+						<label  class="checkbox-inline custom-checkbox nowrap">
+							<input id="flag" type="checkbox" ng-model="select_all" ng-change="selectAll()">
+							<span></span>
+						</label>
+					</th>
+					<th st-sort="taskName">任务名称</th>
+					<th st-sort="taskStatNam">任务状态</th>
+					<th st-sort="custName">关联客户</th>
+					<!--<th st-sort="oppertName">关联商机</th>
+         			<th st-sort="contactName">关联联系人</th>-->
+					<th st-sort="taskEndDate">截止时间</th>
+					<th st-sort="taskDesc">任务描述</th>
+					<th st-sort="createUser">创建人编码</th>
+					<th st-sort="createUserNam">创建人姓名</th>
+					<th class="z_taskServe_operation">操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in myTask" class="editable-row">
+					<td>
+						<label  class="checkbox-inline custom-checkbox nowrap">
+							<input type="checkbox" ng-model="item.checked" ng-change="selectOne()">
+							<span></span>
+						</label>
+					</td>
+					<td><span>{{ item.taskName }}</span></td>
+					<td><span>{{ item.taskStatNam }}</span></td>
+					<td><span>{{ item.custName }}</span></td>
+ 				<!--	<td><span>{{ item.oppertName }}</span></td>
+					<td><span>{{ item.contactName }}</span></td>-->
+  					<td><span>{{ item.taskEndDate }}</span></td>
+ 					<td title="{{ item.taskDesc }}"><span class="nowap-ellipsis enterAddr">{{ item.taskDesc}}</span></td> 
+ 					<td><span>{{ item.createUser }}</span></td> 
+ 					<td><span>{{ item.createUserNam }}</span></td> 
+					<td>
+						<div class="buttons" ng-show="!rowform.$visible">
+							<button class="btn btn-primary btn-icon z_taskservice_button" ng-click="uptMyTask(item)"><i class="ion-compose"></i></button>
+							<button class="btn btn-danger btn-icon z_taskservice_button" ng-click="delMyTask(item)"><i class="ion-trash-a"></i></button>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+            <tfoot>
+            <tr>
+                <td colspan="12">
+                <div class="row">
+					<st-pager opts="myTaskOpts"></st-pager>
+				 </div>
+                </td>
+            </tr>
+            </tfoot>
+     	</table>	
+	</div>
+</div>

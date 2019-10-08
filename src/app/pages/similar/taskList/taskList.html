@@ -1,0 +1,62 @@
+<div ng-controller="TaskListCtrl">
+	<div class="horizontal-scroll" ba-panel ba-panel-class="with-scroll">
+
+		<form class="form-horizontal" name="modifyForm" novalidate>
+			<div class="row">
+				<div class="col-md-2">
+					<label class="grid-title">任务列表</label>
+				</div>
+				<div class="add-row-editable-table" style="float: right; margin-right: 15px;">
+					<button class="btn btn-primary btn-with-icon" ng-click="getTask()">
+						<i class="ion-search"></i>查询
+					</button>
+				</div>
+				<div class="col-sm-2 zpercusportra_paleft" style="float: right">
+					<select ng-init="selectedTaskState=taskStateList[0]" ng-model="selectedTaskState" class="form-control"
+						ng-options="x.label for x in taskStateList" ng-change="selectTaskState(selectedTaskState)"></select>
+				</div>
+				<div class="col-sm-2" style="float: right">
+					<input type="text" class="form-control" ng-model="searchObj.taskId" placeholder="任务编号">
+				</div>
+			</div>
+		</form>
+
+		<table class="table  table-hover table-condensed" st-table="tableData" st-safe-src="rowCollection">
+			<thead>
+				<tr class="sortable black-muted-bg">
+					<th class="table-id" st-sort="taskId" st-sort-default="true">任务编号</th>
+					<!-- <th st-sort="ruleCondition">生成规则</th> -->
+					<th st-sort="similarPercent">相似度</th>
+					<th st-sort="taskState">任务状态</th>
+					<th st-sort="dealUser">任务处理人</th>
+					<th st-sort="approveUser">任务审批人</th>
+					<th st-sort="taskCreateTime">任务生成时间</th>
+					<th class="zwidth_operation">操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in tableData">
+					<td>{{item.taskId}}</td>
+					<!-- <td>{{item.ruleCondition}}</td> -->
+					<td>{{toPercent(item.similarPercent)}}</td>
+					<td>{{showTaskStat(item)}}</td>
+					<td>{{item.dealUser}}</td>
+					<td>{{item.approveUser}}</td>
+					<td>{{item.taskCreateTime}}</td>
+					<td>
+						<div class="buttons" ng-show="!rowform.$visible">
+							<button title="查看" class="btn btn-info btn-icon" ng-click="showDetail(item)">
+								<i class="ion-eye"></i>
+							</button>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+					<td colspan="7" class="text-center"><st-pager opts="queryOptions" pageSize="10"></st-pager></td>
+				</tr>
+			</tfoot>
+		</table>
+	</div>
+</div>

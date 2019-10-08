@@ -1,0 +1,49 @@
+<div class="widgets">
+	<form class="form-horizontal" name="addForm" novalidate>
+		<loading></loading>
+		<div class="col-md-12">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<font color="white">客户群组新增</font>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="groupName" class="col-sm-4 control-label">客群名称</label>
+								<div class="col-sm-8">
+									<input class="form-control" id="groupName" ng-model="groupData.groupName" required>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="groupDesc" class="col-sm-4 control-label">客群描述</label>
+								<div class="col-sm-8">
+									<textarea ng-model="groupData.groupDesc" class="form-control" id="groupDesc" rows="2" maxlength="200"
+										placeholder="最多输入200个字" ng-change="tolCount()"></textarea>
+									<div class="row">
+										<div class="col-sm-8">
+											<label>您还可以输入<font color="red">{{writCount}}</font>个字
+											</label>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default btn-with-icon" ng-click="closePage1()">关闭</button>
+						<button type="button" class="btn btn-primary btn-with-icon" ng-click="addCustGroup()">保存</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

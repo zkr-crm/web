@@ -1,0 +1,41 @@
+<div class="widgets">
+	<form class="form-horizontal" name="modifyForm" novalidate>
+		<loading></loading>
+		<div class="col-md-12" ng-controller="updTypeCtrl">
+			<!-- <div ba-panel ba-panel-title="因子类型修改" ba-panel-class="panel-primary"> -->
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<font color="white">因子类型修改</font>
+				</div>	
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="form-group">
+								<label for="factorType" class="col-sm-4 control-label">因子类型</label>
+								<div class="col-sm-8" ng-class="{'has-error': modifyForm.factorType.$invalid && modifyForm.$submitted}">
+									<input type="text" class="form-control input-normal" id="factorType" name="factorType" ng-model="updType.factorType"
+										required> <span class="help-block error-block basic-block">必录</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="form-group">
+								<label for="typeDesc" class="col-sm-4 control-label">因子类型描述</label>
+								<div class="col-sm-8" ng-class="{'has-error': modifyForm.typeDesc.$invalid && modifyForm.$submitted }">
+									<input type="text" class="form-control input-normal" id="typeDesc" name="typeDesc" ng-model="updType.typeDesc"
+										required> <span class="help-block error-block basic-block">必录</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row zaddperassets_textcenter">
+				        <button type="button" class="btn btn-default btn-with-icon" ng-click="$dismiss()">关闭</button>
+				        <button type="button" class="btn btn-primary btn-with-icon" ng-click="saveValue(modifyForm.$valid)">保存</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

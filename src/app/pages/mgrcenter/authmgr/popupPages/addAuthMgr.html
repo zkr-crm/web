@@ -1,0 +1,83 @@
+<div class="widgets" ng-controller="addAuthMgrCtrl">
+	<div ba-panel ba-panel-title="权限名称" ba-panel-class="with-scroll viewport100 menumanagementtree">
+		<div class="form-group has-feedback" >
+			<div class="">
+				<div class="col-sm-4 zpercusportra_paleft" ng-class="{'has-error': modifyForm.name.$invalid }">
+					<label for="roleCode" class="float zpercusportra_paleft ">角色代码</label>
+					<div class="col-sm-10">
+						<input type = "text" class="form-control " id="roleCode" name = "roleCode" ng-model="role.roleCode" required>
+						<span class="help-block error-block basic-block">必录</span>
+					</div>
+				</div>
+				<div class="col-sm-4 zpercusportra_paleft" ng-class="{'has-error': modifyForm.name.$invalid }">
+					<label for="roleName" class="float zpercusportra_paleft" >角色名称</label>
+					<div class="col-sm-10">
+						<input type = "text" class="float form-control " id="roleName" name = "roleName" ng-model="role.roleName" required>
+						<span class="help-block error-block basic-block">必录</span>
+					</div>
+				</div>
+				<div class="add-row-editable-table" style="float:right">
+					<button class="btn btn-primary" ng-click="saveTree()">保存</button>
+					<button type="button" class="btn btn-primary btn-raised right" ng-click="backRole()">返回</button>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="row">
+			<div class="col-md-12">
+				<uib-tabset>
+					<uib-tab heading="视图权限">
+
+						<div class="row">
+							<div class="col-sm-7" style="padding-top:10px;">
+								<div js-tree="basicConfig" ng-model="treeData" should-apply="applyModelChanges()" tree="basicTree" tree-events-obj="treeEventsObj"></div>
+							</div>
+						  </div>
+						</uib-tab>
+					<!--del by lujibing 20190830-->
+					<!--<uib-tab heading="人事架构权限">
+                        <div class="row z_title">
+                            <label for="citySel" class="control-label" style="float:left;padding-left:20px;">组织架构：</label>
+                            <div class="col-sm-4" ng-class="{'has-error': modifyForm.name.$invalid }">
+                                <input type = "text" class="form-control" id="citySel" name = "citySel"  ng-click="showMenu()">
+                                <span class="help-block error-block basic-block">必录</span>
+                            </div>
+                        </div>
+                    </uib-tab>-->
+					<uib-tab heading="数据权限">
+						<div class="row">
+							<h5><label class="col-sm-3 control-label" style="line-height:35px;">可配置数据列表</label></h5>
+						</div>
+						<div class="">
+							<div class="horizontal-scroll">
+								<ul class="z_ul">
+									<li ng-repeat="item in dataAuthData">
+										<span id="{{item.tableCode}}">{{item.tableName}}</span>
+										<a><button type="button" class="btn btn-primary" ng-click="modifyDataAuth(item.tableCode)">编辑权限</button></a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="horizontal-scroll">
+						</div>
+					</uib-tab>
+				</uib-tabset>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<div id="menuContent" class="menuContent" style="display:none; position: absolute;">
+    <ul add-auth-mgr-ztree id="treeDemo" class="ztree" style="margin-top:0; width:220px; height: 300px"></ul>
+</div>
+<div id="orgMenuContent" class="orgMenuContent" style="display:none; position: absolute;z-index: 10000;">
+	<ul add-org-tree-dir id="orgTreeDemo" class="ztree" style="margin-top:0; width:220px; height: 300px"></ul>
+</div>
+<div id="posMenuContent" class="posMenuContent" style="display:none; position: absolute;z-index: 10000;">
+	<ul add-pos-tree-dir id="posTreeDemo" class="ztree" style="margin-top:0; width:220px; height: 300px"></ul>
+</div>
+<div id="enterMenuContent" class="enterMenuContent" style="display:none; position: absolute;z-index: 10000;">
+	<ul add-enter-tree-dir id="enterTreeDemo" class="ztree" style="margin-top:0; width:220px; height: 300px"></ul>
+</div>

@@ -1,0 +1,78 @@
+<div class="widgets">
+	<form class="form-horizontal" name="addForm" novalidate>
+		<loading></loading>
+		<div class="col-md-12" >
+			<div class="panel panel-primary">
+			 <div class="panel-heading"><font color="white">新增到静态群组</font></div>
+                <div class="panel-body">
+				<form class="form-horizontal" name="modifyForm" novalidate>					  
+				<div class="row">
+			<div class="btn-group" role="group" style="float: right; margin-right: 15px;">
+				<button class="btn btn-info" ng-click="search()">查询</button>
+			</div>
+			<!-- <div class="col-sm-2 zpercusportra_paleft" style="float: right; margin-right: 5px;">
+				<select ng-init="selected=custGroupTyp[0]" ng-model="selected" class="form-control"
+					ng-options="x.label for x in custGroupTyp" ng-change="selectCustGroupTyp(selected)"></select>
+			</div> -->
+			<div class="col-sm-2" style="float: right; margin-right: 5px;">
+				<input type="text" class="form-control" ng-model="searchObj.groupName" placeholder="客群名称" />
+			</div>
+		</div>
+	</div>
+				</form>
+	<div class="row">
+		<div class="col-md-12">
+			<div ba-panel ba-panel-title="" ba-panel-class="with-scroll">
+				<table class="table table-bordered table-hover table-condensed" st-table="smartTableData" st-safe-src="rowCollection">
+					<thead>
+						<tr class="sortable">
+							<th>#</th>
+							<th st-sort="item.groupId" st-sort-default="true">群组ID</th>
+							<th st-sort="item.groupName">群组名称</th>
+							<th st-sort="item.groupType">客群类型</th>
+							<th st-sort="item.groupDesc">群组描述</th>
+							<!--<th st-sort="item.establishType">创建方式</th>
+							<th st-sort="item.memberType">成员类型</th>
+							<th st-sort="item.establishUser">创建用户</th>-->
+							<th st-sort="item.establishTime">创建时间</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="item in rowCollection">
+							<td><input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="{{ item.groupId }}" ng-change="selectOne($index)" ng-model="radioRptOptions.select" ><span></span></td>
+							<td>{{item.groupId}}</td>
+							<td ng-click='showDetail(item)'><a>{{item.groupName}}</a></td>
+							<td>{{showCustGroupTyp(item)}}</td>
+							<td>{{item.groupDesc}}</td>
+							<!--<td>{{showEstablishType(item)}}</td>
+							<td>{{showGroupMemberType(item)}}</td>
+							<td>{{item.establishUser}}</td>-->
+							<td>{{item.establishTime}}</td>							
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="10" class="text-center">
+								<st-pager opts="queryGroupList"></st-pager>
+							</td>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+		</div>
+	</div>
+				
+
+				<div style="padding: 0 0 15px" class="row zaddperassets_textcenter">
+				<div class="col-sm-12">
+			        <button type="button" class="btn btn-default btn-with-icon" ng-click="$dismiss()">关闭</button>
+			        <button type="button" ng-disabled="groupId==null || groupId==''"
+							class="btn btn-primary btn-with-icon" ng-click="addGroupMember(groupId)">保存到已有群</button>
+			        <button type="button" class="btn btn-primary btn-with-icon" ng-click="addNewGroupMember()">添加至新增群组</button>
+				</div>					
+				</div>
+			</div>
+			</div>
+		</div>
+	</form>
+</div>

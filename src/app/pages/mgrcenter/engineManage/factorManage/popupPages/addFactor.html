@@ -1,0 +1,128 @@
+<div class="widgets">
+	<form class="form-horizontal" name="addForm" novalidate>
+		<loading></loading>
+		<div class="col-md-12" ng-controller="addFactorCtrl">
+			<!-- <div style="color:white" ba-panel ba-panel-title="因子新增" ba-panel-class="panel-primary"> -->
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<font color="white">因子新增</font>
+				</div>	
+				<div class="panel-body">
+					<div class="row">
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="factorName" class="col-sm-4 control-label">因子名称</label>
+							<div class="col-sm-8" ng-class="{'has-error': addForm.factorName.$invalid && addForm.$submitted}">
+							
+								<div class="select-normal">
+									<ui-select ng-model="addFactor.factorName" class="btn-group bootstrap-select form-control" 
+									ng-class="{'has-error': !addForm.factorName}" append-to-body="false" id="factorName" 
+									name="factorName" search-enabled="false"   ng-required="true"> 
+										 <ui-select-match > 
+										 	<span> {{$select.selected.label}}</span> 
+										 </ui-select-match> 
+										 <ui-select-choices repeat="fType in factorName"> 
+										 	<span ng-bind-html="fType.label"></span> 
+										 </ui-select-choices> 
+									 </ui-select>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="displayName" class="col-sm-4 control-label">因子显示名称</label>
+							<div class="col-sm-8" ng-class="{'has-error': addForm.displayName.$invalid && addForm.$submitted }">
+								<input type="text" class="form-control input-normal" id="displayName" name="displayName" ng-model="addFactor.displayName"
+									required> <span class="help-block error-block basic-block">必录</span>
+							</div>
+						</div>
+					</div>
+				</div>
+					
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="factorType" class="col-sm-4 control-label">因子类型</label>
+								<div class="col-sm-8" ng-class="{'has-error': addForm.factorType.$invalid && addForm.$submitted }">
+									<div class="select-normal">
+										<ui-select ng-model="addFactor.factorType" class="btn-group bootstrap-select form-control" 
+										ng-class="{'has-error': !addForm.factorType}" append-to-body="false" id="factorType" 
+										name="factorType" search-enabled="false"   ng-required="true"> 
+											 <ui-select-match > 
+											 	<span> {{$select.selected.label}}</span> 
+											 </ui-select-match> 
+											 <ui-select-choices repeat="fType in factorTypes"> 
+											 	<span ng-bind-html="fType.label"></span> 
+											 </ui-select-choices> 
+										 </ui-select>
+									</div>
+									<!-- <input type="text" class="form-control input-normal" id="factorType" name="factorType" ng-model="addFactor.factorType"
+										required> <span class="help-block error-block basic-block">必录</span> -->
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="operateType" class="col-sm-4 control-label">支持操作类型</label>
+								<div class="col-sm-8" ng-class="{'has-error': addForm.operateType.$invalid && addForm.$submitted }">
+								
+									<div class="select-normal">
+										<ui-select ng-model="addFactor.operateType" class="btn-group bootstrap-select form-control" 
+										ng-class="{'has-error': !addForm.operateType}" append-to-body="false" id="operateType" 
+										name="operateType" search-enabled="false"   ng-required="true"> 
+											 <ui-select-match > 
+											 	<span> {{$select.selected.label}}</span> 
+											 </ui-select-match> 
+											 <ui-select-choices repeat="oType in operateTypes"> 
+											 	<span ng-bind-html="oType.label"></span> 
+											 </ui-select-choices> 
+										 </ui-select>
+									</div>
+								
+									<!-- <input type="text" class="form-control input-normal" id="operateType" name="operateType" ng-model="addFactor.operateType" required>
+									<span class="help-block error-block basic-block">必录</span> -->
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="factorExp" class="col-sm-4 control-label">因子表达式</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control input-normal" id="factorExp" name="factorExp" ng-model="addFactor.factorExp">
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="valueType" class="col-sm-4 control-label">因子赋值类型</label>
+								<div class="col-sm-8" ng-class="{'has-error': addForm.valueType.$invalid && addForm.$submitted }">
+								
+									<div class="select-normal">
+										<ui-select ng-model="addFactor.valueType" class="btn-group bootstrap-select form-control" 
+										ng-class="{'has-error': !addForm.valueType}" append-to-body="false" id="valueType" 
+										name="valueType" search-enabled="false"   ng-required="true"> 
+											 <ui-select-match > 
+											 	<span> {{$select.selected.label}}</span> 
+											 </ui-select-match> 
+											 <ui-select-choices repeat="vType in valueTypes"> 
+											 	<span ng-bind-html="vType.label"></span> 
+											 </ui-select-choices> 
+										 </ui-select>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+			        <button type="button" class="btn btn-default btn-with-icon" ng-click="closePage()">关闭</button>
+			        <button type="button" class="btn btn-primary btn-with-icon" ng-click="saveValue(addForm.$valid)">保存</button>
+				</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

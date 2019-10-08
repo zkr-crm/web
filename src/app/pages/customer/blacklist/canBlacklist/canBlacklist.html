@@ -1,0 +1,37 @@
+<div class="widgets">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<div class="panel panel-primary">
+		<div class="panel-heading"><font color="white">撤销黑名单</font></div>
+		<div class="panel-body">
+			<form class="form-horizontal"  name="modifyForm" novalidate >
+				<div class="" >
+					<div class="row">
+						<div class="col-sm-4">
+							<label for="custNo" class="control-label form-group-t">客户号</label>
+							<input type="text" class="form-control zcanblacklist_width" id="custNo" name="custNo" ng-model="blacklistDts.custNo"  ng-readonly=true >
+						</div>
+						<div class="col-sm-4">
+							<label for="custName" class="control-label form-group-t">客户姓名</label>
+							<input type="text" class="form-control zcanblacklist_width" id="custName" name="custName" ng-model="blacklistDts.custName"  ng-readonly=true >
+						</div>
+						<div class="col-sm-4">
+							<label for="phoneNumber" class="control-label form-group-t">电话号码</label>
+							<input type="text" class="form-control zcanblacklist_width" id="phoneNumber" name="phoneNumber" ng-model="blacklistDts.phoneNumber" placeholder="blacklistType" ng-readonly=true >
+						</div>
+					</div>
+				</div>
+				<div class="">
+					<label for="textarea01">撤销原因</label>
+					<td><textarea ng-model="blacklistDts.reason" class="form-control" id="message" col="2"	  placeholder="输入撤销原因 ..." required></textarea><span class="help-block error-block basic-block">必录</span></td>
+				</div>
+
+				<div class="zaddperassets_textcenter zpercusportra_ptop">
+					<button type="button" class="btn btn-default btn-with-icon" ng-click="$dismiss()">关闭</button>
+					<button type="button" class="btn btn-primary btn-with-icon" ng-click="saveValue()">确定</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+</div>
+</div>

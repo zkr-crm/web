@@ -1,0 +1,86 @@
+<div class="widgets" ng-controller="authMgrCtrl">
+	<div class="row">
+		<div class="col-md-3" style="padding-left:0" ba-panel ba-panel-title="用户角色" ba-panel-class="with-scroll button-panel viewport100 menumanagementtree">
+			<a href ng-click="addRole()" style="padding-left:15%;padding-right:10px;font-size:20px;"><span class="ion-plus-round"></span></a>
+			<a href ng-click="removeRole()" style="font-size:20px;"><span class="fa fa-trash-o del-managmen"></span></a>
+			<div style="padding-top:10px;" >
+				<div class="button-wrapper" style="padding-left:30px;text-align:left;" ng-repeat="role in roles"><a  class="z_authmgr" ng-class="{'z_authmgr_hr':role.roleName == roleObj.roleName}" ng-click="searchRoleMenu(role,'')">{{role.roleName}}</a></div>
+			</div>
+		</div>
+
+	     <div class="col-md-9" style="padding:0;" ba-panel ba-panel-title="权限名称" ba-panel-class="with-scroll viewport100 menumanagementtree">
+			 <div class="z_header" > 角色名称</div>
+			 <div class="">
+				 <div class="col-sm-3 zpercusportra_paleft" ng-class="{'has-error': modifyForm.name.$invalid }">
+					 <input type = "text" class="form-control" id="roleName" name = "roleName" placeholder="角色名称" ng-model="roleObj.roleName" required>
+					 <span class="help-block error-block basic-block">必录</span>
+				 </div>
+				 <div class="add-row-editable-table" style="float: right">
+					 <button class="btn btn-primary btn-with-icon" ng-click="saveTree()"><i class="ion-android-checkmark-circle"></i>保存</button>
+				 </div>
+			 </div>
+			 <div class="row">
+				 <div class="col-md-12">&nbsp;</div>
+			 </div>
+			 <div class="">
+	     		<uib-tabset>
+	  			<uib-tab heading="视图权限">
+	  				<div class="row">
+						<div class="col-sm-8" style="padding-top:20px;">
+							<div id='menuTree' js-tree="basicConfig" ng-model="treeData" should-apply="applyModelChanges()" tree="basicTree" tree-events-obj="treeEventsObj"></div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-4"></div>
+						</div>
+					</div>
+				</uib-tab>
+					<!-- <uib-tab heading="人事架构权限">
+						<div class="row z_title">
+							<label for="citySel" class="control-label" style="float:left;padding-left:20px;">组织架构：</label>
+							<div class="col-sm-4" ng-class="{'has-error': modifyForm.name.$invalid }">
+								<input type = "text" class="form-control" id="citySel" name = "citySel"  ng-click="showMenu()">
+								<span class="help-block error-block basic-block">必录</span>
+							</div>
+						</div>
+						<div class="row">
+							
+						</div>
+
+					</uib-tab> -->
+	  			<uib-tab heading="数据权限">
+					<div class="row z_title">
+                        <h5><label class="col-sm-3 control-label margin-top: 20px;border-bottom: none;">可配置数据列表</label></h5>
+					</div>
+					<div class="row" style="height:10px;"></div>
+					<div class="horizontal-scroll">
+						<ul class="z_ul">
+							<li ng-repeat="item in dataAuthData">
+								<span id="{{item.tableCode}}">{{item.tableName}}</span>
+								<a>
+									<button type="button" class="btn btn-primary btn-sm" ng-click="showDataAuth(item.tableCode)">查看权限</button>
+									<button type="button" class="btn btn-primary btn-sm" ng-click="modifyDataAuth(item.tableCode)">编辑权限</button>
+								</a>
+							</li>
+						</ul>
+					</div>
+      			</uib-tab>
+  			</uib-tabset>
+			 </div>
+	     </div>
+
+	</div>
+</div>
+
+<div id="menuContent" class="menuContent" style="display:none; position: absolute;">
+	<ul dept-ztree id="treeDemo" class="ztree" style="margin-top:0; width:220px; height: 300px"></ul>
+</div>
+<div id="orgMenuContent" class="orgMenuContent" style="display:none; position: absolute;z-index: 10000;">
+	<ul org-tree-dir id="orgTreeDemo" class="ztree" style="margin-top:0; width:220px; height: 300px"></ul>
+</div>
+<div id="posMenuContent" class="posMenuContent" style="display:none; position: absolute;z-index: 10000;">
+	<ul pos-tree-dir id="posTreeDemo" class="ztree" style="margin-top:0; width:220px; height: 300px"></ul>
+</div>
+<div id="enterMenuContent" class="enterMenuContent" style="display:none; position: absolute;z-index: 10000;">
+	<ul enter-tree-dir id="enterTreeDemo" class="ztree" style="margin-top:0; width:220px; height: 300px"></ul>
+</div>
+

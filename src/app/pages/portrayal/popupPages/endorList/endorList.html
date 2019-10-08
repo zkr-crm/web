@@ -1,0 +1,71 @@
+ <div class="modal-content" style="box-shadow:none;">
+	<div class="modal-header">
+		<button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+			<em class="ion-ios-close-empty sn-link-close"></em>
+		</button>
+		<h4 class="modal-title" id="myModalLabel">批改详情</h4>
+	</div>
+    <div class="modal-body">
+		<div class="row" style="margin-top: 10px">
+			<div class="col-sm-12">
+				<h4>批改项列表</h4>
+				<table class="table table-bordered table-hover table-condensed" st-table="endor" st-safe-src="endorList">
+					<thead>
+						<tr class="sortable black-muted-bg">
+							<th>字段名</th>
+							<th>批改前的值</th>
+							<th>批改后的值</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat='item in endorList'>
+							<td>{{item.fieldName}}</td>
+							<td>{{item.oldValue}}</td>
+							<td>{{item.newValue}}</td>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="12">
+								<st-pager opts="endorListOpts"></st-pager>
+							</td>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+		</div>
+		<div class="row" style="margin-top: 10px">
+			<div class="col-sm-12">
+				<h4>收付列表</h4>
+				<table class="table table-bordered table-hover table-condensed" st-table="payMent" st-safe-src="endorPayMentList">
+					<thead>
+						<tr class="sortable black-muted-bg">
+							<th>序号</th>
+							<th>缴费日期</th>
+							<th>缴费金额</th>
+							<th>缴费方式</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="item in endorPayMentList">
+							<td>{{item.paymentNo}}</td>
+							<td>{{item.payDate}}</td>
+							<td>{{item.payFee}}</td>
+							<td>{{item.payWay}}</td>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="12">
+								<st-pager opts="endorPayMentOpts"></st-pager>
+							</td>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+		</div>
+    </div>
+    <div class="modal-footer">
+    	<button type="button" class="btn btn-default btn-with-icon" ng-click="$dismiss()">关闭</button>
+    </div>
+</div>

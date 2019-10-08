@@ -1,0 +1,92 @@
+<div ng-controller="custGroupCtrl">
+	<div class="row">
+		<div class="col-md-12">
+			<div ba-panel ba-panel-title="" ba-panel-class="with-scroll">
+				<div class="row">
+					<div class="col-md-12">
+						<!--<div class="btn-group" role="group" aria-label="Basic example">
+                            <button type="button" class="btn btn-info btn-with-icon button-wrapper" ng-click="doSearch('0')" ng-class="{'allTask_class':index_ == 0}">
+                                <i class="fa fa fa-bar-chart-o"></i>动态客户群
+                            </button>
+                            <button type="button" class="btn btn-info btn-with-icon button-wrapper" ng-click="doSearch('1')" ng-class="{'allTask_class':index_ == 1}">
+                                <i class="fa fa fa-barcode"></i>静态客户群
+                            </button>
+                        </div>-->
+
+						<div class="btn-group" role="group" style="float: right; margin-right: 15px;">
+							<button class="btn btn-primary" ng-click="deleteCustGroup()"><i class="ion-trash-a"></i>移除</button>
+						</div>
+						<!-- <div class="btn-group" role="group" style="float: right; margin-right: 5px;">
+                            <button class="btn btn-primary" ng-click="openAddCustGroup()"><i class="ion-plus-round"></i>新增</button>
+                        </div> -->
+						<div class="btn-group" role="group" style="float: right; margin-right: 15px;">
+							<button class="btn btn-primary" ng-click="search()"><i class="ion-search"></i>查询</button>
+						</div>
+						<!-- <div class="col-sm-2 zpercusportra_paleft" style="float: right; margin-right: 5px;">
+                            <select ng-init="selected=custGroupTyp[0]" ng-model="selected" class="form-control"
+                                ng-options="x.label for x in custGroupTyp" ng-change="selectCustGroupTyp(selected)"></select>
+                        </div> -->
+						<div class="col-sm-2" style="float: right; margin-right: 5px;">
+							<input type="text" class="form-control" ng-model="searchObj.groupName" placeholder="客群名称" />
+						</div>
+					</div>
+				</div>
+				<br />
+				<table class="table table-hover table-condensed" st-table="smartTableData" st-safe-src="rowCollection">
+					<thead>
+						<tr class="black-muted-bg z_taskService_name">
+							<th>
+								<label  class="checkbox-inline custom-checkbox nowrap">
+									<input id="flag" type="checkbox" ng-model="select_all" ng-change="selectAll()">
+									<span></span>
+								</label>
+							</th>
+							<th st-sort="item.groupId" st-sort-default="true">群组ID</th>
+							<th st-sort="item.groupName">群组名称</th>
+							<th st-sort="item.groupType">客群类型</th>
+							<th st-sort="item.groupDesc">群组描述</th>
+							<th st-sort="item.establishType">创建方式</th>
+							<th st-sort="item.establishUser">创建用户</th>
+							<th st-sort="item.establishTime">创建时间</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="item in smartTableData">
+							<td>
+								<label  class="checkbox-inline custom-checkbox nowrap">
+									<input type="checkbox" ng-model="item.isChecked" ng-change="selectOne()">
+									<span></span>
+								</label>
+							</td>
+							<td>{{item.groupId}}</td>
+							<td ng-click='showDetail(item)'><a>{{item.groupName}}</a></td>
+							<td>{{showCustGroupTyp(item)}}</td>
+							<td title="{{item.groupDesc}}"><span class="nowap-ellipsis taskDesc">{{item.groupDesc}}</span></td>
+							<td>{{showEstablishType(item)}}</td>
+							<td>{{item.establishUser}}</td>
+							<td>{{item.establishTime}}</td>
+							<td>
+								<div class="buttons" ng-show="!rowform.$visible">
+									<button title="查看" class="btn btn-info btn-icon" ng-click="showDetail(item)">
+										<i class="ion-eye"></i>
+									</button>
+									<button title="移除" class="btn btn-danger btn-icon" ng-click="deleteGroup(item)">
+										<i class="ion-trash-a"></i>
+									</button>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="10" class="text-center"><st-pager opts="queryGroupList" pageSize="10"></st-pager></td>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+		</div>
+	</div>
+
+
+</div>

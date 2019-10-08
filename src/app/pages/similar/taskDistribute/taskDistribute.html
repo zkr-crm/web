@@ -1,0 +1,75 @@
+<div ng-controller="taskDistributeCtrl">
+	<div class="horizontal-scroll" ba-panel ba-panel-class="with-scroll">
+
+		<form class="form-horizontal" name="modifyForm" novalidate>
+			<div class="row">
+				<div class="col-md-2">
+					<label class="grid-title">任务列表</label>
+				</div>
+				<div class="add-row-editable-table" style="float: right;margin-right:15px;">
+					<button class="btn btn-primary btn-with-icon" ng-click="search()">
+						<i class="ion-search"></i>查询
+					</button>
+					<button class="btn btn-primary btn-with-icon" ng-click="tasksDistrib()">
+						<i class="ion-person-stalker"></i>批量分配
+					</button>
+				</div>
+				<div class="col-sm-2" style="float: right">
+					<input type="text" class="form-control" ng-model="searchObj.taskId" placeholder="任务编号">
+				</div>
+			</div>
+		</form>
+
+		<table class="table  table-hover table-condensed" st-table="tableData" st-safe-src="rowCollection">
+			<thead>
+				<tr class="black-muted-bg">
+					<th>
+						<label  class="checkbox-inline custom-checkbox nowrap">
+							<input id="flag" type="checkbox" ng-model="select_all" ng-change="selectAll()">
+							<span></span>
+						</label>
+					</th>
+					<th class="table-id" st-sort="taskId" st-sort-default="true">任务编号</th>
+					<!-- <th st-sort="ruleCondition">生成规则</th> -->
+					<th st-sort="similarPercent">相似度</th>
+					<th st-sort="taskState">任务状态</th>
+					<!--<th st-sort="dealUser">任务处理人</th>-->
+					<th st-sort="taskCreateTime">任务生成时间</th>
+					<th class="zwidth_operation">操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in tableData">
+					<td>
+						<label  class="checkbox-inline custom-checkbox nowrap">
+							<input type="checkbox" ng-model="item.isChecked" ng-change="selectOne()">
+							<span></span>
+						</label>
+					</td>
+					<td>{{item.taskId}}</td>
+					<!-- <td>{{item.ruleCondition}}</td> -->
+					<td>{{toPercent(item.similarPercent)}}</td>
+					<td>{{showTaskStat(item)}}</td>
+					<!--<td>{{item.dealUser}}</td>-->
+					<td>{{item.taskCreateTime}}</td>
+					<td>
+						<div class="buttons" ng-show="!rowform.$visible">
+							<button title="分配任务" class="btn btn-primary btn-icon" ng-click="taskDistrib(item)">
+								<i class="ion-person-stalker"></i>
+							</button>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+					<!-- <td colspan="7" class="text-center"><st-pager opts="queryOptions" pageSize="10"></st-pager></td> -->
+					<td colspan="7">
+						<st-pager opts="queryOptions"></st-pager>
+					</td>
+					
+				</tr>
+			</tfoot>
+		</table>
+	</div>
+</div>

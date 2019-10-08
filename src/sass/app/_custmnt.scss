@@ -1,0 +1,75 @@
+//zjs 2018 03 -05
+.z_cusmnt{
+	padding-right:15px;
+}
+.z_custmnt_padding{
+	padding:0 !important;
+	padding-right:5px !important;
+}
+.z_opation_width{
+	min-width:105px;
+}
+.z_custdetaiadd_box{
+	width:98%;
+	margin:1%;
+	border:1px solid #bfbfbf;
+	border-radius:4px;
+	box-shadow: 1px 1px 6px 0px #ddd;
+	overflow:hidden;
+}
+.z_custdetaiadd_box>div>div{
+	display:none;
+}
+.z_custdetaiadd_box>div>.z_custDetail_show{
+	display:block;
+	margin: 0 !important;
+}
+.z_custdetaladd_title{
+	display:block;
+	width:100%;
+	height:35px;
+	background:#4da3ff;
+	&>a{
+		color:#fff;
+		display:inline-block;
+		line-height:35px;
+		padding:0 20px;
+		font-size:15px;
+	}
+}
+.z_custdetailadd_lable{
+	width:25%;
+	display:inline-block;
+	float:left;
+	line-height:34px;
+}
+.z_custdetailadd_patop{
+	padding-top:10px;
+}
+.z_custdetailadd_pano{
+	padding-bottom:0;
+}
+.z_custdetail_inline{
+	float:left;
+	width:75% !important;
+}
+.z_custdetail_bg{
+	background:#fff;
+	color:#666 !important;
+	cursor:pointer;
+}
+.zcustdetail_patop_no{
+	padding:10px 15px 0 15px !important;
+}
+.zcustdetail_paleft_no{
+	padding-left:0 !important;
+}
+
+.cust_per_addtag tags-input .tags .tag-item .remove-button {
+  display: none;
+}
+
+.requiredFlag {
+	color:red;
+	padding-right: 3px
+}

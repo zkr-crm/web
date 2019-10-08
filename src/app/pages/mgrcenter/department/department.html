@@ -1,0 +1,198 @@
+<div ng-controller="DepartmentCtrl">
+    <uib-tabset active="$tabSetStatus.activeTab">
+        <uib-tab heading="机构信息" ng-click="changeFlag('enters')">
+            <div ba-panel ba-panel-class="with-scroll">
+                <form class="form-horizontal" name="modifyForm" novalidate>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label class="grid-title">机构列表</label>
+                        </div>
+                        <div class="add-row-editable-table zmarg_right" style="float: right">
+                            <button class="btn btn-primary btn-with-icon" ng-click="search()">
+                                <i class="ion-search"></i>查询
+                            </button>
+                            <button class="btn btn-primary btn-with-icon" ng-click="addEnter()">
+                                <i class="ion-plus-round"></i>新增
+                            </button>
+                            <!--<button class="btn btn-danger btn-with-icon" ng-click="delEnterList()">
+                                <i class="ion-trash-a"></i>删除
+                            </button>-->
+                        </div>
+                        <div class="col-md-2" style="float: right">
+                            <input type="text" class="form-control" ng-model="searchEnter.superEnter"
+                                   placeholder="上级机构">
+                        </div>
+                        <div class="col-md-2 zcustrelmnt_right" style="float: right">
+                            <!--<select style="border: solid 1px #d0d0d0" id="enterCode" name="enterCode" ng-model="enters"
+                                    ng-change="getChangeECode()"
+                                    ng-options="x.enterCode +'|'+ x.enterName for x in enterForShow"
+                                    class="btn-group bootstrap-select form-control">
+                                <option value="" label="机构代码"></option>
+                            </select>-->
+                            <input type="text" class="form-control" ng-model="searchEnter.enterCode"
+                                   placeholder="机构代码">
+                        </div>
+                    </div>
+                </form>
+                <div class="">
+
+                    <table class="table  table-hover table-condensed" st-table="smartTableData"
+                           st-safe-src="EnterRowCollection">
+                        <thead>
+                        <tr class="black-muted-bg ">
+                            <th>
+                                <label  class="checkbox-inline custom-checkbox nowrap">
+                                    <input id="flag" type="checkbox" ng-model="select_all" ng-change="selectAll()">
+                                    <span></span>
+                                </label>
+                            </th>
+                            <!-- <th><span   ng-model="select_all" >{{select_all}}</span></th> -->
+                            <th st-sort="enterCode">机构代码</th>
+                            <th st-sort="enterName">机构名称</th>
+                            <th st-sort="enterHead">机构负责人</th>
+                            <th st-sort="superEnter">上级机构</th>
+                            <th st-sort="enterAddr">机构地址</th>
+                            <th st-sort="enterTel">机构电话</th>
+                            <th st-sort="enterWeb">机构网址</th>
+                            <th st-sort="enterEmail">机构邮箱</th>
+                            <th st-sort="busiSumm">业务介绍</th>
+                            <th style="min-width:75px;">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="item in smartTableData" class="editable-row">
+                            <td>
+                                <label  class="checkbox-inline custom-checkbox nowrap">
+                                    <input type="checkbox" ng-model="item.checked" ng-change="selectOne()">
+                                    <span></span>
+                                </label>
+                            </td>
+                            <!-- <td><span ng-model="item.checked" >{{item.checked}}</span></td> -->
+                            <td><span>{{ item.enterCode }}</span></td>
+                            <td title="{{item.enterName}}"><dev class="nowap-ellipsis enterName">{{ item.enterName }}</dev></td>
+                            <td title="{{item.enterHead}}"> <dev class="nowap-ellipsis enterHead">{{ item.enterHead }}</dev></td>
+                            <td title="{{ item.superEnter }}"><dev class="nowap-ellipsis superEnter">{{ item.superEnter }}</dev></td>
+                            <td title="{{ item.enterAddr }}"><dev class="nowap-ellipsis enterAddr">{{ item.enterAddr }}</dev></td>
+                            <td><span>{{ item.enterTel }}</span></td>
+                            <td><span>{{ item.enterWeb }}</span></td>
+                            <td><span><a class="email-link"
+                                         ng-href="mailto:{{item.EnterEmail}}">{{item.enterEmail }}</a></span></td>
+                            <td title="{{ item.busiSumm }}"><span>{{ item.busiSummNew }}</span></td>
+                            <td>
+                                <div class="buttons">
+                                    <button title="修改" class="btn btn-primary btn-icon" ng-click="modEnter(item)"><i
+                                            class="ion-compose"></i></button>
+                                    <button title="删除" class="btn btn-danger btn-icon" ng-click="removeEnter(item)"><i
+                                            class="ion-trash-a"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="12">
+                                <div class="row" ng-if="enters!=null">
+                                    <st-pager opts="enters"></st-pager>
+                                </div>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </uib-tab>
+        <!--<uib-tab heading="部门信息" ng-click='changeFlag("depts")'>
+            <div ba-panel ba-panel-class="with-scroll">
+                <div class="col-md-2">
+                    <label class="grid-title">部门列表</label>
+                </div>
+                <div class="row">
+                    <div class="add-row-editable-table zmarg_right" style="float: right">
+                        <button class="btn btn-primary btn-with-icon" ng-click="searchDepts()">
+                            <i class="ion-search"></i>查询
+                        </button>
+                        <button class="btn btn-primary btn-with-icon" ng-click="addDept()">
+                            <i class="ion-plus-round"></i>新增
+                        </button>
+                    </div>
+                    <div class="col-md-2" style="float: right">
+                        <input type="text" class="form-control" ng-model="searchDept.superDept" placeholder="上级部门">
+                    </div>
+
+                    <div class="col-md-2 zcustrelmnt_right" style="float: right">
+                        <select style="border: solid 1px #d0d0d0" id="deptCode" name="deptCode" ng-model="depts"
+                                ng-change="getChangeDCode()"
+                                ng-options="x.deptCode +'|'+ x.deptName  for x in deptsForShow"
+                                class="btn-group bootstrap-select form-control">
+                            <option value="" label="部门代码"></option>
+                        </select>
+                    </div>
+
+
+                </div>
+                <div class="">
+
+                    <table class="table  table-hover table-condensed" st-table="smartTableData2"
+                           st-safe-src="DeptRowCollection">
+                        <thead>
+                        <tr class="black-muted-bg ">
+                            <th></th>
+                            <th st-sort="deptCode">部门代码</th>
+                            <th st-sort="deptName">部门名称</th>
+                            <th st-sort="enterName">所属机构</th>
+                            <th st-sort="superDept">上级部门</th>
+                            <th st-sort="deptMgr">部门经理</th>
+                            <th st-sort="deptDesc">部门描述</th>
+                            <th class="baserule_width">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="item in smartTableData2" class="editable-row">
+                            <td></td>
+                            <td><span>{{item.deptCode }}</span></td>
+                            <td><span>{{item.deptName }}</span></td>
+                            <td><span>{{item.enterName}}</span></td>
+                            <td><span>{{item.superDept }}</span></td>
+                            <td><span>{{item.deptMgr }}</span></td>
+                            <td><span>{{item.deptDesc }}</span></td>
+                            <td>
+                                <div class="buttons" ng-show="!rowform2.$visible">
+                                    <button title="修改" class="btn btn-primary btn-icon" ng-click="modDept(item)">
+                                        <i class="ion-compose"></i>
+                                    </button>
+                                    <button title="删除" class="btn btn-danger btn-icon" ng-click="removeDept(item)">
+                                        <i class="ion-trash-a"></i>
+                                    </button>
+                                    <button title="设置岗位" class="btn btn-primary btn-icon" ng-click="setPosi(item)">
+                                        <i class="ion-gear-b"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="12">
+                                <div class="row">
+                                    &lt;!&ndash; <div class="col-md-7" style="float: right">
+                                        <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
+                                    </div>
+                                    <div class="col-md-5" style="float: right">
+                                        每页 <label> <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
+                                            ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
+                                        </select>
+                                        </label> 条&nbsp;&nbsp;&nbsp; 共{{depttotal||0}}条
+                                    </div> &ndash;&gt;
+                                    <st-pager opts='depts'></st-pager>
+                                </div>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </uib-tab>-->
+    </uib-tabset>
+</div>

@@ -1,0 +1,39 @@
+<style>
+.pagination-pack .pageSizeSelect-n {
+    /*padding:5px 0 0 0;*/
+    text-align: left;
+}
+.pagination-pack .pageSizeSelect-n select {
+    height: 30px;
+    padding: 0px 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc !important;
+    font-size:12px !important;
+}
+</style>
+<div class="pagination-pack clearfix">
+    <div class="pull-left col-md-2 pageSizeSelect-n bordercolor">
+        <select ng-model="pagination[optsType].pageSize" ng-change="search('1')" >
+            <option value="5">5条/页</option>
+            <option value="10">10条/页</option>
+            <option value="20">20条/页</option>
+            <option value="30">30条/页</option>
+            <option value="50">50条/页</option>
+        </select>
+    </div>
+    <!-- 分页  -->
+    <div class="pull-left col-md-8 text-center">
+        <uib-pagination ng-model="pagination[optsType].pageIndex" class="pagination-sm pagination-small pagination-n" total-items="pagination[optsType].totalItems" page="pagination[optsType].pageIndex" items-per-page="pagination[optsType].pageSize" max-size="5" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;" boundary-links="true" ng-change="search(pagination[optsType].pageIndex)" rotate="false" style='margin:0 auto'>
+        </uib-pagination>
+    </div>
+    <div class="pull-right col-md-2 pagination-go">
+        <div class="input-group input-group-sm go" tooltip-placement="top" tooltip-popup-delay="1000" tooltip="跳转页面">
+            <input type="number" number-only ng-model="pagination[optsType].pageNewIndex" class="form-control bordercolor" min="1" max="{{pagination[optsType].maxText}}" placeholder="跳转至" >
+            <span class="input-group-btn">
+                <button class="btn btn-default bordercolor" type="button" ng-click="search(pagination[optsType].pageNewIndex)"  >
+                    Go
+                </button>
+            </span>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,59 @@
+<div class="widgets" ng-controller="qryProductCtrl">
+	<div ba-panel  ba-panel-class="with-scroll">
+		<form class="form-horizontal" name="addForm" novalidate >
+			<div class="row">
+				<div class="col-md-2">
+					<label class="grid-title">产品信息列表</label>
+				</div>
+				<div class="add-row-editable-table" style="float: right;margin-right:15px;">
+					<button class="btn btn-primary btn-with-icon" ng-click="search()">
+						<i class="ion-search"></i>查询
+					</button>
+				</div>
+				<div class="col-sm-2" style="float: right">
+					<input type="text" class="form-control" ng-model="searchConditions.productNam" placeholder="产品名称">
+				</div>
+				<div class="col-sm-2" style="float: right">
+					<input type="text" class="form-control" ng-model="searchConditions.productCd" placeholder="产品代码">
+				</div>
+			</div>
+		</form>
+		<table class="table  table-hover table-condensed" st-table="smartTableData" st-safe-src="RowCollection">
+			<thead>
+				<tr class="black-muted-bg">
+					<th st-sort="productCd">产品代码</th>
+					<th st-sort="productNam">产品名称</th>
+					<th st-sort="productTyp">产品分类</th>
+					<th st-sort="productVer">产品版本</th>
+					<th st-sort="premium">保费</th>
+					<th st-sort="amount">保额</th>
+					<th st-sort="saleChnl">销售渠道</th>
+					<th st-sort="effDate">生效日期</th>
+					<th st-sort="expDate">失效日期</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in smartTableData" class="editable-row">
+					<td><span>{{ item.productCd }}</span></td>
+					<td><span>{{ item.productNam }}</span></td>
+					<td><span>{{ ShowProductTyp(item) }}</span></td>
+					<td><span>{{ item.productVer }}</span></td>
+					<td><span>{{ item.premium }}</span></td>
+					<td><span>{{ item.amount }}</span></td>
+					<td><span>{{ ShowSaleChnl(item) }}</span></td>
+					<td><span>{{ item.effDate }}</span></td>
+					<td><span>{{ item.expDate }}</span></td>
+				</tr>
+			</tbody>
+			<tfoot>
+	            <tr>
+	                <td colspan="9" class="text-center">
+	                    <st-pager opts = "queryProductOptions" pageSize = "10"></st-pager>
+	                </td>
+	            </tr>
+            </tfoot>
+		</table>
+	</div>	
+</div>
+
+ 

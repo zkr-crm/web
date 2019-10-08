@@ -1,0 +1,437 @@
+<div class="modal-content" style="box-shadow:none;">
+	<div class="modal-header">
+		<button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+			<em class="ion-ios-close-empty sn-link-close"></em>
+		</button>
+		<h4 class="modal-title" id="myModalLabel">修改客户信息</h4>
+	</div>
+    <div class="modal-body">
+		<form name="custDetailForm" novalidate>
+			<uib-tabset active="$tabSetStatus.activeTab">
+                <uib-tab heading="基本信息">
+                	<div class="panel-body" ng-class="{'z_custDetail_show':0 == information_a}">
+	                    <div class="row">
+	                        <div class="col-md-3 col-lg-3">
+	                            <div style="text-align: center; ">
+	                                <img ng-src="data:image/jpg;base64,{{perIconImg}}" height="180" width="170"/>
+	                                <br/>
+	                                <button type="file" ngf-select="uploadFiles($file, $invalidFiles)"
+	          								accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
+	          							更改
+	          						</button>
+	                            </div>
+	                        </div>
+	                        <div class="col-md-9 col-lg-9">
+	                            <div class="row form-group">
+	                                <div class="col-md-6 col-lg-6">
+	                                    <div class="form-group">
+	                                        <label for="custNo" class="z_custdetailadd_lable">客户号</label>
+	                                        <input type="text" class="form-control z_custdetail_inline" id="custNo" ng-model="custom.custNo" disabled>
+	                                    </div>
+	                                </div>
+	                                <div class="col-md-6 col-lg-6">
+	                                    <div class="form-group">
+	                                        <label for="custName" class="z_custdetailadd_lable"><span class="requiredFlag">*</span>客户姓名</label>
+	                                        <input type="text" class="form-control z_custdetail_inline" id="custName" ng-model="custom.custName">
+	                                    </div>
+	                                </div>
+	                            </div>
+	                            <div class="row">
+	                            	 <div class="col-md-6 col-lg-6">
+	                                    <div class="form-group">
+	                                        <label for="phoneNumber" class="z_custdetailadd_lable"><span class="requiredFlag">*</span>手机号码</label>
+	                                        <input type="text" class="form-control z_custdetail_inline" id="phoneNumber"
+	                                               ng-model="custom.phoneNumber">
+	                                    </div>
+	                                </div>
+	                                <div class="col-md-6 col-lg-6">
+	                                    <div class="form-group">
+	                                        <label for="idType" class="z_custdetailadd_lable"><span ng-if='custom.custTyp.value=="01"'  class="requiredFlag">*</span>证件类型</label>
+	                                        <ui-select ng-model="custom.certTyp"
+	                                                   class="btn-group bootstrap-select form-control z_custdetail_inline"
+	                                                   search-enabled="false"
+	                                                   id="idType">
+	                                            <ui-select-match>
+	                                                <span> {{$select.selected.label}}</span>
+	                                            </ui-select-match>
+	                                            <ui-select-choices repeat="idType in idTypes">
+	                                                <span ng-bind-html="idType.label"></span>
+	                                            </ui-select-choices>
+	                                        </ui-select>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                            <div class="row">
+	                            	<div class="col-md-6 col-lg-6">
+	                                    <div class="form-group">
+	                                        <label for="certNo" class="z_custdetailadd_lable"><span ng-if='custom.custTyp.value=="01"'  class="requiredFlag">*</span>证件号码</label>
+	                                        <input type="text" class="form-control z_custdetail_inline" id="certNo" ng-model="custom.certNo">
+	                                    </div>
+	                                </div>
+	                                <div class="col-md-6 col-lg-6">
+	                                    <div class="form-group">
+		                                   	 <label for="birthDate" class="z_custdetailadd_lable">证件有效期</label>
+		                                    <p class="input-group z_custdetail_inline">
+		                                        <input type="text"  class="form-control" uib-datepicker-popup="yyyy-MM-dd" datepicker-options="options" ng-model="custom.certDate" is-open="open1.opened" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" show-button-bar="false"  readonly/>
+		                                      <span class="input-group-btn">
+		                                        <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+		                                      </span>
+		                                    </p>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                            <div class="row">
+									<div class="col-md-6 col-lg-6">
+	                                 	<div class="form-group">
+	                                 		<label for="birthDate" class="z_custdetailadd_lable">出生日期</label>
+		                                    <p class="input-group z_custdetail_inline">
+		                                        <input type="text"   class="form-control" uib-datepicker-popup="yyyy-MM-dd" datepicker-options="options" ng-model="custom.birthDate" is-open="open2.opened" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" show-button-bar="false" readonly />
+			                                    <span class="input-group-btn">
+			                                        <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+			                                    </span>
+		                                    </p>
+	                                 	</div>
+	                                </div>
+	                                <div class="col-md-6 col-lg-6">
+	                                    <div class="form-group">
+	                                        <label for="sex" class="z_custdetailadd_lable">性别</label>
+	                                        <ui-select ng-model="custom.sex"
+	                                                   class="btn-group bootstrap-select form-control z_custdetail_inline"
+	                                                   search-enabled="false"
+	                                                   id="sex">
+	                                            <ui-select-match>
+	                                                <span> {{$select.selected.label}}</span>
+	                                            </ui-select-match>
+	                                            <ui-select-choices repeat="sex in sexItems">
+	                                                <span ng-bind-html="sex.label"></span>
+	                                            </ui-select-choices>
+	                                        </ui-select>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                            <div class="row form-group">
+	                                <div class="col-md-6 col-lg-6">
+	                                    <div class="form-group">
+	                                        <label for="nation" class="z_custdetailadd_lable">民族</label>
+	                                        <ui-select ng-model="custom.nation" 
+	                                                   class="btn-group bootstrap-select form-control z_custdetail_inline"
+	                                                   search-enabled="false"
+	                                                   id="nation" >
+	                                            <ui-select-match>
+	                                                <span> {{$select.selected.label}}</span>
+	                                            </ui-select-match>
+	                                            <ui-select-choices repeat="item in Nation">
+	                                                <span ng-bind-html="item.label"></span>
+	                                            </ui-select-choices>
+	                                        </ui-select>
+	                                    </div>
+	                                </div>
+	                                <div class="col-md-6 col-lg-6">
+	                                    <div class="form-group">
+	                                        <label for="politSts" class="z_custdetailadd_lable">政治面貌</label>
+	                                        <ui-select ng-model="custom.politSts" 
+	                                                   class="btn-group bootstrap-select form-control z_custdetail_inline"
+	                                                   search-enabled="false"
+	                                                   id="politSts" >
+	                                            <ui-select-match>
+	                                                <span> {{$select.selected.label}}</span>
+	                                            </ui-select-match>
+	                                            <ui-select-choices repeat="item in PoliticalStatus">
+	                                                <span ng-bind-html="item.label"></span>
+	                                            </ui-select-choices>
+	                                        </ui-select>
+	                                    </div>
+	                                </div>
+	                               <!--  <div class="col-md-6 col-lg-6">
+			                            <div class="form-group">
+			                                <label for="custAgent" class="z_custdetailadd_lable">客户经理</label>
+			                                <input type="hidden" id="custAgent" name="custAgent" ng-model="busiOpp.custAgent" >
+			                                <p class="input-group z_custdetail_inline ">
+			                                	<input type="text" class="form-control " style="width:82%;" id="custAgentNam" name="custAgentNam" ng-model="custom.custAgentNam" >
+												<span class="input-group-btn">
+														<button class="btn btn-default" ng-click="selectAgentDlg()" show-button-bar="false" ><i class="ion-search"></i></button>
+												</span>
+			                                </p>
+			                                
+											
+			                            </div>
+			                        </div> -->
+	                            </div>
+								<div class="row">
+			                        <div class="col-md-6 col-lg-6">
+			                            <div class="form-group">
+			                                <label for="custTyp" class="z_custdetailadd_lable"><span class="requiredFlag">*</span>客户类型</label>
+			                                <ui-select ng-model="custom.custTyp"
+			                                           class="btn-group bootstrap-select form-control z_custdetail_inline"
+			                                           search-enabled="false"
+			                                           id="custTyp" ng-disabled="true">
+			                                    <ui-select-match>
+			                                        <span> {{$select.selected.label}}</span>
+			                                    </ui-select-match>
+			                                    <ui-select-choices repeat="custType in custTypes">
+			                                        <span ng-bind-html="custType.label"></span>
+			                                    </ui-select-choices>
+			                                </ui-select>
+			                            </div>
+			                        </div>
+			                        <div class="col-md-6 col-lg-6">
+			                            <div class="form-group">
+			                                <label for="custSource" class="z_custdetailadd_lable"><span class="requiredFlag">*</span>客户来源</label>
+			                                <ui-select ng-model="custom.custSource"
+			                                           class="btn-group bootstrap-select form-control z_custdetail_inline"
+			                                           search-enabled="false"
+			                                           id="custSource" ng-disabled="true">
+			                                    <ui-select-match>
+			                                        <span> {{$select.selected.label}}</span>
+			                                    </ui-select-match>
+			                                    <ui-select-choices repeat="dataSource in dataSources">
+			                                        <span ng-bind-html="dataSource.label"></span>
+			                                    </ui-select-choices>
+			                                </ui-select>
+			                            </div>
+			                        </div>
+			                    </div>
+			                    <div class="row">
+									<div class="col-md-6 col-lg-6" ng-if="custom.custSource.value=='99'">
+										<div class="form-group">
+											<label class="z_custdetailadd_lable">其他来源</label>
+											<input type="text" class="form-control z_custdetail_inline" ng-model="custom.otherSource">
+										</div>
+									</div>
+								</div>
+			                   <!--  <div class="row">
+			                    	<div class="col-md-6 col-lg-6">
+			                            <div class="form-group">
+			                                <label for="key" class="z_custdetailadd_lable">是否重点客户</label>
+			                                <label class="checkbox-inline custom-checkbox nowrap " style="margin-top:10px;">
+			                                    <input type="checkbox" id="key" value="option1" ng-model="custom.keyCustFlg">
+			                                    <span> </span>
+			                                </label>
+			                            </div>
+			                        </div>
+			                    </div> -->
+	                        </div>
+	                    </div>
+					</div>
+                </uib-tab>	
+                <uib-tab heading="详细信息">
+                	<div class="panel-body" ng-class="{'z_custDetail_show':1 == information_a}">
+	                    <div class="row">
+	                        <div class="col-md-4 col-lg-4">
+	                            <div class="form-group">
+	                                <label for="nationality" class="z_custdetailadd_lable">国籍</label>
+	                                <ui-select ng-model="custom.nationality"
+	                                           class="btn-group bootstrap-select form-control z_custdetail_inline"
+	                                           search-enabled="false"
+	                                           id="nationality">
+	                                    <ui-select-match>
+	                                        <span> {{$select.selected.label}}</span>
+	                                    </ui-select-match>
+	                                    <ui-select-choices repeat="item in nationalitys">
+	                                        <span ng-bind-html="item.label"></span>
+	                                    </ui-select-choices>
+	                                </ui-select>
+	                            </div>
+	                        </div>
+	                        <div class="col-md-4 col-lg-4">
+	                            <div class="form-group">
+	                                <label for="marrigeSts" class="z_custdetailadd_lable">婚姻状况</label>
+	                                <ui-select ng-model="custom.marrigeSts"
+	                                           class="btn-group bootstrap-select form-control z_custdetail_inline"
+	                                           search-enabled="false"
+	                                           id="marrigeSts">
+	                                    <ui-select-match>
+	                                        <span> {{$select.selected.label}}</span>
+	                                    </ui-select-match>
+	                                    <ui-select-choices repeat="item in Marriage">
+	                                        <span ng-bind-html="item.label"></span>
+	                                    </ui-select-choices>
+	                                </ui-select>
+	                            </div>
+	                        </div>
+	                        <div class="col-md-4 col-lg-4">
+	                            <div class="form-group">
+	                                <label for="eduDegree" class="z_custdetailadd_lable">文化程度</label>
+	                                <ui-select ng-model="custom.eduDegree"
+	                                           class="btn-group bootstrap-select form-control z_custdetail_inline"
+	                                           search-enabled="false"
+	                                           id="eduDegree">
+	                                    <ui-select-match>
+	                                        <span> {{$select.selected.label}}</span>
+	                                    </ui-select-match>
+	                                    <ui-select-choices repeat="item in Degrees">
+	                                        <span ng-bind-html="item.label"></span>
+	                                    </ui-select-choices>
+	                                </ui-select>
+	                            </div>
+	                        </div>
+	                    </div>
+	                    <div class="row">
+	                    	<div class="col-md-4 col-lg-4">
+	                            <div class="form-group">
+	                                <label for="schoolNam" class="z_custdetailadd_lable">毕业院校</label>
+	                                <input type="text" class="form-control z_custdetail_inline" id="schoolNam" ng-model="custom.schoolNam">
+	                            </div>
+	                        </div>
+	                        <div class="col-md-4 col-lg-4">
+	                            <div class="form-group">
+	                                <label for="position" class="z_custdetailadd_lable">职业</label>
+	                                <input type="text" class="form-control z_custdetail_inline" id="position" ng-model="custom.position">
+	                            </div>
+	                        </div>
+	                        <div class="col-md-4 col-lg-4">
+	                            <div class="form-group">
+	                                <label for="trade"  class="z_custdetailadd_lable">所属行业</label>
+	                                <ui-select ng-model="custom.trade"
+	                                           class="btn-group bootstrap-select form-control z_custdetail_inline"
+	                                           search-enabled="false"
+	                                           id="trade">
+	                                    <ui-select-match>
+	                                        <span> {{$select.selected.label}}</span>
+	                                    </ui-select-match>
+	                                    <ui-select-choices repeat="item in BusinessTypes">
+	                                        <span ng-bind-html="item.label"></span>
+	                                    </ui-select-choices>
+	                                </ui-select>
+	                            </div>
+	                        </div>
+	                    </div>
+	                    <div class="row">
+	                        <div class="col-md-4 col-lg-4">
+	                            <div class="form-group">
+	                                <label for=" unitNam" class="z_custdetailadd_lable">工作单位</label>
+	                                <input type="text" class="form-control z_custdetail_inline" id=" unitNam" ng-model="custom.unitNam">
+	                            </div>
+	                        </div>
+	                        <div class="col-md-4 col-lg-4">
+	                            <div class="form-group">
+	                                <label for="homeTel" class="z_custdetailadd_lable">住宅电话</label>
+	                                <input type="text" class="form-control z_custdetail_inline" id="homeTel" ng-model="custom.homeTel">
+	                            </div>
+	                        </div>
+	                    </div>
+	                    <div  style="margin:0;">
+			                <!-- <div class="" style="padding-left:0;padding-top:15px;">地址</div> -->
+			                <div class="clearfix" style="padding-left:0;padding-top:15px;">
+								<span style="font-size: 20px">地址</span>
+								<button type="button" class="btn btn-default" style="float:right;" ng-click='addAddress()'>
+									<span>新增地址</span>
+									<span style="cursor: pointer; color: #007bff" class="ion-plus-round" ></span>
+								</button>
+							</div>
+			                <div class=" zcustdetail_patop_no" >
+			                	<!-- {{custom.addressList}} -->
+		                        <div class="row " ng-repeat="item in common.addressList">
+		                        	<!-- {{custom.liveProvince[item.index]}} -->
+		                            <div class="col-md-2 col-lg-2 zcustdetail_paleft_no">
+		                                <div class="form-group">
+		                                	<input type="hidden" name="liveAddrTyp" value="0" /> 
+		                               		<ui-select ng-model="custom.liveProvince[item.id]" class="btn-group bootstrap-select form-control" 
+		                                            append-to-body="false" id="liveProvince" name="liveProvince" search-enabled="false" ng-change="getCityByProv(item)" >
+		                                        <ui-select-match placeholder="--选择省--">
+		                                            <span> {{$select.selected.label}}</span>
+		                                        </ui-select-match>
+		                                        <ui-select-choices repeat="prov in provList"> 
+		                                            <span ng-bind-html="prov.label"></span> 
+		                                       </ui-select-choices> 
+		                                    </ui-select>
+		                                </div>
+		                            </div>
+		                            <div class="col-md-2 col-lg-2 zcustdetail_paleft_no">
+		                                <div class="form-group">
+			                                <ui-select ng-model="custom.liveCity[item.id]" class="btn-group bootstrap-select form-control" 
+			                                            append-to-body="false" id="liveCity" name="liveCity" search-enabled="false" ng-change="getCountyByProvCty(item)" >
+		                                       <ui-select-match placeholder="--选择市--">
+		                                            <span> {{$select.selected.label}}</span>
+		                                       </ui-select-match>
+		                                       <ui-select-choices repeat="city in liveCityList[item.id]" > 
+		                                          <span ng-bind-html="city.label"></span> 
+		                                       </ui-select-choices> 
+			                                </ui-select>  
+			                            </div>                             
+		                            </div>
+		                            <div class="col-md-2 col-lg-2 zcustdetail_paleft_no">
+		                                <div class="form-group">
+			                                <ui-select ng-model="custom.liveCounty[item.id]" class="btn-group bootstrap-select form-control" 
+			                                            append-to-body="false" id="liveCounty" name="liveCounty" search-enabled="false" >
+			                                       <ui-select-match placeholder="--选择区/县--">
+			                                            <span> {{$select.selected.label}}</span>
+			                                     </ui-select-match>
+			                                      <ui-select-choices repeat="county in liveCountyList[item.id]">  
+			                                          <span ng-bind-html="county.label"></span> 
+			                                      </ui-select-choices> 
+			                                  </ui-select>                                
+			                            </div>
+		                            </div>
+		                            <div class="col-md-3 col-lg-3 zcustdetail_paleft_no">
+		                                <div class="form-group">
+		                                    <input type="text" class="form-control" id="liveStreet" placeholder="详细地址" ng-model="item.streetAddr">
+		                                </div>
+		                            </div>
+		                            <div class="col-md-2 col-lg-2 zcustdetail_paleft_no">
+		                                <div class="form-group">
+		                                    <input type="text" class="form-control" id="livePostcode" placeholder="邮编" maxlength="6" ng-model="item.postcode">
+		                                </div>
+		                            </div>
+		                            <div class="col-md-1 col-lg-1 zcustdetail_paleft_no">
+		                            	<button style='padding:6px' ng-class="{'btn-warning':item.whtDefaultAddr==1}" class="btn" ng-click="setAddrDefault(item.id,common.addressList)">默</button>
+										<span ng-if='common.addressList.length>1' style="color: #007bff;font-size: 20px;line-height: 34px;cursor:pointer;float:right" class="fa fa-trash-o del-managmen" ng-click="removeAddress(item.id)"></span>
+		                            </div>
+		                        </div>
+		                    </div>
+	                    </div>
+	                </div>
+                </uib-tab>	
+                <uib-tab heading="社交信息">
+                	<div class="panel-body" ng-class="{'z_custDetail_show':2 == information_a}">
+	                    <div class="form-group col-sm-12">
+	                        <div class="col-md-4">
+	                            <div class="form-group">
+	                                <label for="wechatNo" class="z_custdetailadd_lable">微信</label>
+	                                <input type="text" class="form-control z_custdetail_inline" id="wechatNo" ng-model="custom.wechatNo">
+	                            </div>
+	                        </div>
+	                        <div class="col-md-4">
+	                            <div class="form-group">
+	                                <label for="qq" class="z_custdetailadd_lable">QQ</label>
+	                                <input type="text" class="form-control  z_custdetail_inline" id="QQ" ng-model="custom.qq">
+	                            </div>
+	                        </div>
+	                        <div class="col-md-4">
+	                            <div class="form-group">
+	                                <label for="microblog" class="z_custdetailadd_lable">电子邮箱</label>
+	                                <input type="text" class="form-control z_custdetail_inline" id="microblog" ng-model="custom.emailAddr">
+	                            </div>
+	                           
+	                        </div>
+	                    </div>
+	                    <div class="row">
+	                    	 <div class="col-md-5 col-lg-5" style="padding-bottom: 15px">
+								<button type="button" class="btn btn-default" style="float: left;" ng-click="phoneList()">
+									<span>新增电话</span>
+									<span style="cursor: pointer; color: #007bff;" class="ion-plus-round"  ></span>
+								</button>
+							</div>
+	                    </div>
+	                    <div class="row" ng-repeat='item in custom.phoneList'>
+	                    	<div class="col-md-5 col-lg-5" >
+								<div class="form-group" >
+									<label for="alipay" class="z_custdetailadd_lable">电话号码</label>
+									<input type="text" class="form-control z_custdetail_inline" id="alipay" ng-model="item.phoneNo">
+								</div>
+							</div>
+							<div  class="col-md-1 col-lg-1 zcustdetail_paleft_no clearfix">
+								<button style='padding:6px' ng-class="{'btn-warning':item.isDeault==1}" class="btn" ng-click="setPhoneDefault(item.id,custom.phoneList)">默</button>
+								<span ng-if='custom.phoneList.length>1' style="color: #007bff;font-size: 20px;line-height: 34px;cursor:pointer;float:right" class="fa fa-trash-o del-managmen" ng-click="removePhoneList(item.id)"></span>
+							</div>
+	                    </div>
+	                </div>
+                </uib-tab>
+    		</uib-tabset>
+        </form>
+    </div>
+    <div class="modal-footer">
+    	<button type="button" class="btn btn-default btn-with-icon" ng-click="$dismiss()">关闭</button>
+        <button type="button" class="btn btn-primary btn-with-icon" ng-click="save()">保存</button>
+    </div>
+</div>

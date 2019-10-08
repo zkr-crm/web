@@ -1,0 +1,95 @@
+<div ng-controller="msgTemplateCtrl" class="panel-body">
+
+	<div class="horizontal-scroll" ba-panel ba-panel-class="with-scroll">
+		<form class="form-horizontal" name="modifyForm" novalidate>
+			<div class="row">
+				<div class="col-md-2">
+					<label class="grid-title">模板列表</label>
+				</div>
+				<div class="add-row-editable-table zmargin_right" style="float: right">
+					<button class="btn btn-primary btn-with-icon" ng-click="search()">
+						<i class="ion-search"></i>查询
+					</button>
+					<button class="btn btn-primary btn-with-icon" ng-click="addTemplate()">
+						<i class="ion-plus-round"></i>新增
+					</button>
+					<button class="btn btn-danger btn-with-icon" ng-click="batchRemove()">
+						<i class="ion-trash-a"></i>删除
+					</button>
+				</div>
+				<div class="col-sm-3" style="float: right">
+					<input type="text" class="form-control" ng-model="searchObj.tplNo" placeholder="模板编号">
+				</div>
+				<div class="col-sm-3 zcustrelmnt_right" style="float: right">
+					<input type="text" class="form-control" ng-model="searchObj.tplTitle" placeholder="模板标题">
+				</div>
+			</div>
+		</form>
+
+		<table class="table table-bordered table-hover table-condensed" st-table="smartTableData" st-safe-src="RowCollection">
+			<thead>
+				<tr class="black-muted-bg">
+					<th>
+						<label  class="checkbox-inline custom-checkbox nowrap">
+							<input id="flag" type="checkbox" ng-model="select_all" ng-change="selectAll()">
+							<span></span>
+						</label>
+					</th>
+							<th st-sort="tplNo">模板编号</th>
+							<th st-sort="tplTitle">模板标题</th>
+							<th st-sort="busiType">业务类型</th>
+					        <th st-sort="tplType">模板类型</th>
+							<th class="zwidth_operation">操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in smartTableData" class="editable-row">
+					<td><!-- <input type="checkbox" ng-model="item.checked"
+						ng-click="changeCurrent(item, $event)" /> -->
+						<label  class="checkbox-inline custom-checkbox nowrap">
+							<input type="checkbox" ng-model="item.checked" ng-change="selectOne()">
+							<span></span>
+						</label>
+					</td>
+
+					<td><span>{{ item.tplNo }}</span></td>
+					<td><span>{{ item.tplTitle }}</span></td>
+					<td><span>{{ showBusiType(item) }}</span></td>
+					<td><span>{{ showTplType(item) }}</span></td>
+					<td>
+						<div class="buttons" ng-show="!rowform.$visible">
+							<button class="btn btn-primary btn-icon" ng-click="upd(item)">
+								<i class="ion-compose"></i>
+							</button>
+							<button class="btn btn-danger btn-icon" ng-click="remove(item)">
+								<i class="ion-trash-a"></i>
+							</button>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+            <tfoot>
+            <tr>
+                <td colspan="12">
+                <div class="row">
+                	<!--<div class="col-md-7" style="float: right">
+                    	<div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
+                    </div>
+                    <div class="col-md-5" style="float: right">
+                  	  每页
+				            <label>
+				                <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
+				                        ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
+				                </select>
+				            </label>
+				            条&nbsp;&nbsp;&nbsp;
+				            共{{total||0}}条
+				    </div>-->
+					<st-pager opts="msgTemplateOpts"></st-pager>
+				 </div>
+                </td>
+            </tr>
+            </tfoot>
+		</table>
+	</div>
+</div>

@@ -1,0 +1,122 @@
+<div class="col-md-12" ba-panel ba-panel-title="用户角色" ba-panel-class="with-scroll">
+	<uib-tabset> 
+		<uib-tab heading="基本信息">
+			<form class="form-horizontal">
+				  <div class="form-group">
+				    <label for="inputPassword3" class="col-sm-3 control-label">活动标题<span style="color:#ff0000;">*</span></label>
+				    <div class="col-sm-9">
+				      <input type="text" class="form-control" id="inputPassword3" placeholder="输入活动标题">
+				    </div>
+				  </div>
+				  <div class="form-group">
+				    <label for="inputPassword3" class="col-sm-3 control-label">活动摘要<span style="color:#ff0000;">*</span></label>
+				    <div class="col-sm-9">
+				      <input type="text" class="form-control" id="inputPassword3" placeholder="输入活动摘要">
+				    </div>
+				  </div>
+				  <div class="form-group">
+				    <label for="inputPassword3" class="col-sm-3 control-label">活动时间<span style="color:#ff0000;">*</span></label>
+				    <div class="col-sm-9">
+				      <input type="text" class="form-control" id="inputPassword3" placeholder="输入活动时间">
+				    </div>
+				  </div>	  
+				  <div class="form-group">
+				    <label for="textarea01" class="col-sm-3 control-label">活动详情<span style="color:#ff0000;">*</span></label>
+				    <div class="col-sm-9"> 
+				    	<textarea placeholder="输入活动详情" class="form-control" id="textarea01"></textarea>
+				    </div>
+				  </div>
+   
+				  <div class="form-group">
+				    <label for="phone" class="col-sm-3 control-label">联系电话<span style="color:#ff0000;">*</span></label>
+				    <div class="col-sm-9">
+				      <input type="text" class="form-control" id="phone" placeholder="输入联系电话">
+				    </div>
+				  </div>
+				  
+				  <div class="form-group">
+				    <label for="phone1" class="col-sm-3 control-label">信息回收<span style="color:#ff0000;">*</span></label>
+				      <div class="input-demo radio-demo row">
+					    <div class="col-md-4">
+					      <label class="radio-inline custom-radio nowrap">
+					        <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+					        <span>姓名/电话</span>
+					      </label>
+					    </div>
+					    <div class="col-md-4">
+					      <label class="radio-inline custom-radio nowrap">
+					        <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+					        <span>姓名/电话/邮箱</span>
+					      </label>
+					    </div>
+				  	</div>
+				  </div>
+				  <div class="form-group">
+				    <div class="col-sm-offset-8 col-sm-4">
+				      <button type="submit" class="btn btn-info" ng-click="$dismiss()">取  消</button>
+				      <button type="submit" class="btn btn-info" ng-click="$dismiss()">保  存</button>
+				    </div>
+				  </div>
+			</form>
+		</uib-tab> 
+		<uib-tab heading="高级设置">
+			<div class="tab-pane contactInfo appendInfo" id="otherInfo" role="tabpanel">
+		<div class="form-group tags" style="margin-left: 0px">
+			<label>智能标签</label>
+			<div class="form-group">
+				<div class="col-sm-4 inputLabel">
+					<div class="form-group">
+						<label class="" for="inputLabel">访问客户自动标记标签</label>
+						<!--<input type="text" class="form-control" id="inputLabel" placeholder="可输入自定义标签，已'空格'分隔">-->
+						<div class="visitorTags tag" id="inputLabel">
+							<ul id="visitorEventTags" class="tagit ui-widget ui-widget-content ui-corner-all"><li class="tagit-new"><input type="text" class="ui-widget-content ui-autocomplete-input" autocomplete="off"></li></ul>
+						</div>
+						<span class="promptR">自定义标签长度少于20字符</span>
+						<span class="prompt">(输入自定义标签，以'空格'分隔)</span>
+					</div>
+
+					<div class="form-group">
+						<label class="" for="inputSubmit">提交表单客户自动标记标签</label>
+						<!--<input type="text" class="form-control" id="inputSubmit" placeholder="可输入自定义标签，已'空格'分隔">-->
+						<div class="formContactTags tag" id="inputSubmit">
+							<ul id="formEventTags" class="tagit ui-widget ui-widget-content ui-corner-all"><li class="tagit-new"><input type="text" class="ui-widget-content ui-autocomplete-input" autocomplete="off"></li></ul>
+						</div>
+						<span class="promptR">自定义标签长度少于20字符</span>
+						<span class="prompt">(输入自定义标签，以'空格'分隔)</span>
+					</div>
+				</div>
+				<div class="toVisitoriIcon col-sm-1">
+					<i class="fa fa-angle-double-left VisitoriIcon"></i>
+					<i class="fa fa-angle-double-left FormIcon"></i>
+				</div>
+				<div class="navBtns col-sm-4">
+					<div class="form-group VisitorContactTag">
+						<label class="">系统标签库</label>
+						<div class="chooseContent VisitorEventTag"><div class="chooseOnly"><span class="lgTag smallLabel" onclick="chooseVisitorTag(this)">发发发</span></div><div class="chooseOnly"><span class="lgTag smallLabel" onclick="chooseVisitorTag(this)">阿萨法a</span></div><div class="chooseOnly"><span class="lgTag smallLabel" onclick="chooseVisitorTag(this)">沙发</span></div><div class="chooseOnly"><span class="lgTag smallLabel" onclick="chooseVisitorTag(this)">啊世界经济</span></div><div class="chooseOnly"><span class="lgTag smallLabel" onclick="chooseVisitorTag(this)">发技术都ij</span></div><div class="chooseOnly"><span class="lgTag smallLabel" onclick="chooseVisitorTag(this)">标签</span></div><div class="chooseOnly"><span class="lgTag smallLabel" onclick="chooseVisitorTag(this)">kkk</span></div><div class="chooseOnly"><span class="lgTag smallLabel" onclick="chooseVisitorTag(this)">bbfhgfdhfgdh</span></div><div class="chooseOnly"><span class="lgTag smallLabel" onclick="chooseVisitorTag(this)">安安</span></div><div class="chooseOnly"><span class="lgTag smallLabel" onclick="chooseVisitorTag(this)">asdfafd'</span></div><div class="chooseOnly"><span class="lgTag smallLabel" onclick="chooseVisitorTag(this)">三级</span></div><div class="chooseOnly"><span class="lgTag smallLabel" onclick="chooseVisitorTag(this)">二级客户</span></div><div class="chooseOnly"><span class="lgTag smallLabel" onclick="chooseVisitorTag(this)">一级客户</span></div><div class="chooseOnly"><span class="lgTag smallLabel" onclick="chooseVisitorTag(this)">远离毒品</span></div><div class="chooseOnly"><span class="lgTag smallLabel" onclick="chooseVisitorTag(this)">珍爱生命</span></div><div class="chooseOnly"><span class="lgTag smallLabel" onclick="chooseVisitorTag(this)">kkkk</span></div><div class="chooseOnly"><span class="lgTag smallLabel" onclick="chooseVisitorTag(this)">adfadsf</span></div><div class="chooseOnly"><span class="lgTag smallLabel" onclick="chooseVisitorTag(this)">标签2</span></div><div class="chooseOnly"><span class="lgTag smallLabel" onclick="chooseVisitorTag(this)">标签1</span></div><div class="chooseOnly"><span class="lgTag smallLabel" onclick="chooseVisitorTag(this)">的</span></div><div class="chooseOnly"><span class="lgTag smallLabel" onclick="chooseVisitorTag(this)">大杜棣</span></div><div class="chooseOnly"><span class="lgTag smallLabel" onclick="chooseVisitorTag(this)">豆腐豆腐的</span></div><div class="chooseOnly"><span class="lgTag smallLabel" onclick="chooseVisitorTag(this)">二娃热无若</span></div><div class="chooseOnly"><span class="lgTag smallLabel" onclick="chooseVisitorTag(this)">的的fd</span></div><div class="chooseOnly"><span class="lgTag smallLabel" onclick="chooseVisitorTag(this)">打卡积分a</span></div><div class="chooseOnly"><span class="lgTag smallLabel" onclick="chooseVisitorTag(this)">的看</span></div><div class="chooseOnly"><span class="lgTag smallLabel" onclick="chooseVisitorTag(this)">流失风险客户</span></div><div class="chooseOnly"><span class="lgTag smallLabel" onclick="chooseVisitorTag(this)">高频次客户</span></div></div>
+					</div>
+					<div class="form-group formContactsTag">
+						<label class="">系统标签库</label>
+						<div class="chooseContent FormEventTag"><div class="chooseOnly"><span class="smallLabel" onclick="chooseFormTag(this)">发发发</span></div><div class="chooseOnly"><span class="smallLabel" onclick="chooseFormTag(this)">阿萨法a</span></div><div class="chooseOnly"><span class="smallLabel" onclick="chooseFormTag(this)">沙发</span></div><div class="chooseOnly"><span class="smallLabel" onclick="chooseFormTag(this)">啊世界经济</span></div><div class="chooseOnly"><span class="smallLabel" onclick="chooseFormTag(this)">发技术都ij</span></div><div class="chooseOnly"><span class="smallLabel" onclick="chooseFormTag(this)">标签</span></div><div class="chooseOnly"><span class="smallLabel" onclick="chooseFormTag(this)">kkk</span></div><div class="chooseOnly"><span class="smallLabel" onclick="chooseFormTag(this)">bbfhgfdhfgdh</span></div><div class="chooseOnly"><span class="smallLabel" onclick="chooseFormTag(this)">安安</span></div><div class="chooseOnly"><span class="smallLabel" onclick="chooseFormTag(this)">asdfafd'</span></div><div class="chooseOnly"><span class="smallLabel" onclick="chooseFormTag(this)">三级</span></div><div class="chooseOnly"><span class="smallLabel" onclick="chooseFormTag(this)">二级客户</span></div><div class="chooseOnly"><span class="smallLabel" onclick="chooseFormTag(this)">一级客户</span></div><div class="chooseOnly"><span class="smallLabel" onclick="chooseFormTag(this)">远离毒品</span></div><div class="chooseOnly"><span class="smallLabel" onclick="chooseFormTag(this)">珍爱生命</span></div><div class="chooseOnly"><span class="smallLabel" onclick="chooseFormTag(this)">kkkk</span></div><div class="chooseOnly"><span class="smallLabel" onclick="chooseFormTag(this)">adfadsf</span></div><div class="chooseOnly"><span class="smallLabel" onclick="chooseFormTag(this)">标签2</span></div><div class="chooseOnly"><span class="smallLabel" onclick="chooseFormTag(this)">标签1</span></div><div class="chooseOnly"><span class="smallLabel" onclick="chooseFormTag(this)">的</span></div><div class="chooseOnly"><span class="smallLabel" onclick="chooseFormTag(this)">大杜棣</span></div><div class="chooseOnly"><span class="smallLabel" onclick="chooseFormTag(this)">豆腐豆腐的</span></div><div class="chooseOnly"><span class="smallLabel" onclick="chooseFormTag(this)">二娃热无若</span></div><div class="chooseOnly"><span class="smallLabel" onclick="chooseFormTag(this)">的的fd</span></div><div class="chooseOnly"><span class="smallLabel" onclick="chooseFormTag(this)">打卡积分a</span></div><div class="chooseOnly"><span class="smallLabel" onclick="chooseFormTag(this)">的看</span></div><div class="chooseOnly"><span class="smallLabel" onclick="chooseFormTag(this)">流失风险客户</span></div><div class="chooseOnly"><span class="smallLabel" onclick="chooseFormTag(this)">高频次客户</span></div></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="form-group" style="margin-left: 0px;margin-top: 145px;height: 58px;">
+			<label for="btnWord">按钮文字</label>
+			<div style="padding: 0px;width:20%;">
+				<input type="text" name="buttonWord" id="btnWord" class="form-control" placeholder="立即预约" oninput="changeWord()">
+			</div>
+		</div>
+		<div class="form-group" style="margin-left: 0px;height: 58px;">
+			<label class="control-label">按钮颜色</label>
+			<div class="form-group">
+				<div style="width: 55px;">
+					<div style="width:28px;" class="evo-cp-wrap"><input style="width: 0px; display: none;" id="mycolor" class="colorPicker evo-cp0"><div class="evo-pointer evo-colorind" style="background-color:#57ccf9"></div></div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+		</uib-tab> 
+	</uib-tabset>
+</div>
