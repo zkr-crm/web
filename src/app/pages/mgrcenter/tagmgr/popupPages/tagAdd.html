@@ -1,0 +1,104 @@
+<div class="widgets">
+    <div class="col-md-12">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+                    <em class="ion-ios-close-empty sn-link-close"></em>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">标签新增</h4>
+            </div>
+            <div class="modal-body">
+                    <div  form="baseInfo">
+                        <form name="baseInfo" class="form-horizontal" novalidate>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group has-feedback" ng-class="{'has-error': baseInfo.tagName.$invalid && (baseInfo.tagName.$dirty || baseInfo.$submitted)}">
+                                        <label for="tagName" class="col-sm-4">标签名称</label>
+                                        <div class="col-sm-8 zpercusportra_paleft">
+                                            <input type="text" class="form-control input-normal" id="tagName" name="tagName" ng-model="saveTag.tagName" required> <span class="help-block error-block basic-block">Required</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group" ng-class="{'has-error': baseInfo.tagTypeId.$invalid && (baseInfo.tagTypeId.$dirty || baseInfo.$submitted)}">
+                                        <label for="tagTypeId" class="col-sm-4">标签类别</label>
+                                        <div class="col-sm-8 zpercusportra_paleft">
+                                            <ui-select ng-model="saveTag.tagTypeId" class="btn-group input-normal" style="float:left;" append-to-body="false" id="tagTypeId" name="tagTypeId" search-enabled="false" ng-change="tagTypeChan()">
+                                                <ui-select-match placeholder="请选择...">
+                                                    <span> {{$select.selected.label}}</span>
+                                                </ui-select-match>
+                                                <ui-select-choices repeat="fType in tagTypeId">
+                                                    <span ng-bind-html="fType.label"></span>
+                                                </ui-select-choices>
+                                            </ui-select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group" ng-class="{'has-error': baseInfo.parentTagId.$invalid && (baseInfo.parentTagId.$dirty || baseInfo.$submitted)}">
+                                        <label for="parentTagId" class="col-sm-4">父级标签</label>
+                                        <div class="col-sm-8 zpercusportra_paleft">
+                                            <ui-select ng-model="saveTag.parentTagId" class="btn-group bootstrap-select input-normal" style="float:left;" append-to-body="false" id="parentTagId" name="parentTagId" search-enabled="false" ng-change="pareTagChan()">
+                                                <ui-select-match placeholder="请选择...">
+                                                    <span> {{$select.selected.label}}</span>
+                                                </ui-select-match>
+                                                <ui-select-choices repeat="fType in parentTagId">
+                                                    <span ng-bind-html="fType.label"></span>
+                                                </ui-select-choices>
+                                            </ui-select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group" ng-class="{'has-error': baseInfo.recStat.$invalid && (baseInfo.recStat.$dirty || baseInfo.$submitted)}">
+                                        <label for="recStat" class="col-sm-4">标签状态</label>
+                                        <div class="col-sm-8 zpercusportra_paleft">
+                                        	<input class="form-control input-normal" type="text" ng-model="saveTag.recStat" readonly>
+                                        </div>
+                                        <!-- <div class="col-sm-8 zpercusportra_paleft">
+                                            <ui-select ng-model="saveTag.recStat" class="btn-group bootstrap-select input-normal" style="float:left;" append-to-body="false" id="recStat" name="recStat" search-enabled="false">
+                                                <ui-select-match placeholder="请选择...">
+                                                    <span> {{$select.selected.label}}</span>
+                                                </ui-select-match>
+                                                <ui-select-choices repeat="fType in recStat">
+                                                    <span ng-bind-html="fType.label"></span>
+                                                </ui-select-choices>
+                                            </ui-select>
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                            	<div class="col-md-12">
+	                                <div class="form-group">
+	                                    <label for="remark" class="col-sm-2" style="vertical-align:top;">类别说明</label>
+	                                    <div class="col-sm-9 padding_" ng-class="{'has-error': addForm.remark.$invalid && addForm.$submitted }">
+	                                        <textarea ng-model="saveTag.remark" class="form-control " id="remark" rows="3"></textarea>
+	                                    </div>
+	                                </div>
+	                            </div>
+                            </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary btn-with-icon" ng-click="saveValue()">保存</button>
+                                </div>
+                        </form>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="menuContent" class="menuContent" style="display:none; position: absolute;border:1px solid #ddd;">
+    <ul dept-ztree id="treeDemo" class="ztree" style="margin-top:0; width:217px; height: 300px"></ul>
+</div>
+<div id="orgMenuContent" class="orgMenuContent" style="display:none; position: absolute;z-index: 10000;">
+    <ul org-tree-dir id="orgTreeDemo" class="ztree" style="margin-top:0; width:220px; height: 300px"></ul>
+</div>
+<div id="posMenuContent" class="posMenuContent" style="display:none; position: absolute;z-index: 10000;">
+    <ul pos-tree-dir id="posTreeDemo" class="ztree" style="margin-top:0; width:220px; height: 300px"></ul>
+</div>
+<div id="enterMenuContent" class="enterMenuContent" style="display:none; position: absolute;z-index: 10000;">
+    <ul enter-tree-dir id="enterTreeDemo" class="ztree" style="margin-top:0; width:220px; height: 300px"></ul>
+</div>

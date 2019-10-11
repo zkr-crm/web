@@ -1,0 +1,141 @@
+<div class="widgets">
+	<form class="form-horizontal" name="modForm" novalidate>
+		<loading></loading>
+		<div class="col-md-12" ng-controller="modDeptCtrl">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<font color="white">部门信修修改</font>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="modDept.deptCode" class="col-sm-4 control-label">部门代码</label>
+								<div class="col-sm-8" ng-class="{'has-error': modForm.deptCode.$invalid && modForm.$submitted }">
+									<input type="text" class="form-control input-normal" id="deptCode" name="deptCode" ng-model="modDept.deptCode"
+										required> <span class="help-block error-block basic-block">必录</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="modDept.deptName" class="col-sm-4 control-label">部门名称</label>
+								<div class="col-sm-8" ng-class="{'has-error': modForm.deptName.$invalid && modForm.$submitted }">
+									<input type="text" class="form-control input-normal" id="deptName" name="deptName" ng-model="modDept.deptName"
+										required> <span class="help-block error-block basic-block">必录</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="enter" class="col-sm-4 control-label">所属机构</label>
+								<div class="col-sm-8" ng-class="{'has-error': addForm.superEnter.$invalid && addForm.$submitted }">
+									<select ng-model="selectedEnter" class="form-control input-normal" ng-options="x.show for x in enterList"
+										ng-change="selectEnter(selectedEnter)"></select> <span class="help-block error-block basic-block">必录</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="superDept" class="col-sm-4 control-label">上级部门</label>
+								<div class="col-sm-8" ng-class="{'has-error': addForm.enter.$invalid && addForm.$submitted }">
+									<select ng-model="selectedDept" class="form-control input-normal" ng-options="x.show for x in superDeptList"
+										ng-change="selectSuperDept(selectedDept)"></select> <span class="help-block error-block basic-block">必录</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- <div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="modDept.enterCode" class="col-sm-4 control-label">所属机构码</label>
+								<div class="col-sm-8">
+									<div class="select-normal">
+										<input type="text" class="form-control input-normal" id="enterCode" name="enterCode" ng-model="modDept.enterCode">
+										<select ng-model="modDept.enterCode" id="enterCode" name="enterCode"
+											ng-options="x.enterCode for x in entersInADForShow" class="btn-group bootstrap-select form-control"
+											ng-change="getChangeVal($index)" required>
+											<span class="help-block error-block basic-block">必录</span>
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="modDept.enterName" class="col-sm-4 control-label">所属机构</label>
+								<div class="col-sm-8" ng-class="{'has-error': modForm.enterName.$invalid && modForm.$submitted }">
+									<input type="text" class="form-control input-normal" id="enterName" name="enterName"
+										ng-model="modDept.enterName" required> <span class="help-block error-block basic-block">必录</span>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="modDept.superDeptCode" class="col-sm-4 control-label">上级部门码</label>
+								<div class="col-sm-8">
+									<div class="select-normal">
+										<input type="text" class="form-control input-normal" id="superDeptCode" name="superDeptCode" ng-model="modDept.superDeptCode">
+										<select ng-model="modDept.superDeptCode" id="superDeptCode" name="superDeptCode"
+											ng-options="x.deptCode for x in deptsInADForShow" class="btn-group bootstrap-select form-control"
+											ng-change="getChangeDVal()">
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="modDept.superDept" class="col-sm-4 control-label">上级部门</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control input-normal" id="superDept" name="superDept"
+										ng-model="modDept.superDept">
+								</div>
+							</div>
+						</div>
+					</div>
+ -->
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="modDept.deptMgr" class="col-sm-4 control-label">部门经理</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control input-normal" id="deptMgr" name="deptMgr" ng-model="modDept.deptMgr">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="form-group">
+								<label for="modDept.deptDesc" class="col-sm-2 control-label">部门描述</label>
+								<div style="float: right" class="col-sm-10">
+									<div class="input-long">
+										<input type="text" class="form-control col-sm-push-8" id="deptDesc" name="deptDesc"
+											ng-model="modDept.deptDesc">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="row zaddperassets_textcenter">
+						<button type="button" class="btn btn-default btn-with-icon" ng-click="$dismiss()">
+							关闭
+						</button>
+						<button type="button" class="btn btn-primary btn-with-icon" ng-click="modValue(modForm.$valid)">
+							保存
+						</button>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

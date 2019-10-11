@@ -1,0 +1,163 @@
+<style type="text/css">
+	#factorTree {
+		margin-top: 10px;
+		border: 1px solid #fefefe;
+		background: #fefefe;
+		width: 220px;
+		height: 360px;
+		overflow-y: scroll;
+		overflow-x: auto;
+	}
+</style>
+<div ng-controller="modifyBaseruleCtrl">
+	<div class="row">
+		<div class="col-md-3 zpercusportra_paleft" ba-panel panel-default ba-panel-title="所有因子" ba-panel-class="with-scroll viewport100">
+			<!-- <ul id="factorTree" class="ztree"></ul> -->
+            <div ng-if='isTreeShow' js-tree="basicConfig" ng-model="treeItemList" should-apply="applyModelChanges()" tree="basicTree"  ng-dblclick="onDblClick(this)"></div>
+		</div>
+		<div class="col-md-9 zpercusportra_paleft zcustrelmnt_right" ba-panel panel-default ba-panel-title="本规则配置信息" ba-panel-class="with-scroll viewport100">
+			<form class="form-horizontal" name="addFrom" id="addFrom" >
+						<div class="row form-group form-group-sm">
+							<label for="ruleName" class="col-sm-2 control-label">名称：</label>
+							<div class="col-sm-5">
+								<input type="text" name="ruleName" ng-model="baseRuleObj.ruleName" ng-readonly="isUsedParam" style="color:#6a6a6a"
+								class="form-control" id="ruleName" placeholder="基本规则名称">
+							</div>
+							
+						</div>
+						<div class="row form-group">
+							<label class="col-sm-2 control-label">因子列表：</label>
+							<div class="col-sm-10" style="overflow-y: auto;overflow-x: hidden">
+								<table id="factorTable" class="table  table-bordered" style="border-bottom: 1px solid #1c1c22;" >
+									<thead>
+										<tr>
+										<th align="center" style="width:60px;border-top: 0px">序号</th>
+										<th align="center" style="border-top: 0px">因子名称
+											<select class="form-control hide" id="factorName_select" style="width: 180px;" name="factorName_select"
+													onchange="baseRuleAdd.doChangeFactorName(this.id)">
+											</select>
+										</th>
+										<th align="center" style="border-top: 0px">操作符</th>
+										<th align="center" style="border-top: 0px">参考值</th>
+										<th align="center" style="border-top: 0px"></th>
+										<tr>
+									</thead>
+									<tbody>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<div class="row form-group form-group-sm">
+							<label class="col-sm-2 control-label">运算符：</label>
+							<div class="col-md-3">
+								<button type="button" class="btn btn-sm btn-default dropdown-toggle drag-item" ng-click="baseRuleAdd.addExp(1)"><span exp="&&">&&</span></button>
+								<button type="button" class="btn btn-sm btn-default dropdown-toggle drag-item" ng-click="baseRuleAdd.addExp(2)"><span exp="||">||</span></button>
+								<button type="button" class="btn btn-sm btn-default dropdown-toggle drag-item" ng-click="baseRuleAdd.addExp(3)"><span exp="(">(</span></button>
+								<button type="button" class="btn btn-sm btn-default dropdown-toggle drag-item" ng-click="baseRuleAdd.addExp(4)"><span exp=")">)</span></button>
+							</div>
+						</div>
+						<div class="row form-group form-group-sm">
+							<div class="col-md-10 col-md-offset-2">
+								<div class="oc_tags drag-target sortable" style="height: 100px;width:100%;background: #f0f3f4;">
+
+								</div>
+							</div>
+						</div>
+						<div class="row form-group form-group-sm">
+							<label class="col-sm-2 control-label">表达式：</label>
+							<div class="col-md-10">
+								<textarea name="remark" ng-model="baseRuleObj.remark" readonly class="form-control" id="remark" style="color:#6a6a6a" placeholder="基本规则表达式呈现样例：客户年龄 > 18 & 本次交易金额 > 30000"></textarea>
+							</div>
+						</div>
+						<div class="add-row-editable-table" style="text-align:center">
+							<button class="btn btn-primary btn-with-icon right" ng-click="baseRuleAdd.update()">保存</button>
+							<button type="button" class="btn btn-primary btn-raised right" ng-click="backRole()">返回</button>
+						</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript" language="javascript">
+    /**
+     * 编辑器增加规则表达式
+     * @param obj
+     */
+    function addExp(obj){
+        var span = $(obj).html();
+        var expStr = "<div class='oc_tag'>"
+            + span
+            + "<div class='oc_tag_remove'>X</div>"
+            + "<div style='clear: both;'></div>"
+            + "</div>";
+
+        $(".oc_tags").append(expStr);
+        this.addHoverEffet($(".oc_tag"));
+        this.addRemoveEffect($(".oc_tag_remove"));
+        this.updateRuleTranslation();
+    }
+
+    /**
+     * 增加鼠标滑过效果
+     * @param obj
+     */
+    function addHoverEffet(obj){
+        obj.unbind();
+        obj.hover(function(){
+            $(this).find(".oc_tag_remove").show();
+        },function(){
+            $(this).find(".oc_tag_remove").hide();
+        });
+    }
+
+    /**
+     * 增加鼠标点击关闭效果
+     * @param obj
+     */
+    function addRemoveEffect(obj){
+        obj.unbind();
+        obj.bind("click",function(){
+            $(this).parent().remove();
+            updateRuleTranslation();
+        });
+    }
+
+    /**
+     * 更新因子表达式的译文
+     */
+    function updateRuleTranslation() {
+        $("#remark").val("");
+        $(".sortable > *").each(function(){
+            var exp = $(this).find("[exp]").attr("exp");
+            var factor = $("#factorTable td:contains('"+exp+"')").next().find("input:last").val();
+            var opereate = $("#factorTable td:contains('"+exp+"')").next().next().find("option:selected").html();
+            var value = $("#factorTable td:contains('"+exp+"')").next().next().next().find("option:selected").html();
+            value = value||$("#factorTable td:contains('"+exp+"')").next().next().next().find("input").val();
+
+            var translation = factor + opereate + value;
+            /*
+             var translation = $("#factorTable td:contains('"+exp+"')").next().find("input:last").val()
+             + $("#factorTable td:contains('"+exp+"')").next().next().find("option:selected").html()
+             + value||$("#factorTable td:contains('"+exp+"')").next().next().next().find("input").val();*/
+            translation = (translation||"").replace(/\&lt;/g, '<').replace(/\&gt;/g, '>') || exp;
+            $("#remark").val($("#remark").val() +" "+ translation);
+        });
+    }
+
+    function blurCheck(obj){
+        var value = $(obj).val();
+        var reg = /^\d+$/;
+        if($.trim(value)!=""){
+            var re = value.match(reg);
+            if(re== null){
+                $(obj).val(0);
+                // parent.layer.alert("请输入非负数字!",{icon: 2});
+                return;
+            }}else{
+            $(obj).val(0);
+            // parent.layer.alert("请输入非负数字!",{icon: 2});
+            return;
+        }
+        updateRuleTranslation();
+    };
+</script>

@@ -1,0 +1,34 @@
+<main class="auth-main">
+  <div class="auth-block">
+    <div class="auth-card">
+      <h1>融盛保险客户关系管理系统</h1>
+      <!-- <a href="reg.html" class="auth-link">New to Blur Admin? Sign up!</a> -->
+
+      <form class="form-horizontal" ng-controller="LoginController" ng-submit="loginSubmit()" name="loginForm" novalidate>
+        <div class="form-group">
+          <label for="username" class="control-label">账号</label>
+          <input type="text" class="form-control input-lg" id="username" placeholder="请输入账号" ng-model = "user.id">
+        </div>
+        <div class="form-group">
+          <label for="password" class="control-label">密码</label>
+          <input type="password" class="form-control input-lg" id="password" placeholder="请输入密码" ng-model = "user.password">
+        </div>
+        <div class="form-group">
+          <div style="text-align: center">
+            <button type="submit" class="btn btn-default btn-auth btn-lg">登录</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- <div class="auth-sep"><span><span>or Sign in with one click</span></span></div>
+
+    <div class="al-share-auth">
+      <ul class="al-share clearfix">
+        <li><i class="socicon socicon-facebook" title="Share on Facebook"></i></li>
+        <li><i class="socicon socicon-twitter" title="Share on Twitter"></i></li>
+        <li><i class="socicon socicon-google" title="Share on Google Plus"></i></li>
+      </ul>
+    </div> -->
+  </div>
+</main>

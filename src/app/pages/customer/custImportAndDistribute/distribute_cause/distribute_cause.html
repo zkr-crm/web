@@ -1,0 +1,56 @@
+<div class="widgets">
+	<form class="form-horizontal" name="addForm" novalidate>
+		<loading></loading>
+		<div class="col-md-12" >
+			<div class="panel panel-primary">
+			 <div class="panel-heading">
+			 	<font color="white">客户分配</font>
+			 </div>
+                <div class="panel-body">
+				<form class="form-horizontal" name="modifyForm" novalidate>
+						<div class="col-sm-12" ng-show="show" >
+                           <div class="col-md-12 col-lg-12" >
+                               <div class="form-group" >
+                               	   <label for="chgReason"  class="col-sm-3">分配原因</label>
+                                   <ui-select ng-model="custSaleChgTrace.chgReason" ng-change="eitherShow(custSaleChgTrace.chgReason.value)" 
+                                             class="btn-group bootstrap-select form-control z_custdetail_inline"
+                                             search-enabled="false"
+                                             id="chgReason">
+                                       <ui-select-match>
+                                           <span> {{$select.selected.label}}</span>
+                                       </ui-select-match>
+                                       <ui-select-choices repeat="chgReason in chgReasonItems">
+                                           <span ng-bind-html="chgReason.label"></span>
+                                       </ui-select-choices>
+                                   </ui-select>
+                               </div>
+                           </div>
+                           <div class="col-md-12 col-lg-12" ng-show="showOtherReason">
+                               <div class="form-group">
+                                   <label for="otherReason" class="col-sm-3">其他原因</label>
+                                   <input type="text" class="form-control z_custdetail_inline" id="otherReason" ng-model="custSaleChgTrace.otherReason">
+                               </div>
+                           </div>
+                           <div class="col-md-12 col-lg-12">
+                               <div class="form-group">
+                                   <label for="otherReason" class="col-sm-3">客户经理</label>
+                                   <input type="hidden" id="custAgent" name="custAgent" ng-model="custSaleChgTrace.custAgent" >
+	                                <p class="input-group z_custdetail_inline ">
+	                                	<input type="text" class="form-control " style="width:89%;" id="custAgentNam" name="custAgentNam" ng-model="custSaleChgTrace.custAgentNam" >
+										<span class="input-group-btn">
+												<button class="btn btn-default" ng-click="selectAgentDlg()" show-button-bar="false" ><i class="ion-search"></i></button>
+										</span>
+	                                </p>
+                               </div>
+                           </div>
+	                    </div>
+	                    <div class="row zaddperassets_textcenter zpercusportra_ptop">
+					        <button type="button" class="btn btn-default btn-with-icon" ng-click="$dismiss()">关闭</button>
+					        <button type="button" class="btn btn-primary btn-with-icon" ng-click="saveValue(addForm.$valid)">确定</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

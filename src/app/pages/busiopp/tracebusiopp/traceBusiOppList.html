@@ -1,0 +1,92 @@
+<div ng-controller="traceBusiOppListCtrl">
+	<div class="horizontal-scroll" ba-panel ba-panel-class="with-scroll">
+		<form class="form-horizontal" name="modifyForm" novalidate>
+			<div class="">
+				<label class="grid-title">商机跟踪列表</label>
+			</div>
+			<div class="row">
+				<div class="add-row-editable-table " style="float: right;margin-right:14px">
+					<button class="btn btn-primary btn-with-icon" ng-click="selectBusiOppList()"><i class="ion-search"></i>查询</button>
+					<button class="btn btn-primary btn-with-icon" ng-click="resetSelectBusiOpp()"><i class="ion-refresh"></i>重置</button>
+					<button class="btn btn-primary btn-with-icon" ng-click="addBusiOpp()"><i class="ion-plus-round"></i>新增</button>
+				</div>
+				<div class="col-sm-3" style="float: right;padding-right:5px;">
+					<input type="text" class="form-control" ng-model="searchObj.busiOppName" placeholder="商机名称">
+				</div>
+				<div class="btn-group" role="group" aria-label="Basic example" style="margin-left:14px">
+				<button type="button" class="btn btn-info btn-with-icon button-wrapper" ng-click="selectBusiOppByFz()" ng-class="{'allTask_class':index_ == 0}"><i class="ion-navicon-round"></i>我负责的</button>
+				<button type="button" class="btn btn-info btn-with-icon button-wrapper" ng-click="selectBusiOppByXz()" ng-class="{'allTask_class':index_ == 1}"><i class="ion-navicon-round"></i>我协作的</button>
+				<button type="button" class="btn btn-info btn-with-icon button-wrapper" ng-click="selectBusiOppByAll()" ng-class="{'allTask_class':index_ == 2}"><i class="ion-navicon-round"></i>全部</button>
+			</div>
+			</div>
+		</form>
+
+		<table class="table table-bordered table-hover table-condensed" st-table="busiOppData" st-safe-src="busiOppList">
+			<thead>
+				<tr class="black-muted-bg z_taskService_name">
+					<!-- <th><label for="flag" style="float: left;"><input id="flag" type="checkbox" ng-model="select_all" ng-change="selectAll()"></label></th> -->
+					<th st-sort="busiOppNo">商机编码</th>
+					<th st-sort="busiOppName">商机名称</th>
+					<th st-sort="custNam">客户姓名</th>
+					<th st-sort="custType">客户类型</th>
+					<th st-sort="custTel">客户电话</th>
+         			<th st-sort="busiOppSrc">商机来源</th>
+					<th st-sort="busiOppStageNam">商机阶段</th>
+					<th st-sort="busiOppCreateDate">创建时间</th>
+					<th st-sort="assignDate">分配时间</th>
+					<th st-sort="custAgent">负责人编号</th>
+					<th st-sort="custAgentNam">负责人姓名</th>
+					<th class="z_taskServe_operation">操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in busiOppData" class="editable-row">
+<!-- 					<td>
+						<span>
+							<input type="checkbox" ng-model="item.checked" ng-change="selectOne()">
+						</span>
+					</td> -->
+					<td><span>{{ item.busiOppNo }}</span></td>
+					<td><span>{{ item.busiOppName }}</span></td>
+					<td><span>{{ item.custNam }}</span></td>
+					<td><span>{{ item.custType }}</span></td>
+					<td><span>{{ item.custTel }}</span></td>
+					<td><span>{{ item.busiOppSrc }}</span></td>
+					<td><span>{{ item.busiOppStageNam }}</span></td>
+					<td><span>{{ item.busiOppCreateDate }}</span></td>
+					<td><span>{{ item.assignDate }}</span></td>
+					<td><span>{{ item.custAgent }}</span></td>
+					<td><span>{{ item.custAgentNam }}</span></td>
+					<td>
+						<div class="buttons" >
+							<button class="btn btn-info btn-icon z_taskservice_button" ng-click="openDetail(item)"><i class="ion-eye"></i></button>
+							<button class="btn btn-primary btn-icon z_taskservice_button" ng-click="uptBusiOpp(item)"><i class="ion-compose"></i></button>
+							<button class="btn btn-danger btn-icon z_taskservice_button" ng-click="delBusiOpp(item)"><i class="ion-trash-a"></i></button>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+            <tfoot>
+            <tr>
+                <td colspan="12">
+                <div class="row">
+                	<div class="col-md-7" style="float: right">
+                    	<div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
+                    </div>
+                    <div class="col-md-5" style="float: right">
+                  	  每页
+				            <label>
+				                <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
+				                        ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
+				                </select>
+				            </label>
+				            条&nbsp;&nbsp;&nbsp;
+				            共{{total||0}}条
+				    </div>
+				 </div>
+                </td>
+            </tr>
+            </tfoot>
+     	</table>	
+	</div>
+</div>

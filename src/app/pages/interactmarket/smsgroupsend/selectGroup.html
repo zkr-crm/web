@@ -1,0 +1,81 @@
+<div class="widgets">
+    <form class="form-horizontal" name="addForm" novalidate>
+        <loading></loading>
+        <div class="col-md-12">
+            <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+                            <em class="ion-ios-close-empty sn-link-close"></em>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">客群列表</h4>
+                    </div>
+                    <div class="modal-body">
+                    <form class="form-horizontal" name="modifyForm" novalidate>
+                        <div class="row">
+                            <div class="add-row-editable-table z_cusmnt" style="float: right">
+                                <button class="btn btn-primary btn-with-icon" ng-click="search()"><i
+                                        class="ion-search"></i>查询
+                                </button>
+                            </div>
+                            <div class="col-sm-3 z_custmnt_padding" style="float: right;">
+                                <input type="text" class="form-control" ng-model="searchObj.groupName"
+                                       placeholder="客群名称">
+                            </div>
+                        </div>
+                    </form>
+                    <table class="table table-hover table-condensed" st-table="custs"
+                           st-safe-src="rowCollection">
+                        <thead>
+                        <tr class="black-muted-bg">
+                            <th>
+                                <label for="flag" class="checkbox-inline custom-checkbox nowrap">
+                                    <input id="flag" type="checkbox" ng-model="select_all" ng-change="selectAll1(select_all)">
+                                    <span></span>
+                                </label>
+                            <th>群组ID</th>
+                            <th>群组名称</th>
+                            <th>群组描述</th>
+                            <th>创建方式</th>
+                            <th>创建用户</th>
+                            <th>创建时间</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="item in custs" ng-click="selectRow(item)">
+                            <!-- <td>
+                                <input type="radio" name="inlineRadioOptions" id="inlineRadio1"
+                                       value="{{ item.tplNo }}" ng-change="selectOne($index)"
+                                       ng-model="radioRptOptions.select">
+                            </td> -->
+                            <td>
+                                <label  class="checkbox-inline custom-checkbox nowrap">
+                                    <input type="checkbox" ng-model="item.checked" ng-change="selectOne1()">
+                                    <span></span>
+                                </label>
+                            <td>{{item.groupId}}</td>
+                            <td>{{item.groupName}}</td>
+                            <td title="{{item.groupDesc}}"><span class="nowap-ellipsis taskDesc">{{item.groupDesc}}</span></td>
+                            <td>{{showEstablishType(item)}}</td>
+                            <td>{{item.createUser}}</td>
+                            <td>{{dateFormate(item.establishTime,'yyyy-MM-dd')}}</td>
+
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="10" class="text-left">
+                                <div class="row">
+                                    <st-pager opts='queryGroupOpts'></st-pager>
+                                </div>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary btn-with-icon" ng-click="ok()">确定</button>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </form>
+</div>

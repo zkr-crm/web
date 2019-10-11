@@ -1,0 +1,68 @@
+<div class="widgets">
+	<form class="form-horizontal" name="detailForm" ng-controller="remindDetailCtrl" novalidate>
+		<loading></loading>
+		<div class="col-md-12">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+						<em class="ion-ios-close-empty sn-link-close"></em>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">站内提醒明细</h4>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="sendUser" class="col-sm-4 control-label">发送方</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control input-normal" id="sendUser" name="sendUser"
+										ng-model="remindDetail.sendUser" readOnly>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="sendTime" class="col-sm-4 control-label">发送时间</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control input-normal" id="sendTime" name="sendTime"
+										ng-model="remindDetail.sendTime" readOnly>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="clientIp" class="col-sm-4 control-label">是否已读</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control input-normal" id="isRead" name="isRead" ng-model="isReadLabel"
+										readOnly>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="inputParam" class="col-sm-4 control-label">信息标题</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control input-normal" id="remindTitle" name="remindTitle"
+										   ng-model="remindDetail.remindTitle" readOnly>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="form-group">
+								<label for="inputParam" class="col-sm-2 control-label">提醒内容</label>
+								<div class="col-sm-9"  style="float: left;padding-right:0;">
+									<textarea placeholder="提醒内容" class="form-control" id="remindContent"
+										ng-model="remindDetail.remindContent" readOnly></textarea>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

@@ -1,0 +1,97 @@
+<div class="row accordions-row" ng-controller="autoMarketListCtrl">
+
+	<div class="horizontal-scroll" ba-panel ba-panel-class="with-scroll">
+		<form class="form-horizontal" name="modifyForm" novalidate>
+			<div class="row">
+				<div class="col-md-2">
+					<label class="grid-title">营销活动列表</label>
+				</div>
+				<div class="add-row-editable-table zmarg_right" style="float: right">
+					<button class="btn btn-primary btn-with-icon" ng-click="searchUser()">
+						<i class="ion-search"></i>查询
+					</button>
+					<button class="btn btn-primary btn-with-icon" ng-click="createActiv()">
+						<i class="ion-plus-round"></i>新建
+					</button>
+					<!-- <button class="btn btn-primary btn-with-icon" ng-click="createActiv2()">
+						<i class="ion-plus-round"></i>新建2
+					</button> -->
+				</div>
+				<div class="col-sm-2" style="float: right">
+					<input type="text" class="form-control" ng-model="searchObj.activName" placeholder="活动名称">
+				</div>
+			</div>
+		</form>
+
+		<table class="table table-bordered table-hover table-condensed" st-table="activeList" st-safe-src="activeRows">
+			<thead>
+				<tr class="black-muted-bg">
+					<th><label for="flag"><input id="flag" type="checkbox" ng-model="select_all" ng-change="selectAll()">
+					</label></th>
+					<th st-sort="activName">活动名称</th>
+					<th st-sort="activDesc">活动说明</th>
+					<th st-sort="startDate">开始时间</th>
+					<th st-sort="endDate">结束时间</th>
+					<th st-sort="activeType">活动类型</th>
+					<th st-sort="activStat">活动状态</th>
+					<th st-sort="creatTime">创建时间</th>
+					<th st-sort="QRCode">二维码</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in activeList">
+					<td><input type="checkbox" ng-model="item.checked" ng-change="selectOne()"> <span></span></td>
+					<td><span>{{ item.activName }}</span></td>
+					<td><span>{{item.activDesc }}</span></td>
+					<td><span>{{item.startDate }}</span></td>
+					<td><span>{{item.endDate }} </span></td>
+					<td><span>{{item.activeType }} </span></td>
+					<td><span>{{item.activStat }} </span></td>
+					<td><span>{{item.creatTime }}</span></td>
+					<td>
+						<div ng-show="!item.QRCode">
+							<button title="二维码" class="btn btn-primary btn-icon" ng-click="showQRCode(item)">
+								<i class="imges"></i>
+							</button>
+						</div>
+						<div ng-show="item.QRCode">
+							<img ng-click="showQRCode(item)" alt="活动二维码" width="200px"
+								src="app/pages/market/autoMarketDetil/img/pyfQuuO3_Mini.png">
+						</div>
+					</td>
+					<td>
+						<div class="buttons" ng-show="!rowform.$visible">
+							<button title="详情" class="btn btn-info btn-icon" ng-click="showDetil(item)">
+								<i class="ion-eye"></i>
+							</button>
+							<button title="修改" class="btn btn-primary btn-icon" ng-click="openEditView(item)">
+								<i class="ion-compose"></i>
+							</button>
+							<button title="删除" class="btn btn-danger btn-icon" ng-click="removeUser(item)">
+								<i class="ion-trash-a"></i>
+							</button>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+					<td colspan="12">
+						<div class="row">
+							<div class="col-md-7" style="float: right">
+								<div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
+							</div>
+							<div class="col-md-5" style="float: right">
+								每页 <label> <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
+									ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
+								</select>
+								</label> 条&nbsp;&nbsp;&nbsp; 共{{total||0}}条
+							</div>
+						</div>
+					</td>
+				</tr>
+			</tfoot>
+		</table>
+	</div>
+</div>

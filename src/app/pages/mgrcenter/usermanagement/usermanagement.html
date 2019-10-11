@@ -1,0 +1,133 @@
+<div ng-controller="UsermanagementCtrl">
+
+	<div class="horizontal-scroll" ba-panel ba-panel-class="with-scroll">
+		<form class="form-horizontal" name="modifyForm" novalidate>
+			<div class="row">
+				<div class="col-md-2">
+					<label class="grid-title">
+						<i class="ion-flag btn-primary"></i>
+						查询条件
+					</label>
+				</div>
+			</div>
+			<!--				<div class="col-md-2">-->
+			<!--					<label class="grid-title">用户列表</label>-->
+			<!--				</div>-->
+			<div class="row form-group">
+				<div class="col-md-4" >
+					<label  class="z_custdetailadd_lable">员工编号</label>
+					<input type="text" class="form-control z_custdetail_inline" ng-model="searchObj.employeeId" placeholder="员工编号">
+				</div>
+				<div class="col-md-4">
+					<label  class="z_custdetailadd_lable">用户姓名</label>
+					<input type="text" class="form-control z_custdetail_inline" ng-model="searchObj.userName" placeholder="用户姓名">
+				</div>
+				<div class="col-md-4">
+					<label  class="z_custdetailadd_lable">用户账号</label>
+					<input type="text" class="form-control z_custdetail_inline" ng-model="searchObj.userId" placeholder="用户账号">
+				</div>
+			</div>
+			<div class="row split-div">
+				<HR  class="split-line">
+				<div>
+					<button class="btn btn-primary btn-with-icon" ng-click="search()">
+						<i class="ion-search"></i>查询
+					</button>
+					<button class="btn btn-primary btn-with-icon" ng-click="addUser()">
+						<i class="ion-plus-round"></i>新增
+					</button>
+					<button class="btn btn-danger btn-with-icon" ng-click="batchRemoveUser()">
+						<i class="ion-trash-a"></i>注销
+					</button>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-2">
+					<label class="grid-title">
+						<i class="ion-flag btn-primary"></i>
+						用户列表
+					</label>
+				</div>
+			</div>
+		</form>
+
+		<table class="table  table-hover table-condensed" st-table="smartTableData" st-safe-src="UserRowCollection">
+			<thead>
+			<tr class="black-muted-bg">
+				<th>
+					<label  class="checkbox-inline custom-checkbox nowrap">
+						<input id="flag" type="checkbox" ng-model="select_all" ng-change="selectAll()">
+						<span></span>
+					</label>
+				</th>
+				<th st-sort="userId">用户账号</th>
+				<th st-sort="userName">用户姓名</th>
+				<th st-sort="employeeId">员工编号</th>
+				<th st-sort="sex">性别</th>
+				<th st-sort="enterName">所属机构</th>
+				<!-- delete by lujibing 20190827 -->
+				<!-- <th st-sort="deptName">所属部门</th> -->
+				<!--<th st-sort="posiName">所属岗位</th>-->
+				<th st-sort="telphone">联系电话</th>
+				<th st-sort="email">电子邮件</th>
+				<th>操作</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr ng-repeat="item in smartTableData" class="editable-row">
+				<td>
+					<label  class="checkbox-inline custom-checkbox nowrap">
+						<input type="checkbox" ng-model="item.checked" ng-change="selectOne()">
+						<span></span>
+					</label>
+
+					<!-- <input type="checkbox" ng-model="item.checked"
+                    ng-click="changeCurrent(item, $event)" /> -->
+				</td>
+				<td><span>{{ item.userId }}</span></td>
+				<td><span>{{item.userName }}</span></td>
+				<td><span>{{item.employeeId }}</span></td>
+				<td><span> {{ ShowGender(item) }}</span></td>
+				<td><span>{{item.enterName }}</span></td>
+				<!-- delete by lujibing 20190827 -->
+				<!-- <td><span>{{item.deptName }}</span></td> -->
+				<!--<td><span>{{item.posiName }}</span></td>-->
+				<td><span>{{item.telphone }}</span></td>
+				<td><span><a class="email-link" ng-href="mailto:{{item.email}}">{{ item.email}}</a></span></td>
+				<td>
+					<div class="buttons" ng-show="!rowform.$visible">
+						<button title="修改" class="btn btn-primary btn-icon" ng-click="updUser(item)">
+							<i class="ion-compose"></i>
+						</button>
+						<button title="注销" class="btn btn-danger btn-icon" ng-click="removeUser(item)">
+							<i class="ion-trash-a"></i>
+						</button>
+						<button title="角色配置" class="btn btn-success btn-icon" ng-click="roleAuth(item)">
+							<i class="ion-android-person"></i>
+						</button>
+					</div>
+				</td>
+			</tr>
+			</tbody>
+			<tfoot>
+			<tr>
+				<td colspan="12">
+					<div class="row" ng-if="searchUsersOpts!=null">
+						<!--<div class="col-md-7" style="float: right">
+                            <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
+                        </div>
+                        <div class="col-md-5" style="float: right">
+                            每页 <label> <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
+                                ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
+                            </select>
+                            </label> 条&nbsp;&nbsp;&nbsp; 共{{total||0}}条
+                        </div>-->
+
+						<st-pager opts="searchUsersOpts"></st-pager>
+					</div>
+				</td>
+			</tr>
+			</tfoot>
+		</table>
+	</div>
+</div>

@@ -1,0 +1,65 @@
+<div ng-controller="cstmrMarketCtrl">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="btn-group" role="group" aria-label="Basic example">
+			  <button type="button" class="btn btn-info btn-with-icon" ng-click="open('app/pages/interactmarket/cstmrmarket/cstmrMarketInfo.html')"><i class="fa fa fa-bar-chart-o"></i>新建活动</button>
+		 </div>
+		</div>
+	</div>
+	<br/>
+	<br/>
+	<div class="row" >
+	    <div class="col-md-12">
+	      <div ba-panel ba-panel-title="" ba-panel-class="with-scroll">
+			  <table st-table="smartTableData" class="table table-hover table-bordered" st-safe-src="rowCollection">
+			    <thead>
+				    <tr>
+				      <th colspan="8"><input st-search="name" placeholder="搜索名称" class="input-sm form-control search-input"   type="search"/></th>
+				    </tr>
+				    <tr class="sortable">
+					      <th st-sort="name">活动名称</th>
+					      <th st-sort="pv">页面访问PV</th>
+					      <th st-sort="count">参与人数</th>
+					      <th st-sort="desc">活动场景</th>
+					      <th st-sort="time">创建时间</th>
+					      <th st-sort="share">预览分享</th>
+					      <th st-sort="disable">是否停用</th>
+					      <th>操作</th>
+				    </tr>
+			    </thead>
+			    <tbody>
+			    <tr ng-repeat="item in smartTableData">
+			      <td>{{item.name}}</td>
+			      <td>{{item.pv}}</td>
+			      <td>{{item.count}}</td>
+			      <td>{{item.desc}}</td>
+			      <td>{{item.time}}</td>
+			      <td>{{item.share}}</td>
+			      <td>{{item.disable}}</td>
+			      <td>
+			      	<div class="btn-group" uib-dropdown dropdown-append-to-body>
+				      <button type="button" class="btn btn-info " uib-dropdown-toggle>操作 <span class="caret"></span></button>
+				      <ul uib-dropdown-menu>
+				        <li><a href>明细</a></li>
+				        <li role="separator" class="divider"></li>
+				        <li><a href>删除</a></li>
+				      </ul>
+				  </div>
+			      </td>
+			    </tr>
+			    </tbody>
+			    <tfoot>
+				    <tr>   
+				      <td colspan="7" class="text-center">
+				        <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
+				      </td>
+				      <td >  每页 10  条&nbsp;&nbsp; 共 100 条</td>
+				    </tr>
+			    </tfoot>
+			  </table>
+		</div>
+		</div>
+	</div>
+	
+	
+</div>

@@ -1,0 +1,78 @@
+<div class="widgets">
+	<form class="form-horizontal" name="addForm" novalidate>
+		<loading></loading>
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+						<em class="ion-ios-close-empty sn-link-close"></em>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">新增到静态群组</h4>
+				</div>
+				<div class="modal-body">
+				<form class="form-horizontal" name="modifyForm" novalidate>
+				<div class="row">
+					<div>
+			<div class="btn-group" role="group" style="float: right; margin-right: 15px;">
+				<button class="btn btn-info" ng-click="search()">查询</button>
+			</div>
+
+			<!-- <div class="col-sm-2 zpercusportra_paleft" style="float: right; margin-right: 5px;">
+				<select ng-init="selected=custGroupTyp[0]" ng-model="selected" class="form-control"
+					ng-options="x.label for x in custGroupTyp" ng-change="selectCustGroupTyp(selected)"></select>
+			</div> -->
+			<div class="col-sm-2" style="float: right; margin-right: 5px;">
+				<input type="text" class="form-control" ng-model="searchObj.groupName" placeholder="客群名称" />
+			</div>
+		</div>
+					</div>
+					<br>
+				</form>
+	<div class="row">
+		<div class="col-md-12">
+				<table class="table table-hover table-condensed" st-table="smartTableData" st-safe-src="rowCollection">
+					<thead>
+						<tr class="sortable">
+							<th>#</th>
+							<!-- <th st-sort="item.groupId" st-sort-default="true">群组ID</th> -->
+							<th st-sort="item.groupName">群组名称</th>
+							<th st-sort="item.groupType">客群类型</th>
+							<th st-sort="item.groupDesc">群组描述</th>
+							<!--<th st-sort="item.establishType">创建方式</th>
+							<th st-sort="item.memberType">成员类型</th>
+							<th st-sort="item.establishUser">创建用户</th>-->
+							<th st-sort="item.establishTime">创建时间</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="item in rowCollection">
+							<td><input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="{{ item.groupId }}" ng-change="selectOne($index)" ng-model="radioRptOptions.select" ><span></span></td>
+							<!-- <td>{{item.groupId}}</td> -->
+							<td ng-click='showDetail(item)'>{{item.groupName}}</td>
+							<td>{{showCustGroupTyp(item)}}</td>
+							<td title="{{item.groupDesc}}">
+								<div class="nowap-ellipsis"style="max-width: 400px">{{item.groupDesc}}</div>
+							</td>
+							<!--<td>{{showEstablishType(item)}}</td>
+							<td>{{showGroupMemberType(item)}}</td>
+							<td>{{item.establishUser}}</td>-->
+							<td>{{dateFormat(item.establishTime,"yyyy-MM-dd")}}</td>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="10" class="text-center">
+								<st-pager opts="queryGroupList"></st-pager>
+							</td>
+						</tr>
+					</tfoot>
+				</table>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary btn-with-icon" ng-click="addGroupMember(groupId)">保存</button>
+				</div>
+
+		</div>
+	</div>
+			</div>
+			</div>
+	</form>
+</div>
