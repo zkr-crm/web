@@ -1,0 +1,86 @@
+<div class="widgets">
+	<form class="form-horizontal" name="detailForm" ng-controller="addRemindDefCtrl" novalidate>
+		<loading></loading>
+		<div class="col-md-12">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+						<em class="ion-ios-close-empty sn-link-close"></em>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">站内提醒发送配置</h4>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="advanceDays" class="col-sm-4 control-label">提前天数</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control input-normal" id="advanceDays" name="advanceDays"
+										ng-model="remindDef.advanceDays" placeholder="输入数字 逗号隔开 例：1,2,5">
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="overdueDays" class="col-sm-4 control-label">逾期天数</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control input-normal" id="overdueDays" name="overdueDays"
+										ng-model="remindDef.overdueDays" placeholder="输入数字 逗号隔开 例：1,2,5">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="isSameDay" class="col-sm-4 control-label">是否当日</label>
+								<div class="col-sm-8">
+									<select ng-model="selectedYesNo" class="form-control input-normal" ng-options="x.label for x in YesNoFlg"
+										ng-change="selectYesNo(selectedYesNo)"></select>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="remindLevel" class="col-sm-4 control-label">提醒级别</label>
+								<div class="col-sm-8">
+									<select ng-model="selectedRating" class="form-control input-normal" ng-options="x.label for x in Rating"
+										ng-change="selectRating(selectedRating)"></select>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="remindTopic" class="col-sm-4 control-label">提醒主题</label>
+								<div class="col-sm-8" style="float: left">
+									<input type="text" class="form-control input-normal" id="remindTopic" name="remindTopic"
+										ng-model="remindDef.remindTopic">
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="remindTpl" class="col-sm-4 control-label">消息模板</br>
+									<button class="btn btn-primary" style="padding:0 5px;"  ng-click="selectTemplate()">
+										模板选择
+									</button>
+								</label>
+								<div class="col-sm-8" style="float: left">
+									<textarea placeholder="消息模板" class="form-control input-normal" id="remindTpl"
+										ng-model="remindDef.remindContent"></textarea>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary btn-with-icon" ng-click="saveValue()">
+							保存
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

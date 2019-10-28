@@ -1,0 +1,22 @@
+<div class="vertical-scroll">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th class="table-id">客户编号</th>
+      <th>名称</th>
+      <th>类型</th>
+      <th>日期</th>
+      <th>客户归属</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="item in eventList" ng-click="openRenewDetail(item, 'event')">
+      <td>{{item.custNo}}</td>
+      <td>{{item.custName}}</td>
+      <td>{{item.eventType}}</td>
+      <td>{{item.eventDate}}</td>
+      <td>{{item.sendUser}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

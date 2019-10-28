@@ -1,0 +1,22 @@
+<div class="vertical-scroll">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th class="table-id">客户编号</th>
+      <th>名称</th>
+      <th>类型</th>
+      <th>日期</th>
+      <th>客户归属</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="item in cusList" ng-click="openCustemDetail(item)">
+      <td class="table-id">{{item.custNo}}</td>
+      <td>{{item.custNam}}</td>
+      <td>{{item.custTyp}}</td>
+      <td>{{item.createDate}}</td>
+      <td>{{item.custAgent}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

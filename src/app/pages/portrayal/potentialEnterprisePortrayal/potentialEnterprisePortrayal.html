@@ -1,0 +1,371 @@
+<div class="widgets" >
+    <form class="form-horizontal"  ng-controller="PotentialEnterprisePortrayalCtrl">
+	<div class="row" >
+		<div class="col-md-4" >
+			<div ba-panel >
+			  <div class="section-block">
+				<h2>XXXXX有限公司
+			      <div class="section-block links">
+					<a href><i style = 'float:right' class="ion-compose"></i></a>
+				  </div>
+				</h2>
+				<p><i class="ion-ios-telephone"></i>&nbsp;&nbsp;13888888888</p>
+			  </div>
+			  <div class="section-block">
+			    <h5>标签</h5>
+				  <div class="form-group">
+				        <tags-input class="myTag"
+					    			ng-model="tagData" 
+					                placeholder="添加" 
+					                replace-spaces-with-dashes="false"
+					                add-from-autocomplete-only="true">
+					      <auto-complete source="loadDatas($query)" 
+					                     min-length="0" 
+					                     debounce-delay="0" ></auto-complete>
+					    </tags-input>
+				  </div>
+			  </div>	
+			</div>
+			<div class="typography-widget" style="z-index:-100;position: relative;">
+			    <div ba-panel ba-panel-class="with-scroll lists-widget" ba-panel-title="提示信息">
+			      <div class="section-block">
+			        <div class="accent">
+						<font color="red">1.保费支付中断。</font>
+			        </div>
+			        <div class="accent">
+						<font color="red">2.商机推送。</font>
+			        </div>
+			         <div class="accent">
+						3.企业10周年。
+			        </div>
+			         <div class="accent">
+			         	<p style = 'float:right' onclick="www.baidu.com">更多...</p>
+			         </div>
+			      </div>
+			    </div>
+			  </div>
+			<div class="typography-widget" style="z-index:-100;position: relative;">
+			    <div ba-panel ba-panel-class="with-scroll lists-widget" ba-panel-title="客户详情">
+			      <div class="section-block">
+			        <div class="accent">
+						税号<p style = 'float:right'>31231231</p>
+			        </div>
+			        <div class="accent">
+						注册号<p style = 'float:right'>45353453</p>
+			        </div>
+			        <div class="accent">
+						开户行<p style = 'float:right'>招商银行</p>
+			        </div>
+			        <div class="accent">
+						所属行业<p style = 'float:right'>金融</p>
+			        </div>
+			         <div class="accent">
+						地区<p style = 'float:right'>沈阳</p>
+			        </div>
+			        <div class="accent">
+						成立日期<p style = 'float:right'>2011-12-20</p>
+			        </div>
+			        <div class="accent">
+						企业状态<p style = 'float:right'>正常</p>
+			        </div>
+			        <div class="accent">
+						客户来源<p style = 'float:right'>微信</p>
+			        </div>
+			        <div class="accent">
+						客户经理<p style = 'float:right'>李四</p>
+			        </div>
+			         <div class="accent">
+						下次跟进时间<p style = 'float:right'>2017/06/06</p>
+			        </div>
+			         <div class="accent">
+						详细地址<p style = 'float:right'>沈阳市浑南新区</p>
+			        </div>
+			      </div>
+			    </div>
+			  </div>
+		</div>
+		<div class="col-md-8">
+			  <div class="col-md-8 col-lg-6">
+			    <div class="panel panel-primary contextual-example-panel bootstrap-panel">
+			      <div class="panel-heading">过去一年企业投保率</div>
+			      <div class="panel-body">
+			        	<h3 style="text-align: center">0%</h3>
+			        	<p style = 'text-align: center'>投保0人</p>
+				  </div>
+			    </div>
+			  </div>
+			  <div class="col-md-8 col-lg-6">
+			    <div class="panel panel-info contextual-example-panel bootstrap-panel">
+			      <div class="panel-heading">企业出险率/理赔金额</div>
+			      <div class="panel-body">
+			        	<h3 style="text-align: center">0%</h3>
+			        	<p style = 'text-align: center'>0元</p>
+				  </div>
+			    </div>
+			  </div>
+		</div>
+		<div class="col-md-8">
+			  <div class="col-md-8 col-lg-6">
+			    <div class="panel panel-warning contextual-example-panel bootstrap-panel">
+			      <div class="panel-heading">企业投保产品数量</div>
+			      <div class="panel-body">
+			        	<h3 style="text-align: center">0种</h3>
+				  </div>
+			    </div>
+			  </div>
+			  <div class="col-md-8 col-lg-6">
+			    <div class="panel panel-danger contextual-example-panel bootstrap-panel">
+			      <div class="panel-heading">末次跟进</div>
+			      <div class="panel-body">
+			        	<h3 style="text-align: center">当天</h3>
+			        	<p style = 'text-align: center'>跟进人：刘杰</p>
+				  </div>
+			    </div>
+			  </div>
+		</div>
+		<div class="col-md-8">
+			  <div
+		          ba-panel
+		          ba-panel-class="with-scroll horizontal-tabs tabs-panel ">
+			        <uib-tabset active="$tabSetStatus.activeTab">
+					  <uib-tab heading="动态轨迹">
+					    	<div ba-panel>
+							  <section id="cd-timeline" class="cd-container cssanimations"  >
+							    <div class="cd-timeline-block">
+							      <div class="cd-timeline-img">
+							        <div class="kameleon-icon with-round-bg warning"><img ng-src="{{::( 'Euro-Coin' | kameleonImg )}}"></div>
+							      </div>
+							
+							      <div class="cd-timeline-content warning">
+							        <h5>购买xxxx</h5>
+							        <p>xxxxxxx</p>
+							        <span class="cd-date">2017.10.24</span>
+							      </div>
+							    </div>
+							
+							    <div class="cd-timeline-block">
+							      <div class="cd-timeline-img">
+							        <div class="kameleon-icon with-round-bg danger"><img ng-src="{{::( 'Laptop-Signal' | kameleonImg )}}"></div>
+							      </div>
+							
+							      <div class="cd-timeline-content danger">
+							        <h5>咨询xxxxx</h5>
+							        <p>xxxxxx</p>
+							        <span class="cd-date">2017.9.11</span>
+							      </div>
+							    </div>
+							
+							    <div class="cd-timeline-block">
+							      <div class="cd-timeline-img">
+							        <div class="kameleon-icon with-round-bg primary"><img ng-src="{{::( 'Checklist' | kameleonImg )}}"></div>
+							      </div>
+							
+							      <div class="cd-timeline-content primary">
+							        <h5>购买xxxx</h5>
+							
+							        <p>xxxxx</p>
+							        <span class="cd-date">2017.6.21</span>
+							      </div>
+							    </div>
+							
+							    <div class="cd-timeline-block">
+							      <div class="cd-timeline-img">
+							        <div class="kameleon-icon with-round-bg warning"><img ng-src="{{::( 'Boss-3' | kameleonImg )}}"></div>
+							      </div>
+							
+							      <div class="cd-timeline-content warning">
+							        <h5>打电话咨询xxxxx</h5>
+							
+							        <p>xxxxxx</p>
+							        <span class="cd-date">2017.3.09</span>
+							      </div>
+							    </div>
+							    <div class="cd-timeline-block">
+							      <div class="cd-timeline-img">
+							        <div class="kameleon-icon with-round-bg danger"><img ng-src="{{::( 'Online-Shopping' | kameleonImg )}}"></div>
+							      </div>
+							
+							      <div class="cd-timeline-content danger">
+							        <h5>购买xxxxx</h5>
+							
+							        <p> xxxxx</p>
+							        <span class="cd-date">2016.12.23</span>
+							      </div>
+							    </div>
+							    <div class="cd-timeline-block">
+							      <div class="cd-timeline-img">
+							        <div class="kameleon-icon with-round-bg primary"><img ng-src="{{::( 'Money-Increase' | kameleonImg )}}"></div>
+							      </div>
+							
+							      <div class="cd-timeline-content primary">
+							        <h5>咨询xxxxx</h5>
+							
+							        <p>xxxxx</p>
+							        <span class="cd-date">2016.11.07</span>
+							      </div>
+							    </div>
+							    <div class="cd-timeline-block">
+							      <div class="cd-timeline-img">
+							        <div class="kameleon-icon with-round-bg warning"><img ng-src="{{::( 'Vector' | kameleonImg )}}"></div>
+							      </div>
+							
+							      <div class="cd-timeline-content warning">
+							        <h5>购买xxxxx</h5>
+							
+							        <p>xxxxx</p>
+							        <span class="cd-date">2016.10.27</span>
+							      </div>
+							    </div>
+							  </section>
+							</div>
+				      </uib-tab>
+
+					   <uib-tab heading="联系人">
+					    <table class="table table-bordered table-hover table-condensed" st-table="smartTableData" st-safe-src="rowCollection">
+						    <thead>
+						    <tr class="sortable ">
+						      <th class="table-id" st-sort="id" st-sort-default="true">#</th>
+						      <th >联系人姓名</th>
+						      <th >联系人手机号</th>
+						      <th >角色</th>
+						      <th >操作</th>
+						    </tr>
+						    </thead>
+						</table>
+					  </uib-tab>
+					   <uib-tab heading="协作人">
+					     <table class="table table-bordered table-hover table-condensed" st-table="smartTableData" st-safe-src="rowCollection">
+						    <thead>
+						    <tr class="sortable ">
+						      <th class="table-id" st-sort="id" st-sort-default="true">#</th>
+						      <th >协作人姓名</th>
+						      <th >协作人手机号</th>
+						    </tr>
+						    </thead>
+						</table>
+					  </uib-tab>
+					   <uib-tab heading="任务">
+					    <table class="table table-bordered table-hover table-condensed" st-table="smartTableData" st-safe-src="rowCollection">
+						    <thead>
+						    <tr class="sortable ">
+						      <th class="table-id" st-sort="id" st-sort-default="true">#</th>
+						      <th >任务名称</th>
+						      <th >关联线索</th>
+						      <th >负责人</th>
+						      <th >负责人部门</th>
+						      <th >截止时间</th>
+						      <th >任务描述</th>
+						      <th >创建人</th>
+						      <th >操作</th>
+						    </tr>
+						    </thead>
+						</table>
+					  </uib-tab> 
+					   <uib-tab heading="线索">
+					    <table class="table table-bordered table-hover table-condensed" st-table="smartTableData" st-safe-src="rowCollection">
+						    <thead>
+						    <tr class="sortable ">
+						      <th class="table-id" st-sort="id" st-sort-default="true">#</th>
+						      <th >线索名称</th>
+						      <th >线索阶段</th>
+						      <th >线索描述</th>
+						      <th >可能性</th>
+						      <th >预估金额</th>
+						      <th >负责人</th>
+						      <th >操作</th>
+						    </tr>
+						    </thead>
+						</table>
+					  </uib-tab>
+					  	<uib-tab heading="客户关系">
+					    <table class="table table-bordered table-hover table-condensed" st-table="smartTableData" st-safe-src="rowCollection">
+						    <thead>
+							    <tr class="sortable ">
+							      <th class="table-id" st-sort="id" st-sort-default="true">#</th>
+							      <th >关系类型</th>
+							      <th >关联客户号</th>
+							      <th >关联客户姓名</th>
+							      <th >关系描述</th>
+							      <th >有效日期</th>
+								  <th >失效日期</th>
+								  <th >操作</th>
+							    </tr>
+						    </thead>
+						</table>
+						</uib-tab>
+					  	<uib-tab heading="事件信息">
+					    <table class="table table-bordered table-hover table-condensed" st-table="smartTableData" st-safe-src="rowCollection">
+						    <thead>
+							    <tr class="sortable ">
+							      <th class="table-id" st-sort="id" st-sort-default="true">#</th>
+							      <th >客户号</th>
+							      <th >事件类型</th>
+							      <th >事件日期</th>
+							      <th >事件描述</th>
+							      <th >操作</th>
+							    </tr>
+						    </thead>
+						</table>
+						</uib-tab>
+					  	<uib-tab heading="风险资产">
+					    <table class="table table-bordered table-hover table-condensed" st-table="smartTableData" st-safe-src="rowCollection">
+						    <thead>
+						    </thead>
+						</table>
+						</uib-tab>
+					  	<uib-tab heading="用户需求采集">
+					    <table class="table table-bordered table-hover table-condensed" st-table="smartTableData" st-safe-src="rowCollection">
+						    <thead>
+							    <tr class="sortable ">
+							      <th class="table-id" st-sort="id" st-sort-default="true">#</th>
+							      <th >日期</th>
+							      <th >需求名称</th>
+							      <th >需求类型</th>
+								  <th >需求阶段</th>
+								  <th >需求描述</th>
+								  <th >负责人</th>
+								  <th >操作</th>
+							    </tr>
+						    </thead>
+						</table>
+						</uib-tab>
+					  	<uib-tab heading="健康档案">
+					    <table class="table table-bordered table-hover table-condensed" st-table="smartTableData" st-safe-src="rowCollection">
+						    <thead>
+							    <tr class="sortable ">
+							      <th class="table-id" st-sort="id" st-sort-default="true">#</th>
+							      <th >日期</th>
+							      <th >客户号</th>
+							      <th >姓名</th>
+							      <th >医院机构名称</th>
+							      <th >诊室</th>
+								  <th >负责医生</th>
+								  <th >档案类型</th>
+								  <th >检查内容</th>
+								  <th >操作</th>
+							    </tr>
+						    </thead>
+						</table>
+					  </uib-tab>
+					  	<uib-tab heading="音频/视频">
+					    <table class="table table-bordered table-hover table-condensed" st-table="smartTableData" st-safe-src="rowCollection">
+						    <thead>
+							    <tr class="sortable ">
+							      <th class="table-id" st-sort="id" st-sort-default="true">#</th>
+							      <th >日期</th>
+							      <th >客户号</th>
+							      <th >姓名</th>
+							      <th >文件名称</th>
+							      <th >内容类型</th>
+								  <th >负责人</th>
+								  <th >操作</th>
+							    </tr>
+						    </thead>
+						</table>
+					  </uib-tab>
+				    </uib-tabset>
+		      </div>
+		  </div>
+	</div>
+	</form>
+</div>

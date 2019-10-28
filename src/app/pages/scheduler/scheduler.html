@@ -1,0 +1,60 @@
+<div class="row" ng-controller="SchedulerController">
+    <div class="col-md-12">
+        <div ba-panel ba-panel-title="调度引擎" ba-panel-class="with-scroll">
+            <div class="horizontal-scroll">
+                <div class="form-group">
+                    <b>当前状态：{{status}}</b>
+                    &nbsp;
+                    &nbsp;
+                    <button type="button" class="btn btn-primary btn-with-icon" ng-click="start()" ng-disabled = "isRunning"><i class="ion-ios-play"></i>启动调度</button>
+                    &nbsp;
+                    &nbsp;
+                    <button type="button" class="btn btn-primary btn-with-icon" ng-click="standby()" ng-disabled = "!isRunning"><i class="ion-ios-pause"></i>暂停调度</button>
+                    &nbsp;
+                    &nbsp;
+                    <button type="button" class="btn btn-primary btn-with-icon" ng-click="addJob()"><i class="ion-plus"></i>新增作业</button>
+                    &nbsp;
+                    &nbsp;
+                    <button type="button" class="btn btn-info btn-with-icon" ng-click="refresh()"><i class="ion-refresh"></i>刷新</button>
+                </div>
+                <table class="table table-hover table-condensed" st-table="jobs" st-safe-src="jobCollection">
+                    <thead>
+                        <tr class="sortable black-muted-bg">
+                            <th st-sort="group" st-sort-default="true">作业组</th>
+                            <th st-sort="desc">作业描述</th>
+                            <th st-sort="name">作业名称</th>
+                            <th st-sort="cron">cron表达式</th>
+                            <th st-sort="previousFireTime">上次执行时间</th>
+                            <th st-sort="nextFireTime">下次执行时间</th>
+                            <th st-sort="status">状态</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                    <tbody>
+                    <tr ng-repeat="item in jobs">
+                        <td>{{item.group}}</td>
+                        <td>{{item.desc}}</td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.cron}}</td>
+                        <td>{{item.previousFireTime|date:"yyyy-MM-dd HH:mm:ss"}}</td>
+                        <td>{{item.nextFireTime|date:"yyyy-MM-dd HH:mm:ss"}}</td>
+                        <td>{{item.status}}</td>
+                        <td>
+                            <button type="button" class="btn btn-primary btn-icon" ng-click="resume(item)" ng-disabled = "item.status == 'NORMAL'"><i class="ion-play"></i></button>
+                            <button type="button" class="btn btn-info btn-icon" ng-click="pause(item)" ng-disabled = "item.status == 'PAUSED'"><i class="ion-pause"></i></button>
+                            <button type="button" class="btn btn-danger btn-icon" ng-click="delete(item)"><i class="ion-trash-a"></i></button>
+                        </td>
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <td colspan="6" class="text-center">
+                            <div st-pagination="" st-items-by-page="10" st-displayed-pages="5"></div>
+                        </td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

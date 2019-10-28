@@ -1,0 +1,96 @@
+<div class="horizontal-scroll" ba-panel ba-panel-title="公司销售业绩统计" ba-panel-class="with-scroll">
+	<div class="row">
+		<div class="col-md-3">
+			<div class="col-xlg-10 col-md-20 col-sm-10" ng-controller="datepickerpopupCtrl">
+				<p class="input-group">
+					<input type="text" class="form-control" uib-datepicker-popup="{{format}}" datepicker-options="options"
+						ng-model="dt" is-open="opened" ng-required="true" close-text="Close" alt-input-formats="altInputFormats"
+						show-button-bar="true" id="startTime" placeholder="开始时间" /> <span class="input-group-btn">
+						<button type="button" class="btn btn-default" ng-click="open()">
+							<i class="glyphicon glyphicon-calendar"></i>
+						</button>
+					</span>
+				</p>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="col-xlg-10 col-md-20 col-sm-10" ng-controller="datepickerpopupCtrl">
+				<p class="input-group">
+					<input type="text" class="form-control" uib-datepicker-popup="{{format}}" datepicker-options="options"
+						ng-model="dt" is-open="opened" ng-required="true" close-text="Close" alt-input-formats="altInputFormats"
+						show-button-bar="true" id="endTime" placeholder="截止时间" /> <span class="input-group-btn">
+						<button type="button" class="btn btn-default" ng-click="open()">
+							<i class="glyphicon glyphicon-calendar"></i>
+						</button>
+					</span>
+				</p>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<button class="btn btn-primary" ng-click="search()">统计</button>
+			<button class="btn btn-primary" ng-click="search()">测试</button>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-6" ng-controller="chartJs1DCtrl">
+			<div ba-panel ba-panel-title="Pie" ba-panel-class="with-scroll ">
+				<div class="chartjs-canvas-holder-first-row">
+					<canvas id="pie" class="chart chart-pie" chart-options="options" chart-data="data" chart-labels="labels"
+						chart-click="changeData">
+                </canvas>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6" ng-controller="chartJs2DCtrl">
+			<div ba-panel ba-panel-title="Bars" ba-panel-class="with-scroll ">
+				<div class="chartjs-canvas-holder-first-row">
+					<canvas id="bar" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series"
+						chart-click="changeData" chart-update="updateC">
+                </canvas>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row" ng-controller="companySalesCtrl">
+		<table  class="table table-bordered table-hover table-condensed" st-table="saleInfos" st-safe-src="saleData">
+			<thead>
+				<tr>
+					<th st-sort="policyNo">保单号</th>
+					<th st-sort="busiOpportNo">所属商机</th>
+					<th st-sort="custManager">客户经理</th>
+					<th st-sort="affilTeam">所属团队</th>
+					<th st-sort="signDate">签单日期</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="saleInfo in saleInfos">
+					<td class="select-td"><span e-name="policyNo" e-required> {{ saleInfo.policyNo || 'empty' }}
+					</span></td>
+					<td><span e-name="busiOpportNo" e-required> {{saleInfo.busiOpportNo || 'empty' }} </span></td>
+					<td class="select-td"><span e-name="custManager" e-required> {{ saleInfo.custManager ||
+							'empty' }} </span></td>
+					<td class="select-td"><span e-name="affilTeam" e-required> {{ saleInfo.affilTeam || 'empty'
+							}} </span></td>
+					<td class="select-td"><span e-name="signDate" e-required> {{ saleInfo.signDate || 'empty' }}
+					</span></td>
+					<td>
+						<div class="buttons" ng-show="!rowform.$visible">
+							<button class="btn btn-primary editable-table-button btn-xs" ng-click="rowform.$show()">详情</button>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+					<td colspan="6" class="text-center">
+						<div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
+					</td>
+				</tr>
+			</tfoot>
+		</table>
+	</div>
+
+</div>

@@ -1,0 +1,92 @@
+<div ng-controller="publicRepositoryCtrl" class="col-sm-12">
+	<div>
+		<div>
+			<div class="row">
+				<div class="col-sm-4" ba-panel ba-panel-title="知识库目录" ba-panel-class="with-scroll viewport100">
+					<div class="control-side text-left" style="padding-bottom:15px;">
+						<a href="" ng-click="addNode()" style="padding-left:5%;padding-right:10px;font-size:20px;" class="ng-scope">
+							<span class="ion-plus-round"></span>
+						</a>
+						<a href="" ng-click="delNode()" style="font-size:20px;" class="ng-scope">
+							<span class="fa fa-trash-o del-managmen"></span>
+						</a>
+					</div>
+					<div js-tree="basicConfig" ng-model="treeData" should-apply="applyModelChanges()" tree-events="move_node:move"
+						tree="basicTree" ng-click="detShow()"></div>
+				</div>
+
+				<div class="horizontal-scroll" ba-panel ba-panel-title="知识文档 " ba-panel-class="with-scroll viewport100">
+					<form class="form-horizontal" name="modifyForm" novalidate>
+						<div class="row">
+							<div class="add-row-editable-table zmarg_right" style="float: right">
+								<button class="btn btn-info btn-with-icon" ng-click="searchUser()">
+									<i class="ion-search"></i>查询
+								</button>
+								<button class="btn btn-info btn-with-icon" ng-click="addUser()">
+									<i class="ion-plus-round"></i>新增
+								</button>
+								<button class="btn btn-danger btn-with-icon" ng-click="batchRemoveUser()">
+									<i class="ion-trash-a"></i>删除
+								</button>
+							</div>
+							<div class="col-sm-2" style="float: right">
+								<input type="text" class="form-control" ng-model="searchObj.employeeId" placeholder="文件名称">
+							</div>
+						</div>
+					</form>
+
+					<table class="table table-bordered" st-table="smartTableData" st-safe-src="knowledgeList">
+						<thead>
+							<tr class="black-muted-bg">
+								<th st-sort="name">文件名称</th>
+								<th st-sort="type">知识分类</th>
+								<th st-sort="downloadTimes">下载次数</th>
+								<th st-sort="size">文件大小</th>
+								<th st-sort="createUser">创建人</th>
+								<th st-sort="createTime">创建时间</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="item in smartTableData" class="editable-row">
+								<td>{{ item.name}}</td>
+								<td>{{ item.type}}</td>
+								<td>{{ item.downloadTimes}}</td>
+								<td>{{ item.size}}</td>
+								<td>{{ item.createUser}}</td>
+								<td>{{ item.createTime}}</td>
+								<td>
+									<div class="buttons">
+										<button title="修改" class="btn btn-info btn-icon" ng-click="updUser(item)">
+											<i class="ion-compose"></i>
+										</button>
+										<button title="删除" class="btn btn-danger btn-icon" ng-click="removeUser(item)">
+											<i class="ion-trash-a"></i>
+										</button>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr>
+								<td colspan="12">
+									<div class="row">
+										<div class="col-md-7" style="float: right">
+											<div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
+										</div>
+										<div class="col-md-5" style="float: right">
+											每页 <label> <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
+												ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
+											</select>
+											</label> 条&nbsp;&nbsp;&nbsp; 共{{total||0}}条
+										</div>
+									</div>
+								</td>
+							</tr>
+						</tfoot>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

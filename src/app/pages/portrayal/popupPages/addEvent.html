@@ -1,0 +1,56 @@
+<div class="widgets">
+	<form class="form-horizontal" name="addForm" novalidate>
+		<loading></loading>
+		<div class="col-md-12" >
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+						<em class="ion-ios-close-empty sn-link-close"></em>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">个人客户事件新增</h4>
+				</div>
+				<div class="modal-body">
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label  class="col-sm-4 control-label">事件类型</label>
+							<div class="col-sm-8" >
+								<!-- <input type="text" class="form-control input-normal" id="eventType" name="eventType" ng-model="custEvent.eventType" required> --> 
+								<select ng-model="custEvent.eventType" class="form-control input-normal" ng-options="x.label for x in EventType" ng-change="selectEventType(custEvent.eventType)"  id="eventType">
+									<option value="" hidden> </option></select>
+								<span class="help-block error-block basic-block">必录</span>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label  class="col-sm-4 control-label">事件日期</label>
+							<div class="col-sm-8 zaddperassets_posi" >
+                               <input type="text" class="form-control input-normal" uib-datepicker-popup="yyyy-MM-dd" datepicker-options="options" ng-model="custEvent.eventDate" 
+                                 			is-open="eventOpened" ng-required="false" close-text="Close" alt-input-formats="altInputFormats" show-button-bar="false" id="eventDate" />
+                               <span class="input-group-btn">
+                                 <button type="button" class="btn btn-default" ng-click="eventOpen()"><i class="glyphicon glyphicon-calendar"></i></button>
+                               </span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="form-group">
+							<label  class="col-sm-2 control-label">事件描述</label>
+							<div class="col-sm-10" >
+								<textarea class="form-control input-normal" id="eventDesc" name="eventDesc" ng-model="custEvent.eventDesc"></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary btn-with-icon" ng-click="addEvent()">保存</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

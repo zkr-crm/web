@@ -1,0 +1,291 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<div class="widgets">
+	<div class="col-md-12" ng-controller="blacklistCtrl">
+		<uib-tabset active="$tabSetStatus.activeTab">
+			<uib-tab heading="黑名单维护" ng-click='changeFlag("queryCustOptions")'>
+				<div ba-panel ba-panel-class="with-scroll">
+					<form class="form-horizontal" name="modifyForm" novalidate>
+
+						<div class="row">
+							<div class="col-md-2">
+								<label class="grid-title">
+									<i class="ion-flag btn-primary"></i>
+									查询条件
+								</label>
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-md-4">
+								<label  class="z_custdetailadd_lable">客户姓名</label>
+								<input type="text" class="form-control z_custdetail_inline" ng-model="searchObj.custName" placeholder="客户姓名">
+							</div>
+							<div class="col-md-4">
+								<label  class="z_custdetailadd_lable">客户号</label>
+								<input type="text" class="form-control z_custdetail_inline" ng-model="searchObj.custNo" placeholder="客户号">
+							</div>
+							<div class="col-md-4">
+								<label  class="z_custdetailadd_lable">证件号</label>
+								<input type="text" class="form-control z_custdetail_inline" ng-model="searchObj.certNo" placeholder="证件号">
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-md-4">
+								<label  class="z_custdetailadd_lable">手机号</label>
+								<input type="text" class="form-control z_custdetail_inline" ng-model="searchObj.phoneNumber" placeholder="手机号">
+							</div>
+<!--							<div class="col-md-4">-->
+<!--								<label  class="z_custdetailadd_lable">客户经理</label>-->
+<!--								<input type="text" class="form-control z_custdetail_inline" ng-model="searchObj.custAgent" placeholder="客户经理">-->
+<!--							</div>-->
+						</div>
+						<div class="row split-div">
+							<HR  class="split-line">
+							<div>
+								<button class="btn btn-primary btn-with-icon" ng-click="search()"><i class="ion-search"></i>查询</button>
+								<!-- <button class="btn btn-primary btn-with-icon" ng-click="addnewBlacklist()"><i class="ion-plus-round"></i>登记黑名单</button> -->
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-2">
+								<label class="grid-title">
+									<i class="ion-flag btn-primary"></i>
+									黑名单列表
+								</label>
+							</div>
+						</div>
+					</form>
+					<table class="table  table-hover table-condensed" st-table="custs" st-safe-src="custCollection">
+						<thead>
+						<tr  class="black-muted-bg">
+							<!--<th class="table-id" st-sort="id" st-sort-default="true">#</th>-->
+							<th st-sort="customerNo">客户号</th>
+							<th st-sort="name">客户名称</th>
+							<th st-sort="type">客户类型</th>
+							<th st-sort="IdType">证件类型</th>
+							<th st-sort="name">证件号码</th>
+							<!--<th st-sort="custMark">标签</th>-->
+							<!--<th st-sort="phoneNumber">电话号码</th>-->
+							<!--<th st-sort="custSource">客户来源</th>-->
+							<!--<th st-sort="custAgent">客户经理工号</th>-->
+							<th st-sort="regiDate">登记时间</th>
+							<th st-sort="regiReason">登记原因</th>
+							<th st-sort="operation">操作</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr ng-repeat="item in custs" class="editable-row">
+							<!--<td class="table-id">{{item.id}}</td>-->
+
+							<td>{{item.custNo}}</td>
+							<td>{{item.custName}}</td>
+							<td>{{item.custTyp}}</td>
+
+							<td>{{item.certTyp}}</td>
+							<td>{{item.certNo}}</td>
+							<!--<td>{{item.phoneNumber}}</td>-->
+							<!--<td>{{item.custSource}}</td>-->
+							<!--<td>{{item.custAgent}}</td>-->
+							<td>{{item.regiDate}}</td>
+							<td title="{{item.regiReason}}"><dev class="nowap-ellipsis relationDesc">{{item.regiReason}}</dev></td>
+							<td>
+								<div class="buttons" ng-show="!rowform.$visible">
+									<button title="查看" class="btn btn-info btn-icon" ng-click="openDetail(item.custNo)"><i class="ion-eye"></i></button>
+									<button type="button" class="btn btn-primary btn-icon" ng-click="canBlacklist(item.custNo,item.custName,item.phoneNumber)"><i class="ion-ios-undo"></i></button>
+								</div>
+							</td>
+						</tr>
+						</tbody>
+						<tfoot>
+						<tr>
+							<td colspan="12">
+								<div class="row">
+									<!-- <div class="col-md-7" style="float: right">
+										<div st-pagination="" st-items-by-page="impsmartTabPgSize" st-displayed-pages="5"></div>
+									</div>
+									<div class="col-md-5" style="float: right">
+										每页
+										<label>
+											<select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
+													ng-model="impsmartTabPgSize" ng-options="i for i in [5,10,15,20,25]">
+											</select>
+										</label>
+										条&nbsp;&nbsp;&nbsp;
+										共{{total||0}}条
+									</div> -->
+									<st-pager opts='queryCustOptions'></st-pager>
+								</div>
+							</td>
+						</tr>
+						</tfoot>
+					</table>
+				</div>
+			</uib-tab>
+
+			<uib-tab heading="登记黑名单" ng-click="changeFlag('regBlackList')">
+				<div ba-panel ba-panel-class="with-scroll">
+					<form class="form-horizontal" name="modifyForm" novalidate>
+						<div class="row">
+							<div class="col-md-2">
+								<label class="grid-title">
+									<i class="ion-flag btn-primary"></i>
+									查询条件
+								</label>
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="col-md-5" >
+								<label  class="z_custdetailadd_lable">客户姓名</label>
+								<input type="text" class="form-control z_custdetail_inline" ng-model="searchObj.custName" placeholder="客户姓名" >
+							</div>
+							<div class="col-md-5" >
+								<label  class="z_custdetailadd_lable">客户号</label>
+								<input type="text" class="form-control z_custdetail_inline" ng-model="searchObj.custNo" placeholder="客户号" >
+							</div>
+						</div>
+						<div class="row split-div">
+							<HR  class="split-line">
+							<div>
+								<button class="btn btn-primary btn-with-icon" ng-click="search()"><i class="ion-search"></i>查询</button>
+								<button class="btn btn-primary btn-with-icon" ng-click="addnewBlacklist()"><i class="ion-plus-round"></i>登记</button>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-2">
+								<label class="grid-title">
+									<i class="ion-flag btn-primary"></i>
+									客户列表
+								</label>
+							</div>
+						</div>
+					</form>
+					<table class="table  table-hover table-condensed" st-table="custs" st-safe-src="custCollection_">
+						<thead>
+						<tr class="black-muted-bg">
+							<th>
+								<label  class="checkbox-inline custom-checkbox nowrap">
+									<input id="flag" type="checkbox" ng-model="select_all" ng-change="selectAll(select_all)">
+									<span></span>
+								</label>
+							</th>
+							<th st-sort="custNo">客户号</th>
+							<th st-sort="name">客户名称</th>
+							<th st-sort="type">客户类型</th>
+							<th st-sort="IdType">证件类型</th>
+							<th st-sort="name">证件号码</th>
+							<!--<th st-sort="custMark">标签</th>-->
+							<th st-sort="phoneNumber">电话号码</th>
+							<th st-sort="custSource">客户来源</th>
+							<th st-sort="custAgent">客户经理</th>
+							<th>操作</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr ng-repeat="item_ in custs">
+							<td>
+								<label  class="checkbox-inline custom-checkbox nowrap">
+									<input type="checkbox" ng-model="item_.checked" ng-change="selectOne()">
+									<span></span>
+								</label>
+							</td>
+							<td>{{item_.custNo}}</td>
+							<td>{{item_.custName}}</td>
+							<td>{{item_.custTyp}}</td>
+							<td>{{item_.certTyp}}</td>
+							<td>{{item_.certNo}}</td>
+							<td>{{item_.phoneNumber}}</td>
+							<td>{{item_.custSource}}</td>
+							<td>{{item_.custAgent}}</td>
+							<td>
+								<div class="buttons" ng-show="!rowform.$visible">
+									<button title="查看" class="btn btn-info btn-icon" ng-click="openDetail(item_.custNo)"><i class="ion-eye"></i></button>
+								</div>
+							</td>
+						</tr>
+						</tbody>
+						<tfoot>
+						<tr>
+							<td colspan="12">
+								<div class="row">
+									<!-- <div class="col-md-7" style="float: right">
+										<div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
+									</div>
+									<div class="col-md-5" style="float: right">
+										每页
+										<label>
+											<select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
+													ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
+											</select>
+										</label>
+										条&nbsp;&nbsp;&nbsp;
+										共{{total_||0}}条
+									</div> -->
+									<st-pager opts="regBlackList"></st-pager>
+								</div>
+							</td>
+						</tr>
+						</tfoot>
+					</table>
+				</div>
+			</uib-tab>
+			<uib-tab heading="黑名单导入" ng-click="changeFlag('queryProductOptions')">
+				<div ba-panel ba-panel-class="with-scroll">
+					<form class="form-horizontal">
+						<div class="row" >
+							<div class="col-md-12 zblack_posire">
+								<div class="zblacklist_posi">
+									<!-- 最近上传 ：{{time||"没有上传文件"}} -->
+									<a href="app/pages/customer/blacklist/黑名单导入模板.xls" >下载模板<i class="ion-archive"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<a href type="file" ngf-select="uploadFiles($file, $invalidFiles)" accept="/*" ngf-max-size="10MB">上传<i class="ion-arrow-up-c"></i></a>
+								</div>
+								<div ba-panel ba-panel-title="导入记录" ba-panel-class="with-scroll" >
+									<table class="table  table-hover table-condensed" st-table="smartTableData" st-safe-src="rowCollection">
+										<thead>
+										<tr class="sortable black-muted-bg">
+											<th st-sort="importTime">导入时间</th>
+											<th st-sort="fileNam">文件名称</th>
+											<!-- <th st-sort="fileTyp">文件类型</th> -->
+											<th st-sort="fileTtlRow">文件条数</th>
+											<th>成功条数</th>
+											<th>失败条数</th>
+											<th st-sort="importSts">状态</th>
+											<!-- <th st-sort="importObjTyp">导入对象类型</th> -->
+											<th st-sort="opration">操作</th>
+										</tr>
+										</thead>
+										<tbody>
+										<tr ng-repeat="item in smartTableData">
+											<td>{{item.importTime}}</td>
+											<td>{{item.fileNam}}</span></td>
+											<!-- <td>{{item.fileTyp}}</td> -->
+											<td>{{item.fileTtlRow}}</a></td>
+											<td>{{item.succeedQty}}</td>
+											<td>{{item.failureQty}}</td>
+											<td>{{ ShowImportSts(item) }}</td>
+											<!-- <td>{{ ShowImportObjType(item) }}</td> -->
+											<td>
+												<div class="buttons" ng-show="!rowform.$visible">
+													<button title="下载错误数据文件" class="btn btn-danger btn-icon" ng-click="downloadErr(item)"><i class="ion-archive"></i></button>
+													<button title="下载原始数据文件" class="btn btn-success btn-icon" ng-click="download(item)"><i class="ion-archive"></i></button>
+													<button title="删除" class="btn btn-danger btn-icon" ng-click="delPrdLog(item)"><i class="ion-trash-a"></i></button>
+												</div>
+											</td>
+										</tr>
+										</tbody>
+										<tfoot>
+										<tr>
+											<td colspan="10" class="text-center">
+												<st-pager opts = "queryProductOptions" ></st-pager>
+											</td>
+										</tr>
+										</tfoot>
+									</table>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</uib-tab>
+		</uib-tabset>
+	</div>
+</div>
+<div id="export"></div>

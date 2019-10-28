@@ -1,0 +1,59 @@
+<div class="widgets">
+	<form class="form-horizontal" name="addForm" novalidate>
+		<loading></loading>
+		<div class="col-md-12" >
+			<div class="panel panel-primary">
+			 <div class="panel-heading"><font color="white">客户生命周期定义修改</font></div>
+                <div class="panel-body">
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="form-group">
+							<label for="stageName" class="col-sm-4 control-label">周期阶段</label>
+							<div class="col-sm-4" >
+								<input type="text" class="form-control input-normal" id="stageName" name="stageName" ng-model="custLifeCycleDef.stageName"
+									required> 
+							</div>
+						</div>
+					</div>
+				</div>
+			
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="form-group">
+							<label for="strategyName" class="col-sm-4 control-label">关联规则</label>
+							<div class="col-sm-4" >
+							<div  class="input-normal" >
+								<input type="text" ng-disabled="true"  style="float:left;width:83%;border-right:none;" class="form-control " id="ruleId" name="strategyName" ng-model="custLifeCycleDef.strategyName">
+								<button type="button"  style="float:left;width:17%;" class="btn btn-default" ng-click="selectRule()"><i class="ion-funnel"></i></button>
+							</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-sm-12">
+					  <div class="form-group">
+					    <label for="stageDesc" class="col-sm-4 control-label">说明</label>
+					    	<div class="col-sm-8"> 
+					    	<textarea placeholder="输入内容" class="form-control input-normal" id="stageDesc" ng-model="custLifeCycleDef.stageDesc"></textarea>
+					   	 </div>
+					  </div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="form-group">
+							<div class="col-sm-offset-8 col-sm-4">
+						        <button type="button" class="btn btn-danger btn-with-icon" ng-click="$dismiss()"><i class="ion-power"></i>关闭</button>
+						        <button type="button" class="btn btn-success btn-with-icon" ng-click="saveValue(addForm.$valid)"><i class="ion-android-checkmark-circle"></i>保存</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			</div>
+		</div>
+	</form>
+</div>

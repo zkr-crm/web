@@ -1,0 +1,526 @@
+
+<div class="widgets">
+    <form class="form-horizontal" ng-controller="busiOppDetailCtrl">
+        <div class="row">
+            <div class="col-md-4 z_head_photo">
+				<div class="typography-widget" style="z-index:-100;position: relative;">
+				    <div ba-panel ba-panel-class="with-scroll lists-widget" ba-panel-title="基本信息">
+				      <div class="section-block">
+				        <div class="accent_busi">
+							商机名称<b>：</b><p style = 'float:right'>{{ busiOpp.busiOppName }}</p>
+				        </div>
+				        <div class="accent_busi">
+							商机类别<b>：</b><p style = 'float:right'>{{ busiOpp.busiOppType }}</p>
+				        </div>
+				        <div class="accent_busi">
+							商机阶段<b>：</b><p style = 'float:right'>{{ busiOpp.busiOppStage }}</p>
+				        </div>
+				        <div class="accent_busi">
+							商机来源<b>：</b><p style = 'float:right'>{{ busiOpp.busiOppSrc }}</p>
+				        </div>
+				        <div class="accent_busi">
+							客户姓名<b>：</b><p style = 'float:right'>{{ busiOpp.custNam }}</p>
+				        </div>
+				         <div class="accent_busi">
+							客户类型<b>：</b><p style = 'float:right'>{{ busiOpp.custType }}</p>
+				        </div>
+				         <div class="accent_busi">
+							性别<b>：</b><p style = 'float:right'>{{ busiOpp.custSex }}</p>
+				        </div>
+				         <div class="accent_busi">
+							电话<b>：</b><p style = 'float:right'>{{ busiOpp.custTel }}</p>
+				        </div>
+				        <div class="accent_busi">
+							预估保费<b>：</b><p style = 'float:right'>{{ busiOpp.predPrem }}元</p>
+				        </div>
+				        <div class="accent_busi">
+							预计成单日期<b>：</b><p style = 'float:right'>{{ busiOpp.estimateSuccDate }}</p>
+				        </div>
+				        <div class="accent_busi">
+							商机描述<b>：</b><p style = 'float:right' id="message">{{ busiOpp.busiOppDesc }}</p>
+				        </div>
+				      </div>
+				    </div>
+				  </div>
+            </div>
+
+
+            <div class="col-md-8 z_justify">
+                <div class="col-md-4 zpercus_busioppdet">
+                    <div class="panel-primary contextual-example-panel bootstrap-panel">
+                        <div class="panel-heading"><font color="white">首次跟进</font></div>
+                        <div class="zpercusportra_ptop">
+                            <h4 style="text-align: center">{{busiOpp.firstFollowDate  || "-" }}</h4>
+                            <p style='text-align: center'>跟进人：{{busiOpp.firstFollowUser  || "-"}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 zpercus_busioppdet">
+                    <div class="panel-info contextual-example-panel bootstrap-panel">
+                        <div class="panel-heading"><font color="white">末次跟进</font></div>
+                        <div class="zpercusportra_ptop">
+                            <h4 style="text-align: center">{{busiOpp.lastFollowDate  || "-"}}</h4>
+                            <p style='text-align: center'>跟进人：{{busiOpp.lastFollowUser  || "-"}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 zpercus_busioppdet">
+                    <div class="panel  panel-warning contextual-example-panel bootstrap-panel">
+                        <div class="panel-heading"><font color="white">跟进周期</font></div>
+                        <div class="zpercusportra_ptop">
+                            <h4 style="text-align: center">{{busiOpp.followDays  || "0"}}天</h4>
+                            <p style='text-align: center'>{{busiOpp.followTimes  || "0"}}次</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+			<div class="col-md-8" style="position: relative;padding-right:0;">
+ 				<!-- <div ba-panel ba-panel-title="商机阶段" ba-panel-class="with-scroll " >
+					<div class="">
+		       		  <div class="slider-box">
+				        <ion-slider type="single" onclick="changeBusiOppStage()"
+				                    grid="true"
+				                    from="conv()"
+				                    step="1"
+				                    values="['意向', '分配', '跟进中', '成功', '失败', '取消']"
+				                    >
+				        </ion-slider>
+				      </div>
+					</div>
+					<div class="row">
+					</div>
+				</div> -->
+				<div class="panel-body" style="padding-bottom:56px;">
+					<div class="step-body" id="myStep">
+						<div class="step-header" >
+							<ul>
+								<li><p>意向</p></li>
+								<li><p>分配</p></li>
+								<li><p>跟进中</p></li>
+								<li><p>成功</p></li>
+								<li><p>失败</p></li>
+								<li><p>取消</p></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+                <uib-tabset active="$tabSetStatus.activeTab">
+                        <uib-tab heading="动态轨迹">
+                          <div ba-panel ba-panel-class="lists-widget" >
+		                    <div class="col-md-12">
+	                            <section id="cd-timeline_btn" class="cd-container cssanimations">
+	                                <div class="cd-timeline-block">
+	                                	<div class="cd-timeline-img" ng-click="z_show()">
+	                                        <div class="kameleon-icon with-round-bg primary">
+	                                        	<img alt="" ng-src="{{::( 'Checklist' | kameleonImg )}}" />
+	                                        </div>
+	                                    </div>
+	                                    <div class="cd-timeline-content_ warning" style="background:white;padding-left:0;">
+											<!-- 动态轨迹选项卡内容  -->
+											<button ng-repeat = "x in information" class="btn btn-default btn-with-icon" ng-click="show($index)" style="margin-right:10px;">{{x}}</button>
+											<!-- 内容  -->
+											
+											<div class="z_percusportray_show">
+												<span ng-class="{'show':0==c}">
+		                                           <div class="panel-body z_insured_pano">
+		                                                <div class="row " style="padding-bottom:10px;">
+		                                                    <div class="col-sm-3" style="float: left">
+		                  	                                 <ui-select ng-model="dyncTrackTel.trackSubTyp" class="btn-group bootstrap-select form-control" search-enabled="false" id="trackSubTyp" >
+							                                     <ui-select-match placeholder = "记录内容" >
+							                                         <span> {{$select.selected.label}}</span>
+							                                     </ui-select-match>
+							                                     <ui-select-choices repeat="item in trackEnum">
+							                                         <span ng-bind-html="item.label"></span>
+							                                     </ui-select-choices>
+							                                 </ui-select>
+							                                </div>
+		                                                    <div class="col-sm-3" style="float: left">
+		                  	                                 <ui-select ng-model="dyncTrackTel.whtThrough" class="btn-group bootstrap-select form-control" search-enabled="false" id="whtThrough" >
+							                                     <ui-select-match placeholder = "是否接通" >
+							                                         <span> {{$select.selected.label}}</span>
+							                                     </ui-select-match>
+							                                     <ui-select-choices repeat="item in YesNoFlg">
+							                                         <span ng-bind-html="item.label"></span>
+							                                     </ui-select-choices>
+							                                 </ui-select>
+		                                                    </div>
+		                                                    <div class="col-sm-3" style="float: left">
+																<p class="input-group">
+																	<input type="text" class="form-control input-normal" uib-datepicker-popup="yyyy-MM-dd" datepicker-options="options" ng-model="dyncTrackTel.nextFollowUpTm" 
+																				is-open="nextFpOpened" ng-required="false" close-text="Close" alt-input-formats="altInputFormats" show-button-bar="false" id="nextFollowUpTm" placeholder="下次跟进日期"/>
+																  <span class="input-group-btn">
+																	<button type="button" class="btn btn-default" ng-click="nextFpOpen()"><i class="glyphicon glyphicon-calendar"></i></button>
+																  </span>
+																</p>
+		                                                    </div>
+		                                                    <div class="col-sm-3" style="float: left">
+	                                                       	 	<input type="text" class="form-control" ng-model="dyncTrackTel.contacts" placeholder="联系人">
+															</div>
+		                                                </div>
+		                                                <div class="row ">
+					                              	  	    <div class="col-sm-12" >
+														        <textarea ng-model="dyncTrackTel.trackContent" class="form-control" id="message" rows="2" 
+														        				maxlength="200" placeholder="请输入详细内容" ng-change="tolCount()"></textarea>
+														    </div>
+		                                                </div>
+		                                                <div class="row">
+		                                                    <div class="col-sm-10 z_line_hei" >
+		                                                        <label></label>
+		                                                    </div>
+		                                                </div>
+	
+														<div class="col-md-12" >
+															<div class="row">
+																<div class="col-sm-12">
+																	<div class="form-group">
+																		<div class="z_col-sm-offset-8 col-sm-4" >
+																			<button type="button" class="btn btn-success btn-with-icon" ng-click="addTrackTel()">保存</button>
+					                                                        <button class="btn btn-primary btn-with-icon" ng-click="resetTrackTel()">重置</button>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+		                                           </div>
+												</span>
+												<span ng-class="{'show':1==c}">
+		                                           <div class="panel-body z_insured_pano">
+		                                                <div class="row">
+		                                                    <div class="col-sm-3" style="float: left;padding-bottom:15px;">
+		                                                        <input type="text" class="form-control" ng-model="dyncTrackSms.contacts" placeholder="发送对象">
+		                                                    </div>
+		                                                    <div class="col-sm-3" style="float: left">
+		                                                        <input type="text" class="form-control" ng-model="dyncTrackSms.phoneNo" placeholder="电话号码">
+		                                                    </div>
+		                                                    <div class="col-sm-3" style="float: left">
+		                                                        <input type="hidden" class="form-control" ng-model="dyncTrackSms.smsTemplate">
+		                                                        <button class="btn btn-primary btn-with-icon" ng-click="selectTemplate()"><i class="ion-search"></i>模板选择</button>
+		                                                    </div>
+		                                                    <div class="col-sm-3" style="float: left"></div>
+		                                                </div>
+		                                                <div class="row">
+					                              	  	    <div class="col-sm-12" >
+														        <textarea ng-model="dyncTrackSms.trackContent" class="form-control" id="message" rows="2" 
+														        				maxlength="200" title="只能输入200个字" placeholder="请选择短信模板" ng-change="tolCount()"></textarea>
+														      </div>
+		                                                </div>
+		                                                <div class="row">
+		                                                    <div class="col-sm-10 z_line_hei" >
+		                                                        <label  style="float: left">您还可以输入<font color="red">{{writCount}}</font>个字</label>
+		                                                    	<label  style="float: right">使用说明: 只能用平台提供模板，只能修改可变内容，替换{x}</label>
+		                                                    </div>
+		                                                </div>
+
+														<div class="col-md-12" >
+																<div class="row">
+																	<div class="col-sm-12">
+																		<div class="form-group">
+																			<div class="z_col-sm-offset-8 col-sm-4" >
+																				<button type="button" class="btn btn-success btn-with-icon" ng-click="addTrackSms()">发送</button>
+						                                                        <button class="btn btn-primary btn-with-icon" ng-click="resetTrackSms()">重置</button>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+	
+		                                           </div>
+
+												</span>
+												<span ng-class="{'show':2==c}">
+		                                           <div class="panel-body z_insured_pano">
+			                                                <div class="row" style="padding-bottom:10px;">
+			                                                    <div class="col-sm-3" style="float: left">
+								                                    <p class="input-group">
+								                                        <input type="text" class="form-control input-normal" uib-datepicker-popup="yyyy-MM-dd" datepicker-options="options" ng-model="dyncTrackVis.nextFollowUpTm" 
+								                                        			is-open="nextFpVisOpened" ng-required="false" close-text="Close" alt-input-formats="altInputFormats" show-button-bar="false" id="nextFollowUpTm" placeholder="下次拜访日期"/>
+								                                      <span class="input-group-btn">
+								                                        <button type="button" class="btn btn-default" ng-click="nextFpVisOpen()"><i class="glyphicon glyphicon-calendar"></i></button>
+								                                      </span>	
+								                                 </div>
+			                                                    <div class="col-sm-3" style="float: left">
+		                                                       	 	<input type="text" class="form-control" ng-model="dyncTrackVis.contacts" placeholder="联系人">
+																</div>
+			                                                    <div class="col-sm-3" style="float: left">
+		                                                       	 	<input type="text" class="form-control" ng-model="dyncTrackVis.location" placeholder="地点">
+																</div>
+			                                                    <div class="col-sm-3" style="float: left">
+			                                                    </div>
+			                                                </div>
+			                                                <div class="row">
+						                              	  	    <div class="col-sm-12" >
+															        <textarea ng-model="dyncTrackVis.trackContent" class="form-control" id="message" rows="2" 
+															        				maxlength="200" placeholder="请输入详细内容" ng-change="tolCount()"></textarea>
+															      </div>
+			                                                </div>
+			                                                <div class="row">
+			                                                    <div class="col-sm-10 z_line_hei" >
+			                                                        <label></label>
+			                                                    </div>
+			                                                </div>
+	
+															<div class="col-md-12" >
+																<div class="row">
+																	<div class="col-sm-12">
+																		<div class="form-group">
+																			<div class="z_col-sm-offset-8 col-sm-4" >
+																				<button type="button" class="btn btn-success btn-with-icon" ng-click="addTrackVis()">保存</button>
+						                                                        <button class="btn btn-primary btn-with-icon" ng-click="resetTrackVis()">重置</button>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+		                                           </div>
+											</span>
+											</div>
+										</div>
+                                    </div>
+	                            </section>
+	                            <section id="cd-timeline" class="cd-container cssanimations">
+                                <div class="cd-timeline-block" ng-repeat="x in timelineCollection">
+                                    <div class="cd-timeline-img">
+                                        <div class="kameleon-icon with-round-bg primary">
+                                        	<img ng-src="{{::( 'Checklist' | kameleonImg )}}" />
+                                        </div>
+                                    </div>
+                                    <div class="cd-timeline-content_ warning" style="background:#f4f8fb;">
+                                        <h4>{{x.trackSubTypNam}}</h4>
+                                        <li>类型<p style='float:right'>{{x.trackTyp}}</p></li>
+                                        <li>内容详情<p style='float:right'>{{x.trackContent}}</p></li>
+                                        <li ng-show="x.isContShow">联系人<p style='float:right'>{{x.contacts}}</p></li>
+                                        <li ng-show="x.isNextShow">下次跟踪日期<p style='float:right'>{{x.nextFollowUpTm}}</p></li>
+                                        <li>记录人<p style='float:right'>{{x.recordUser}}</p></li>
+                                        <span class="cd-date">{{x.trackTime}}</span>
+                                    </div>
+                                </div>
+                            </section>
+                         </div>
+						</div>
+                        </uib-tab>
+
+
+                        <uib-tab heading="联系人">
+                        	<div class="panel-body">
+                            <div ba-panel
+                                    ba-panel-class="with-scroll horizontal-tabs tabs-panel viewport100">
+                                            <form class="form-horizontal" name="modifyForm" novalidate>
+                                                <div class="row">
+                                                     <div class="row">
+                                                         <div class="col-md-12">&nbsp;</div>
+                                                     </div>
+                                                    <div class="col-md-2">
+                                                        <label class="grid-title">联系人列表</label>
+                                                    </div>
+                                                    <div class="add-row-editable-table" style="float: right;margin-right:15px;">
+                                                        <button class="btn btn-primary btn-with-icon" ng-click="searchBusiOppCntr()"><i class="ion-search"></i>查询</button>
+                                                        <button class="btn btn-primary btn-with-icon" ng-click="clearBusiOppCntrSearch()"><i class="ion-refresh"></i>重置</button>
+                                                        <button class="btn btn-primary btn-with-icon" ng-click="addBusiOppCntr()"><i class="ion-plus-round"></i>新增</button>
+                                                    </div>
+                                                    <div class="col-sm-3 zpercusportra_paleft" style="float: right">
+                                                        <input type="text" class="form-control" ng-model="searchObj.contractCustNam" placeholder="姓名">
+                                                    </div>
+                                                </div>
+                                            </form>
+
+                                <table class="table table-bordered table-hover table-condensed" st-table="busiOppCntr"
+                                       st-safe-src="busiOppCntrList">
+                                    <thead>
+                                    <tr class="sortable black-muted-bg">
+                                        <th>联系人姓名</th>
+                                        <th>手机号</th>
+                                        <th>关系</th>
+                                        <th>关联时间</th>
+                                        <th style="width:30px;">操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="item in busiOppCntr">
+                                        <td style="text-align:left;">
+                                            <nobr>{{item.contractCustNam}}</nobr>
+                                        </td>
+                                        <td>
+                                            <nobr>{{item.mobile}}</nobr>
+                                        </td>
+                                        <td>
+                                            <nobr>{{item.custRelation}}</nobr>
+                                        </td>
+                                        <td>
+                                            <nobr>{{item.relaDate}}</nobr>
+                                        </td>
+                                        <td>
+                                            <div class="buttons" ng-show="!rowform.$visible">
+                                                    <button class="btn btn-info btn-icon" ng-click="openCntrDetail(item)"><i class="ion-eye"></i></button>
+                                                    <button class="btn btn-danger btn-icon" ng-click="delBusiOppCntr(item)"><i class="ion-trash-a"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                    <tfoot>
+                                    <tr>
+                                        <td colspan="5" class="text-center">
+                                            <div st-pagination="" st-items-by-page="10" st-displayed-pages="5"></div>
+                                        </td>
+                                    </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        	</div>
+                        </uib-tab>
+
+
+
+                        <uib-tab heading="任务">
+                        	<div class="panel-body">
+                            <div ba-panel
+                                    ba-panel-class="with-scroll horizontal-tabs tabs-panel viewport100">
+                                            <form class="form-horizontal" name="modifyForm" novalidate>
+                                                <div class="row">
+                                                     <div class="row">
+                                                         <div class="col-md-12">&nbsp;</div>
+                                                     </div>
+                                                    <div class="col-md-2">
+                                                        <label class="grid-title">任务列表</label>
+                                                    </div>
+                                                    <div class="add-row-editable-table" style="float: right;margin-right:15px;">
+                                                        <button class="btn btn-primary btn-with-icon" ng-click="searchBusiOppTask()"><i class="ion-search"></i>查询</button>
+                                                        <button class="btn btn-primary btn-with-icon" ng-click="clearBusiOppTaskSearch()"><i class="ion-refresh"></i>重置</button>
+                                                        <button class="btn btn-primary btn-with-icon" ng-click="addBusiOppTask()"><i class="ion-plus-round"></i>新增</button>
+                                                    </div>
+                                                    <div class="col-sm-3 zpercusportra_paleft" style="float: right">
+                                                        <input type="text" class="form-control" ng-model="searchBusiOppTaskObj.taskName" placeholder="任务名称">
+                                                    </div>
+                                                </div>
+                                            </form>
+                                <table class="table table-bordered table-hover table-condensed" st-table="busiOppTask" st-safe-src="busiOppTaskList">
+                                    <thead>
+                                    <tr class="sortable black-muted-bg">
+										<th st-sort="taskName">任务名称</th>
+					         			<th st-sort="contactName">关联联系人</th>
+										<th st-sort="responsName">负责人</th>
+										<th st-sort="taskStatNam">任务状态</th>
+										<th class="baserule_busiPppDetail">操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="item in busiOppTask">
+                                        <td style="text-align:left;">
+                                            <nobr>{{item.taskName}}</nobr>
+                                        </td>
+                                        <td>
+                                            <nobr>{{item.contactName}}</nobr>
+                                        </td>
+                                        <td>
+                                            <nobr>{{item.responsName}}</nobr>
+                                        </td>
+                                        <td>
+                                            <nobr>{{item.taskStatNam}}</nobr>
+                                        </td>
+                                        <td>
+                                            <div class="buttons" ng-show="!rowform.$visible">
+                                                    <button class="btn btn-info btn-icon" ng-click="getBusiOppTask(item)"><i class="ion-eye"></i></button>
+                                                    <button class="btn btn-primary btn-icon" ng-click="uptbusiOppTask(item)"><i class="ion-compose"></i></button>
+                                                    <button class="btn btn-danger btn-icon" ng-click="delBusiOppTask(item)"><i class="ion-trash-a"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                    <tfoot>
+                                    <tr>
+                                        <td colspan="5" class="text-center">
+                                            <div st-pagination="" st-items-by-page="10" st-displayed-pages="5"></div>
+                                        </td>
+                                    </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        	</div>
+                        </uib-tab>
+
+
+
+                        <uib-tab heading="协作人">
+                        	<div class="panel-body">
+                            <div ba-panel
+                                    ba-panel-class="with-scroll horizontal-tabs tabs-panel viewport100">
+                                            <form class="form-horizontal" name="modifyForm" novalidate>
+                                                <div class="row">
+                                                     <div class="row">
+                                                         <div class="col-md-12">&nbsp;</div>
+                                                     </div>
+                                                    <div class="col-md-2">
+                                                        <label class="grid-title">协作人列表</label>
+                                                    </div>
+                                                    <div class="add-row-editable-table" style="float: right;margin-right:15px;">
+                                                        <button class="btn btn-primary btn-with-icon" ng-click="searchBusiOppCollaborator()"><i class="ion-search"></i>查询</button>
+                                                        <button class="btn btn-primary btn-with-icon" ng-click="clearBusiOppCollaboratorSearch()"><i class="ion-refresh"></i>重置</button>
+                                                        <button class="btn btn-primary btn-with-icon" ng-click="addBusiOppCollaborator()"><i class="ion-plus-round"></i>新增</button>
+                                                    </div>
+                                                    <div class="col-sm-3 zpercusportra_paleft" style="float: right">
+                                                        <input type="text" class="form-control" ng-model="searchCollaboratorObj.collrNam" placeholder="协作人姓名/协作人手机号">
+                                                    </div>
+                                                </div>
+                                            </form>
+                                <table class="table table-bordered table-hover table-condensed" st-table="busiOppollr"
+                                       st-safe-src="busiOppCollaboratorList">
+                                    <thead>
+                                    <tr class="sortable black-muted-bg">
+                                        <th>协作人姓名</th>
+                                        <th>手机</th>
+                                        <th>状态</th>
+                                        <th>机构</th>
+                                        <th>部门</th>
+                                        <th>岗位</th>
+                                        <th style="width:20px;">操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="item in busiOppollr">
+                                        <td style="text-align:left;">
+                                            <nobr>{{item.collrNam}}</nobr>
+                                        </td>
+                                        <td>
+                                            <nobr>{{item.collrTel}}</nobr>
+                                        </td>
+                                        <td>
+                                            <nobr>{{item.userStatNam}}</nobr>
+                                        </td>
+                                        <td>
+                                            <nobr>{{item.enterName}}</nobr>
+                                        </td>
+                                        <td>
+                                            <nobr>{{item.deptName}}</nobr>
+                                        </td>
+                                        <td>
+                                            <nobr>{{item.posiName}}</nobr>
+                                        </td>
+                                         <td>
+                                            <div class="buttons" ng-show="!rowform.$visible">
+                                                    <button class="btn btn-danger btn-icon" ng-click="delBusiCollr(item)"><i class="ion-trash-a"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                    <tfoot>
+                                    <tr>
+                                        <td colspan="7" class="text-center">
+                                            <div st-pagination="" st-items-by-page="10" st-displayed-pages="5"></div>
+                                        </td>
+                                    </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        	</div>
+                        </uib-tab>
+                    </uib-tabset>
+            </div>
+
+
+
+            </div>
+          </div>
+
+
+    </form>
+</div>

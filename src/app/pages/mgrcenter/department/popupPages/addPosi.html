@@ -1,0 +1,103 @@
+<div class="widgets">
+	<form class="form-horizontal" name="addForm" novalidate>
+		<loading></loading>
+		<div class="col-md-12" ng-controller="addPosiCtrl">
+			<div ba-panel ba-panel-title="岗位信息新增" ba-panel-class="panel-primary">
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="savePosi.posiCode" class="col-sm-4 control-label">岗位代码</label>
+							<div class="col-sm-8" ng-class="{'has-error': addForm.posiCode.$invalid && addForm.$submitted }">
+								<input type="text" class="form-control input-normal" id="posiCode" name="posiCode" ng-model="savePosi.posiCode" required> <span class="help-block error-block basic-block">必录</span>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="savePosi.posiName" class="col-sm-4 control-label">岗位名称</label>
+							<div class="col-sm-8" ng-class="{'has-error': addForm.posiName.$invalid  && addForm.$submitted }">
+								<input type="text" class="form-control input-normal" id="posiName" name="posiName" ng-model="savePosi.posiName" required> <span class="help-block error-block basic-block">必录</span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="savePosi.deptCode" class="col-sm-4 control-label">所属部门码</label>
+							<div class="col-sm-8" ng-class="{'has-error': addForm.deptCode.$invalid  && addForm.$submitted }">
+								<div class="select-normal">
+									<select ng-model="deptsInAP" id="deptCode" name="deptCode" ng-options="x.deptCode for x in deptsInAPForShow" class="btn-group bootstrap-select form-control" ng-change="getChangeDVal()" required> <span class="help-block error-block basic-block">必录</span>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="savePosi.deptName" class="col-sm-4 control-label">所属部门</label>
+							<div class="col-sm-8" ng-class="{'has-error': addForm.deptName.$invalid  && addForm.$submitted }">
+								<input type="text" class="form-control input-normal" id="deptName" name="deptName" ng-model="deptsInAP.deptName" readonly required> <span class="help-block error-block basic-block">必录</span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="savePosi.superPosiCode" class="col-sm-4 control-label">上级岗位码</label>
+							<div class="col-sm-8">
+								<div class="select-normal">
+									<select ng-model="posisInAP" id="superPosiCode" name="superPosiCode" ng-options="x.posiCode for x in posisInAPForShow" class="btn-group bootstrap-select form-control" ng-change="getChangePVal()">
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="savePosi.enterAddr" class="col-sm-4 control-label">上级岗位</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control input-normal" id="superPosi" name="superPosi" ng-model="posisInAP.posiName" readonly>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="form-group">
+							<label for="savePosi.posiDesc" class="col-sm-2 control-label">岗位描述</label>
+							<div class="col-sm-10">
+								<div class="input-long">
+									<input type="text" class="form-control input-normal" id="posiDesc" name="posiDesc" ng-model="savePosi.posiDesc">
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+
+
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="form-group">
+							<div class="col-sm-offset-8 col-sm-4">
+								<button type="button" class="btn btn-danger btn-with-icon" ng-click="$dismiss()">
+									<i class="ion-power"></i>关闭
+								</button>
+								<button type="button" class="btn btn-success btn-with-icon" ng-click="saveValue(addForm.$valid)">
+									<i class="ion-android-checkmark-circle"></i>保存
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</form>
+</div>

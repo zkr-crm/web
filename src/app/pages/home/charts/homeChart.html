@@ -1,0 +1,25 @@
+<div class="row">
+    <div class="col-md-6" ng-repeat="chart in homeCharts">
+        <div ba-panel ba-panel-title="{{chart.title}}" ba-panel-class="with-scroll ">
+            <div class="chartjs-canvas-holder-first-row">
+                <canvas  class="chart chart-pie"
+                         chart-options="options" chart-data="chart.data" chart-labels="chart.labels"
+                         chart-click="changeData(chart)">
+                </canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6" ng-show="hasAgesBar"
+         ba-panel
+         ba-panel-title="客户年龄分布"
+         ba-panel-class="with-scroll">
+        <!--<div class="chartjs-canvas-holder-third-row"   style="height: 300px;">
+            <canvas id="bar" class="chart chart-bar"
+                    chart-data="barData" chart-labels="barLabels">
+            </canvas>
+        </div>-->
+        <div id="barChartAges" class="admin-chart" ng-init="initBarByAges()"
+             style="height: 300px;-webkit-tap-highlight-color: transparent; user-select: none;"></div>
+    </div>
+
+</div>

@@ -1,0 +1,71 @@
+<div class="widgets">
+	<form class="form-horizontal" name="addForm" novalidate>
+		<loading></loading>
+		<div class="col-md-12" >
+			<div class="panel panel-primary">
+			 <div class="panel-heading"><font color="white">客户列表</font></div>
+                <div class="panel-body">
+
+		<form class="form-horizontal" name="modifyForm" novalidate>
+            <div class="row">
+                <div class="col-md-2">
+                    <label class="grid-title">联系人列表</label>
+                </div>
+                <div class="add-row-editable-table z_cusmnt" style="float: right">
+                    <button class="btn btn-primary btn-with-icon" ng-click="search()"><i class="ion-search"></i>查询</button>
+					 <button class="btn btn-primary btn-with-icon" ng-click="resetCustCntr()"><i class="ion-refresh"></i>重置</button>
+					<button class="btn btn-primary btn-with-icon" ng-click="add()"><i class="ion-person-add"></i>新增</button>
+                </div>
+				<div class="col-sm-3 z_custmnt_padding" style="float: right;">
+					<input type="text" class="form-control" ng-model="searchObj.mobile" placeholder="电话">
+				</div>
+				<div class="col-sm-3 z_custmnt_padding" style="float: right">
+					<input type="text" class="form-control" ng-model="searchObj.contractName" placeholder="联系人姓名">
+				</div>
+            </div>
+        </form>
+
+		<table class="table table-bordered table-hover table-condensed" st-table="custs" st-safe-src="RowCollection">
+			<thead>
+				<tr class="black-muted-bg">
+					<th><label for="flag"><input id="flag" type="checkbox" ng-model="select_all" ng-change="selectAll()"> </label></th>
+					<th st-sort="contractName">联系人姓名</th>
+					<th st-sort="mobile">手机号码</th>
+					<th st-sort="emailAddr">电子邮箱</th>
+					<th st-sort="custRelation">关系</th>
+					<th st-sort="operation" class="zwidth_operation">操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in custs">
+					<td><input type="checkbox" ng-model="item.checked" ng-change="selectOne()"> <span></span></td>
+					<td>{{item.contractName}}</td>
+					<td>{{item.mobile}}</td>
+					<td>{{item.emailAddr}}</td>
+					<td>{{item.custRelation}}</td>
+				<td>
+						<div class="buttons" ng-show="!rowform.$visible">
+							<button class="btn btn-primary btn-icon" ng-click="cusDetail(item)"><i class="ion-compose"></i></button>
+							<button class="btn btn-danger btn-icon" ng-click="removeUser(item)"><i class="ion-trash-a"></i></button>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+			<tfoot>
+				    <tr>
+				      <td colspan="6" class="text-center">
+            	        <st-pager opts = "queryOptions" pageSize = "10" ></st-pager>
+				      </td>
+				    </tr>
+			</tfoot>
+		</table>
+		<br/>
+				<div class="row zaddperassets_textcenter">
+					<button type="button" class="btn btn-default btn-with-icon" ng-click="$dismiss()">关闭</button>
+					<button type="button" class="btn btn-primary btn-with-icon" ng-click="doConfirm()">确定</button>
+				</div>
+			</div>
+			</div>
+		</div>
+	</form>
+</div>

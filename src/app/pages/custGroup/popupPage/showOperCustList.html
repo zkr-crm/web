@@ -1,0 +1,69 @@
+<div class="widgets">
+	<form class="form-horizontal" name="modifyForm" novalidate>
+		<loading></loading>
+		<div class="col-md-12" ng-controller="showOperCustCtrl">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<font color="white">客户列表</font>
+				</div>
+				<div class="panel-body">
+					<form class="form-horizontal" name="modifyForm" novalidate>
+						<div class="row">
+							<div class="col-md-2">
+								<label class="grid-title">运营任务列表</label>
+							</div>
+							<div class="add-row-editable-table z_cusmnt" style="float: right">
+								<button class="btn btn-primary btn-with-icon" ng-click="searchUser()">
+									<i class="ion-search"></i>查询
+								</button>
+							</div>
+							<div class="col-sm-3 z_custmnt_padding" style="float: right;">
+								<input type="text" class="form-control" ng-model="searchObj.custName" placeholder="客户名称">
+							</div>
+							<div class="col-sm-3 z_custmnt_padding" style="float: right">
+								<input type="text" class="form-control" ng-model="searchObj.custAgent" placeholder="客户经理">
+							</div>
+						</div>
+					</form>
+
+
+					<table class="table table-bordered table-hover table-condensed" st-table="operCustData" st-safe-src="operCustCollection">
+						<thead>
+							<tr class="black-muted-bg">
+								<th st-sort="groupOperName">任务名称</th>
+								<th st-sort="groupTaskStatus">任务状态</th>
+								<th st-sort="groupTaskDesc">任务描述</th>
+								<th st-sort="endTime">截止时间</th>
+								<th st-sort="custAgent">负责人</th>
+								<th st-sort="custNo">客户号</th>
+								<th st-sort="custName">客户姓名</th>
+								<th st-sort="establishTime">创建时间</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="item in operCustData">
+								<td>{{item.groupOperName}}</td>
+								<td>{{item.groupTaskStatus}}</td>
+								<td>{{item.groupTaskDesc}}</td>
+								<td>{{item.endTime}}</td>
+								<td>{{item.custAgent}}</td>
+								<td>{{item.custNo}}</td>
+								<td>{{item.custNam}}</td>
+								<td>{{item.establishTime}}</td>
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr>
+								<td colspan="10" class="text-center"><st-pager opts="queryOperCust" pageSize="10"></st-pager></td>
+							</tr>
+						</tfoot>
+					</table>
+
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default btn-with-icon" ng-click="closePage()">关闭</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

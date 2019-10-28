@@ -1,0 +1,50 @@
+<div class="widgets">
+	<form class="form-horizontal" name="addForm" novalidate>
+		<loading></loading>
+		<div class="col-md-12" >
+			<div class="panel panel-primary">
+			 <div class="panel-heading"><font color="white">客户分配</font></div>
+                <div class="panel-body">
+				<form class="form-horizontal" name="modifyForm" novalidate>					  
+				<div class="col-sm-12" >				
+					<div class="form-group">
+						<label  class="col-sm-2" >转交原因</label>
+						<div class="col-sm-8 zpercusportra_paleft" >
+							<ui-select ng-model="custSaleChgTrace.chgReason" ng-change="eitherShow(custSaleChgTrace.chgReason.value)" 
+                                     class="btn-group bootstrap-select form-control"
+                                     search-enabled="false"
+                                     id="chgReason">
+                               <ui-select-match>
+                                   <span> {{$select.selected.label}}</span>
+                               </ui-select-match>
+                               <ui-select-choices repeat="chgReason in chgReasonItems">
+                                   <span ng-bind-html="chgReason.label"></span>
+                               </ui-select-choices>
+                           </ui-select>
+						</div>
+					</div>
+				</div>
+					
+				<div class="col-sm-12">
+					<div class="form-group">
+						<div class="col-sm-2">
+							<label for="textarea01">转交详情</label>
+						</div>
+						<div class="col-sm-8 form-group" style="padding-right:0;">
+							<textarea ng-model="custSaleChgTrace.otherReason" class="form-control" id="message" col="2"	  placeholder="输入转交详情 ..." required></textarea><span class="help-block error-block basic-block">必录</span>
+						</div>
+					</div>
+				</div>					
+				</form>
+
+				<div class="row zaddperassets_textcenter">
+				<div class="col-sm-11">
+			        <button type="button" class="btn btn-default btn-with-icon" ng-click="$dismiss()">关闭</button>
+			        <button type="button" class="btn btn-primary btn-with-icon" ng-click="saveValue(addForm.$valid)">确定</button>
+				</div>					
+				</div>
+			</div>
+			</div>
+		</div>
+	</form>
+</div>

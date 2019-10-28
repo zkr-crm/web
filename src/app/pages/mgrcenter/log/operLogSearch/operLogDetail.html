@@ -1,0 +1,74 @@
+<div class="widgets">
+	<form class="form-horizontal" name="addForm" ng-controller="operLogSearchCtrl" novalidate>
+		<loading></loading>
+		<div class="col-md-12 zloginlogsearch_pa" >
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+						<em class="ion-ios-close-empty sn-link-close"></em>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">操作日志明细</h4>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="userId" class="col-sm-4 control-label">用户账号</label>
+								<div class="col-sm-8" >
+									<input type="text" class="form-control input-normal" id="userId" name="userId" ng-model="msgTpl.userId"readOnly>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="moduleName" class="col-sm-4 control-label">模块名称</label>
+								<div class="col-sm-8" >
+									<input type="text" class="form-control input-normal" id="moduleName" name="moduleName" ng-model="msgTpl.moduleName"readOnly>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="clientIp" class="col-sm-4 control-label">客户端IP</label>
+								<div class="col-sm-8" >
+									<input type="text" class="form-control input-normal" id="clientIp" name="clientIp" ng-model="msgTpl.clientIp"readOnly>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="operTime" class="col-sm-4 control-label">日志时间</label>
+								<div class="col-sm-8" >
+									<input type="text" class="form-control input-normal" id="operTime" name="operTime" ng-model="msgTpl.operTime"readOnly>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="bizDesc" class="col-sm-4 control-label">日志说明</label>
+								<div class="col-sm-8" >
+									<input type="text" class="form-control input-normal" id="bizDesc" name="bizDesc" ng-model="msgTpl.bizDesc" readOnly>
+								</div>
+							</div>
+						</div>						
+					</div>
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="form-group">
+								<label for="inputParam" class="col-sm-2 control-label">输入参数</label>
+								<div class="col-sm-10" >
+									<textarea type="text" class="form-control input-normal" id="inputParam" name="inputParam" ng-model="msgTpl.inputParam"readOnly>
+									</textarea>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

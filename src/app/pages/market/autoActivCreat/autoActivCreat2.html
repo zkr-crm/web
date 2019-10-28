@@ -1,0 +1,101 @@
+<div class="widgets">
+	<form class="form-horizontal" name="addForm" novalidate>
+		<loading></loading>
+		<div class="col-md-12" ng-controller="autoActivCreat2Ctrl">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<font color="white">新建自动营销</font>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-md-12 col-lg-12">
+							<div class="form-group">
+								<label for="custName" class="col-sm-3 control-label">活动名称</label>
+								<div class="col-sm-6">
+									<input type="text" class="form-control input-normal" id="custName" ng-model="custom.custName">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12 col-lg-12">
+							<div class="form-group">
+								<label for="custName" class="col-sm-3 control-label">H5页面链接</label>
+								<div class="col-sm-6">
+									<input type="text" class="form-control input-normal" placeholder="https://c.eqxiu.com/s/pyfQuuO3" id="custName" ng-model="custom.custName">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12 col-lg-12">
+							<div class="form-group">
+								<label for="phoneNumber" class="col-sm-3 control-label">分享图片</label>
+								<div class="col-sm-6">
+									<img ng-src="data:image/jpg;base64,{{perIconImg}}" height="90" width="290" />
+									<button type="file" ngf-select="uploadFiles($file, $invalidFiles)" accept="image/*" ngf-max-height="1000"
+										ngf-max-size="1MB">更改</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12 col-lg-12">
+							<div class="form-group">
+								<label for="phoneNumber" class="col-sm-3 control-label">分享摘要</label>
+								<div class="col-sm-6">
+									<input type="text" class="form-control input-normal" id="phoneNumber" ng-model="custom.phoneNumber">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12 col-lg-12">
+							<div class="form-group">
+								<label for="phoneNumber" class="col-sm-3 control-label">报名介绍</label>
+								<div class="col-sm-6">
+									<input type="text" class="form-control input-normal" id="phoneNumber" ng-model="custom.phoneNumber">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12 col-lg-12">
+							<div class="form-group">
+								<label for="custName" class="col-sm-3 control-label">报名信息</label>
+								<div class="col-sm-6">
+									<span>每个报名信息将自动生成一个资源客户:</span> <br > <label class="checkbox-inline custom-checkbox nowrap"> <input
+										ng-model="true" type="checkbox" id="duanxin"> <span>姓名</span>
+									</label> <label class="checkbox-inline custom-checkbox nowrap"> <input ng-model="true" type="checkbox"
+										id="duanxin"> <span>手机</span>
+									</label> <label class="checkbox-inline custom-checkbox nowrap"> <input ng-model="options.duanxin"
+										type="checkbox" id="duanxin"> <span>微信号</span>
+									</label> <label class="checkbox-inline custom-checkbox nowrap"> <input ng-model="options.duanxin"
+										type="checkbox" id="duanxin"> <span>微博</span>
+									</label> <label class="checkbox-inline custom-checkbox nowrap"> <input ng-model="options.duanxin"
+										type="checkbox" id="duanxin"> <span>邮箱</span>
+									</label> <label class="checkbox-inline custom-checkbox nowrap"> <input ng-model="options.duanxin"
+										type="checkbox" id="duanxin"> <span>QQ号</span>
+									</label> <label class="checkbox-inline custom-checkbox nowrap"> <input ng-model="options.duanxin"
+										type="checkbox" id="duanxin"> <span>邮编</span>
+									</label> <label class="checkbox-inline custom-checkbox nowrap"> <input ng-model="options.duanxin"
+										type="checkbox" id="duanxin"> <span>公司名称</span>
+									</label> <label class="checkbox-inline custom-checkbox nowrap"> <input ng-model="options.duanxin"
+										type="checkbox" id="duanxin"> <span>部门</span>
+									</label> <label class="checkbox-inline custom-checkbox nowrap"> <input ng-model="options.weixin"
+										type="checkbox" id="weixin"> <span>地址</span>
+									</label>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default btn-with-icon" ng-click="closePage()">关闭</button>
+					<button type="button" class="btn btn-primary btn-with-icon" ng-click="saveValue(addForm.$valid)">保存</button>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+
