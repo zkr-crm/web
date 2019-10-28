@@ -1,0 +1,134 @@
+<div ng-controller="TestAngularCtrl">
+		<button class="btn btn-primary" ng-click="batch()">
+			打标签
+		</button>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+
+
+  {{test}}
+  
+   <tags-input ng-model="tags" display-property="name">
+      <auto-complete source="loadTags($query)"></auto-complete>
+    </tags-input>
+    <p>Model: {{tags}}</p>
+    
+    <br/>
+    <br/>
+    
+    
+    <tags-input class="myTag"
+    			ng-model="superheroes" 
+                placeholder="Add a superhero" 
+                replace-spaces-with-dashes="false"
+                add-from-autocomplete-only="true"
+                on-tag-added="tagAdded($tag)"
+                on-tag-removed="tagRemoved($tag)">
+      <auto-complete source="loadSuperheroes($query)" 
+                     min-length="0" 
+                     debounce-delay="0"
+                     max-results-to-show="10"></auto-complete>
+    </tags-input>
+    <p>Model: {{superheroes}}</p>
+    <p>Log: {{log}}</p>
+    
+    <!-- <button class="btn btn-primary" ng-click="rest()">
+			测试
+		</button> -->
+		
+
+		<button class="btn btn-primary" ng-click="rest1()">
+			测试1
+		</button>
+		
+		<button class="btn btn-primary" ng-click="localRest()">
+			本地测试
+		</button>
+		<button class="btn btn-primary" ng-click="localRest2()">
+			本地测试2
+		</button>
+		
+		
+		
+		<p>Select a tab by setting active binding to true:</p>
+    <p>
+        <button type="button" class="btn btn-default btn-sm" ng-click="active = 1">Select second tab</button>
+        <button type="button" class="btn btn-default btn-sm" ng-click="active = 2">Select third tab</button>
+        <button type="button" class="btn btn-default btn-sm" ng-click="addTab()">addtab</button>
+    </p>
+    <p>
+        <button type="button" class="btn btn-default btn-sm" ng-click="tabs[1].disabled = ! tabs[1].disabled">Enable / Disable third tab</button>
+    </p>
+    <hr />
+
+    <uib-tabset active="active">
+        <uib-tab index="0" heading="Static title">Static content</uib-tab>
+        <uib-tab index="tab.index" ng-repeat="tab in tabs" heading="{{tab.title}}" disable="tab.disabled"  >
+            {{tab.content}}
+            	  <div ng-include="tab.url"></div>
+        </uib-tab>
+        <uib-tab index="99" select="alertMe()">
+            <uib-tab-heading>
+                <i class="glyphicon glyphicon-bell"></i> Alert!
+            </uib-tab-heading>
+            I've got an HTML heading, and a select callback. Pretty cool!
+        </uib-tab>
+    </uib-tabset>
+
+    <hr />
+
+    <uib-tabset active="activePill" vertical="true" type="pills">
+        <uib-tab index="0" heading="Vertical 1">Vertical content 1</uib-tab>
+        <uib-tab index="1" heading="Vertical 2">Vertical content 2</uib-tab>
+    </uib-tabset>
+
+    <hr />
+
+    <uib-tabset active="activeJustified" justified="true">
+        <uib-tab index="0" heading="Justified">Justified content</uib-tab>
+        <uib-tab index="1" heading="SJ">Short Labeled Justified content</uib-tab>
+        <uib-tab index="2" heading="Long Justified">Long Labeled Justified content</uib-tab>
+    </uib-tabset>
+
+    <hr />
+
+    Tabbed pills with CSS classes
+    <uib-tabset type="pills">
+        <uib-tab heading="Default Size">Tab 1 content</uib-tab>
+        <uib-tab heading="Small Button" classes="btn-sm">Tab 2 content</uib-tab>
+    </uib-tabset>
+
+    <hr />
+
+    Tabs using nested forms:
+    <form name="outerForm" class="tab-form-demo">
+        <uib-tabset active="activeForm">
+            <uib-tab index="0" heading="Form Tab">
+                <ng-form name="nestedForm">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" class="form-control" required ng-model="model.name"/>
+                    </div>
+                </ng-form>
+            </uib-tab>
+            <uib-tab index="1" heading="Tab One">
+                Some Tab Content
+            </uib-tab>
+            <uib-tab index="2" heading="Tab Two">
+                More Tab Content
+            </uib-tab>
+        </uib-tabset>
+    </form>
+    Model:
+    <pre>{{ model | json }}</pre>
+    Nested Form:
+    <pre>{{ outerForm.nestedForm | json }}</pre>
+		
+		
+</div>

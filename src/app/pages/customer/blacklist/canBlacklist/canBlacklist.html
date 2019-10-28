@@ -1,0 +1,40 @@
+<div class="widgets">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+				<em class="ion-ios-close-empty sn-link-close"></em>
+			</button>
+			<h4 class="modal-title" id="myModalLabel">撤销黑名单</h4>
+		</div>
+		<div class="modal-body">
+			<form class="form-horizontal"  name="modifyForm" novalidate >
+				<div class="" >
+					<div class="row">
+						<div class="col-sm-4">
+							<label for="custNo" class="control-label form-group-t">客户号</label>
+							<input type="text" class="form-control zcanblacklist_width" id="custNo" name="custNo" ng-model="blacklistDts.custNo"  ng-readonly=true >
+						</div>
+						<div class="col-sm-4">
+							<label for="custName" class="control-label form-group-t">客户姓名</label>
+							<input type="text" class="form-control zcanblacklist_width" id="custName" name="custName" ng-model="blacklistDts.custName"  ng-readonly=true >
+						</div>
+						<div class="col-sm-4">
+							<label for="phoneNumber" class="control-label form-group-t">电话号码</label>
+							<input type="text" class="form-control zcanblacklist_width" id="phoneNumber" name="phoneNumber" ng-model="blacklistDts.phoneNumber" placeholder="blacklistType" ng-readonly=true >
+						</div>
+					</div>
+				</div>
+				<div class="">
+					<label for="textarea01">撤销原因</label>
+					<td><textarea ng-model="blacklistDts.reason" class="form-control" id="message" col="2" maxlength="200" 	  placeholder="输入撤销原因(200字以内) ..." required></textarea><span class="help-block error-block basic-block">必录</span></td>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary btn-with-icon" ng-click="saveValue()">确定</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+</div>
+</div>

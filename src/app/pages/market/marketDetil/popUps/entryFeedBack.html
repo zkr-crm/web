@@ -1,0 +1,72 @@
+<div class="widgets">
+	<form class="form-horizontal" name="addForm" novalidate>
+		<loading></loading>
+		<div class="col-md-12" ng-controller="entryFeedBackCtrl">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<font color="white">反馈录入</font>
+				</div>
+				<div class="panel-body">
+					<div class="row ">
+						<div class="col-md-6 col-lg-6">
+							<div class="form-group">
+								<label for="custName" class="col-sm-4 control-label">客户姓名</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control input-normal" id="custName" ng-model="custom.custName">
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6 col-lg-6">
+							<div class="form-group">
+								<label for="phoneNumber" class="col-sm-4 control-label">是否正式客户</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control input-normal" id="phoneNumber" ng-model="custom.phoneNumber">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row ">
+						<div class="col-md-6 col-lg-6">
+							<div class="form-group">
+								<label for="custName" class="col-sm-4 control-label">客户等级</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control input-normal" id="custName" ng-model="custom.custName">
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6 col-lg-6">
+							<div class="form-group">
+								<label for="phoneNumber" class="col-sm-4 control-label">活动意见</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control input-normal" id="phoneNumber" ng-model="custom.phoneNumber">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row ">
+						<div class="col-md-6 col-lg-6">
+							<div class="form-group">
+								<label for="custName" class="col-sm-4 control-label">反馈时间</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control input-normal" id="custName" ng-model="custom.custName">
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6 col-lg-6">
+							<div class="form-group">
+								<label for="phoneNumber" class="col-sm-4 control-label">是否已处理</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control input-normal" id="phoneNumber" ng-model="custom.phoneNumber">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default btn-with-icon" ng-click="closePage()">关闭</button>
+						<button type="button" class="btn btn-primary btn-with-icon" ng-click="sendValue()">发送</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

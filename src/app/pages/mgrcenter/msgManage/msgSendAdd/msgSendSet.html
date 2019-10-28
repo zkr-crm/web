@@ -1,0 +1,221 @@
+<div class="widgets">
+	<form class="form-horizontal" name="addForm" novalidate>
+		<loading></loading>
+		<div class="col-md-12" ng-controller="msgSendSetCtrl">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<font color="white">发送信息设置</font>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="msgType" class="col-sm-4 control-label">信息类型</label>
+								<div class="col-sm-8" >
+									<select ng-model="msgSendDefDts.msgType" class="form-control input-normal" ng-options="x.label for x in msgTypes"
+									></select>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="sendObj" class="col-sm-4 control-label">发送对象</label>
+								<div class="col-sm-8" >
+									<input type="text" class="form-control input-normal" id="sendObj" name="sendObj" ng-model="msgSendDefDts.sendObj"	>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="msgCode" class="col-sm-4 control-label">信息编码</label>
+								<div class="col-sm-8" >
+									<input type="text" class="form-control input-normal" id="msgCode" name="msgCode" ng-model="msgSendDefDts.msgCode">
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="msgTopic" class="col-sm-4 control-label">信息标题</label>
+								<div class="col-sm-8" >
+									<input type="text" class="form-control input-normal" id="msgTopic" name="msgTopic" ng-model="msgSendDefDts.msgTopic" >
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="msgOrder" class="col-sm-4 control-label">消息优先级</label>
+								<div class="col-sm-8" >
+									<select ng-model="msgSendDefDts.msgOrder" class="form-control input-normal" ng-options="x.label for x in msgOrders"
+									></select>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="resendTimes" class="col-sm-4 control-label" >失败重发次数</label>
+								<div class="col-sm-8" >
+									<input type="text" class="form-control input-normal" id="resendTimes" name="resendTimes" ng-model="msgSendDefDts.resendTimes" >
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="cc" class="col-sm-4 control-label">抄送</label>
+								<!-- <input type="text" class="form-control col-sm-8" tag-input="primary" value="" ng-model="msgSendDefDts.cc" data-role="tagsinput" placeholder="添加" > -->
+								<div class="col-sm-8">
+									<input type="text" class="input-normal form-control"  value="" ng-model="msgSendDefDts.cc" placeholder="添加" >
+								</div>
+								
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="tosendobj" class="col-sm-4 control-label">发送类型</label>
+								<div class="col-sm-8" >
+									<div class="input-demo radio-demo row">
+										<div class="col-sm-4">
+											<label class="radio-inline custom-radio nowrap">
+												<input type="radio" name="SendTypRadioOptions" id="inlineRadio3" value="norecycle"  ng-change="getSelectRecycleTyp(0)" ng-model="radioSendTyp.select" >
+												<span>不循环</span>
+											</label>
+										</div>
+										<div class="col-sm-4">
+											<label class="radio-inline custom-radio nowrap">
+												<input type="radio" name="SendTypRadioOptions" id="inlineRadio4" value="isrecycle"  ng-change="getSelectRecycleTyp(1)" ng-model="radioSendTyp.select" >
+												<span>循环</span>
+											</label>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group" ng-show="showrecycletyp">
+								<label for="loopTypes" class="col-sm-4 control-label" layout-align="left">循环类型 </label>
+								<div class="col-sm-8" >
+									<select ng-model="msgSendDefDts.loopType" class="form-control input-normal" ng-options="x.label for x in loopTypes"
+									></select>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="inlineRadio" class="col-sm-4 control-label">发送方式</label>
+								<div class="col-sm-8" >
+									<div class="input-demo radio-demo row">
+										<div class="col-sm-4">
+											<label class="radio-inline custom-radio nowrap">
+												<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="frequency" ng-change="getSelectSend(0)" ng-model="radioOptions.select" >
+												<span>直接发送</span>
+											</label>
+										</div>
+										<div class="col-sm-4">
+											<label class="radio-inline custom-radio nowrap">
+												<input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="direct"   ng-change="getSelectSend(1)" ng-model="radioOptions.select">
+												<span>定时发送</span>
+											</label>
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group" ng-show="showtime">
+								<label for="fixDay" class="col-sm-4 control-label">定时时间</label>
+								<div class="col-sm-4" style="padding-right:0;">
+										<div class="input-group" style="margin-bottom:0;">
+											<input type="text" class="form-control" uib-datepicker-popup="yyyy-MM-dd" datepicker-options="options" ng-model="msgSendDefDts.fixDay"  placeholder="" is-open="opened2" ng-required="false" close-text="Close" alt-input-formats="altInputFormats" show-button-bar="false" />
+											<span class="input-group-btn">
+												<button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+											</span>
+										</div>
+								</div>
+								<div class="col-sm-3" >
+									<input type="text" class="form-control" id="fixHour" name="fixHour" ng-model="msgSendDefDts.fixHour"	placeholder="时：分"  >
+								</div>
+
+							</div>
+						</div>
+					</div>
+					
+					
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="form-group">
+								<label for="options" class="col-sm-2 control-label" >发送渠道</label>
+								<div class="col-sm-8" >
+									<label class="checkbox-inline custom-checkbox nowrap">
+										<input ng-model="options.duanxin" type="checkbox" id="duanxin"  >
+										<span>短信</span>
+									</label>
+									<label class="checkbox-inline custom-checkbox nowrap">
+										<input ng-model="options.weixin" type="checkbox" id="weixin"  >
+										<span>微信</span>
+									</label>
+									<label class="checkbox-inline custom-checkbox nowrap">
+										<input ng-model="options.youjian" type="checkbox" id="youjian"  >
+										<span>邮件</span>
+									</label>
+									<label class="checkbox-inline custom-checkbox nowrap">
+										<input ng-model="options.zhanneixin" type="checkbox" id="zhanneixin"  >
+										<span>站内信</span>
+									</label>
+									<label class="checkbox-inline custom-checkbox nowrap">
+										<input ng-model="options.app" type="checkbox" id="app" >
+										<span>APP</span>
+									</label>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="form-group">
+								<div class="col-sm-2" style="text-align:right;">
+									<label for="templateContent" class="control-label">发送内容</label>
+									
+								</div>
+								<div class="col-sm-8" >
+									<textarea ng-model="msgSendDefDts.templateContent" class="form-control" id="templateContent"  placeholder="" ng-readonly=true></textarea>
+									<!--<textarea class="form-control  input-normal" placeholder="Message"></textarea>-->
+								</div>
+								<div class="col-sm-2">
+									<button type="button" class="btn btn-primary btn-with-icon" ng-click="selectTemplate()">模板选择</button>
+								</div>
+							</div>
+						</div>
+						<!-- <div class="col-sm-2">
+							<div class="form-group">
+								<div class="col-sm-8" >
+									<button class="btn btn-primary btn-with-icon" ng-click="selectTemplate()"><i class="ion-search"></i>模板选择</button>
+									<button type="button" class="btn btn-primary btn-with-icon" ng-click="selectTemplate()">模板选择</button>
+								</div>
+							</div>
+						</div> -->
+					</div>
+
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default btn-with-icon" ng-click="closePage()">关闭</button>
+						<button type="button" class="btn btn-primary btn-with-icon" ng-click="saveValue(addForm.$valid)">保存</button>
+						<button type="button" class="btn btn-primary btn-with-icon" ng-click="validValue(addForm.$valid)">生效</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

@@ -1,0 +1,240 @@
+<div class="widgets" ng-controller="editAutoMarketInfoCtrl">
+	<div class="modal-content" style="box-shadow: none;">
+		<div class="modal-body" style="padding: 0; padding-bottom: 1px;">
+			<form class="form-horizontal" name="custDetailForm" novalidate>
+				<div class="panel-heading">
+					<font color="#666">新建活动</font>
+					<button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+						<em class="ion-ios-close-empty sn-link-close"></em>
+					</button>
+				</div>
+
+				<div class="z_custdetaiadd_box" style="height: 450px;">
+					<span class="z_custdetaladd_title"> <a href="javascript:;" ng-repeat="x in information"
+						ng-click="fan_information($index)" ng-class="{'z_custdetail_bg':information_a == $index}">{{x}}</a>
+					</span>
+					<div class="custdetailadd">
+						<div class="panel-body" ng-class="{'z_custDetail_show':0 == information_a}">
+							<div class="row">
+								<div class="col-md-12 col-lg-12">
+									<div class="form-group">
+										<label for="activeName" class="col-sm-3 control-label">活动名称</label>
+										<div class="col-sm-6">
+											<input type="text" class="form-control input-normal" id="custName" ng-model="activInfo.activeName">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12 col-lg-12">
+									<div class="form-group">
+										<label for="H5Url" class="col-sm-3 control-label">H5页面链接</label>
+										<div class="col-sm-6">
+											<input type="text" class="form-control input-normal" placeholder="https://c.eqxiu.com/s/pyfQuuO3" id="H5Url"
+												ng-model="activInfo.H5Url">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12 col-lg-12">
+									<div class="form-group">
+										<label for="shareImage" class="col-sm-3 control-label">分享图片</label>
+										<div class="col-sm-6">
+											<img ng-src="data:image/jpg;base64,{{perIconImg}}" height="90" width="290" />
+											<button type="file" ngf-select="uploadFiles($file, $invalidFiles)" accept="image/*" ngf-max-height="1000"
+												ngf-max-size="1MB">更改</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12 col-lg-12">
+									<div class="form-group">
+										<label for="shareRemark" class="col-sm-3 control-label">分享摘要</label>
+										<div class="col-sm-6">
+											<input type="text" class="form-control input-normal" id="shareRemark" ng-model="activInfo.shareRemark">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12 col-lg-12">
+									<div class="form-group">
+										<label for="signIntroduce" class="col-sm-3 control-label">报名介绍</label>
+										<div class="col-sm-6">
+											<input type="text" class="form-control input-normal" id="signIntroduce" ng-model="activInfo.signIntroduce">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12 col-lg-12">
+									<div class="form-group">
+										<label for="custName" class="col-sm-3 control-label">报名信息</label>
+										<div class="col-sm-6">
+											<span>每个报名信息将自动生成一个资源客户:</span> <br> <label class="checkbox-inline custom-checkbox nowrap"> <input
+												ng-model="true" type="checkbox" id="duanxin"> <span>姓名</span>
+											</label> <label class="checkbox-inline custom-checkbox nowrap"> <input ng-model="true" type="checkbox"
+												id="duanxin"> <span>手机</span>
+											</label> <label class="checkbox-inline custom-checkbox nowrap"> <input ng-model="options.duanxin"
+												type="checkbox" id="duanxin"> <span>微信号</span>
+											</label> <label class="checkbox-inline custom-checkbox nowrap"> <input ng-model="options.duanxin"
+												type="checkbox" id="duanxin"> <span>微博</span>
+											</label> <label class="checkbox-inline custom-checkbox nowrap"> <input ng-model="options.duanxin"
+												type="checkbox" id="duanxin"> <span>邮箱</span>
+											</label> <label class="checkbox-inline custom-checkbox nowrap"> <input ng-model="options.duanxin"
+												type="checkbox" id="duanxin"> <span>QQ号</span>
+											</label> <label class="checkbox-inline custom-checkbox nowrap"> <input ng-model="options.duanxin"
+												type="checkbox" id="duanxin"> <span>邮编</span>
+											</label> <label class="checkbox-inline custom-checkbox nowrap"> <input ng-model="options.duanxin"
+												type="checkbox" id="duanxin"> <span>公司名称</span>
+											</label> <label class="checkbox-inline custom-checkbox nowrap"> <input ng-model="options.duanxin"
+												type="checkbox" id="duanxin"> <span>部门</span>
+											</label> <label class="checkbox-inline custom-checkbox nowrap"> <input ng-model="options.weixin"
+												type="checkbox" id="weixin"> <span>地址</span>
+											</label>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="panel-body" ng-class="{'z_custDetail_show':1 == information_a}">
+							<div class="row">
+								<div class="col-sm-12">
+									<div class="form-group">
+										<label for="custName" class="col-sm-3 control-label">客户策略选择</label>
+										<div class="col-sm-6">
+											<p class="input-group">
+												<input type="text" class="form-control input-normal" ng-model="activInfo.strategyName" /> <span
+													class="input-group-btn">
+													<button type="button" class="btn btn-default" ng-click="getStrategy()">
+														<i class="ion-search"></i>
+													</button>
+												</span>
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-12">
+									<div class="form-group">
+										<label for="msgType" class="col-sm-3 control-label">推送方式</label>
+										<div class="col-sm-6">
+											<select ng-model="activInfo.msgType" class="form-control input-normal" ng-options="x.label for x in msgTypes"></select>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-12">
+									<div class="form-group">
+										<label for="tosendobj" class="col-sm-3 control-label">发送类型</label>
+										<div class="col-sm-6">
+											<div class="input-demo radio-demo row">
+												<div class="col-sm-4">
+													<label class="radio-inline custom-radio nowrap"> <input type="radio" name="SendTypRadioOptions"
+														id="inlineRadio3" value="isrecycle" ng-change="getSelectRecycleTyp(0)" ng-model="radioSendTyp.select">
+														<span>不循环</span>
+													</label>
+												</div>
+												<div class="col-sm-4">
+													<label class="radio-inline custom-radio nowrap"> <input type="radio" name="SendTypRadioOptions"
+														id="inlineRadio4" value="norecycle" ng-change="getSelectRecycleTyp(1)" ng-model="radioSendTyp.select">
+														<span>循环</span>
+													</label>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-12">
+									<div class="form-group" ng-show="showrecycletyp">
+										<label for="loopTypes" class="col-sm-3 control-label" layout-align="left">循环类型 </label>
+										<div class="col-sm-6">
+											<select ng-model="activInfo.loopType" class="form-control input-normal"
+												ng-options="x.label for x in loopTypes"></select>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-12">
+									<div class="form-group">
+										<label for="inlineRadio" class="col-sm-3 control-label">发送方式</label>
+										<div class="col-sm-6">
+											<div class="input-demo radio-demo row">
+												<div class="col-sm-4">
+													<label class="radio-inline custom-radio nowrap"> <input type="radio" name="inlineRadioOptions"
+														id="inlineRadio1" value="frequency" ng-change="getSelectSend(0)" ng-model="radioOptions.select"> <span>直接发送</span>
+													</label>
+												</div>
+												<div class="col-sm-4">
+													<label class="radio-inline custom-radio nowrap"> <input type="radio" name="inlineRadioOptions"
+														id="inlineRadio2" value="direct" ng-change="getSelectSend(1)" ng-model="radioOptions.select"> <span>定时发送</span>
+													</label>
+												</div>
+
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-12">
+									<div class="form-group" ng-show="showtime">
+										<label for="fixDay" class="col-sm-3 control-label">定时时间</label>
+										<div class="col-sm-6">
+											<div class="input-group" style="margin-bottom: 0;">
+												<input type="text" class="form-control" uib-datepicker-popup="yyyy-MM-dd" datepicker-options="options"
+													ng-model="activInfo.fixDay" placeholder="" is-open="opened2" ng-required="false" close-text="Close"
+													alt-input-formats="altInputFormats" show-button-bar="false" /> <span class="input-group-btn">
+													<button type="button" class="btn btn-default" ng-click="open2()">
+														<i class="glyphicon glyphicon-calendar"></i>
+													</button>
+												</span>
+											</div>
+										</div>
+										<div class="col-sm-3">
+											<input type="text" class="form-control" uib-datepicker-popup="hh:mm" id="fixHour" name="fixHour"
+												ng-model="activInfo.fixHour" placeholder="时：分">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-12">
+									<div class="form-group">
+										<label for="options" class="col-sm-3 control-label">发送渠道</label>
+										<div class="col-sm-6">
+											<label class="checkbox-inline custom-checkbox nowrap"> <input ng-model="options.duanxin"
+												type="checkbox" id="duanxin"> <span>短信</span>
+											</label> <label class="checkbox-inline custom-checkbox nowrap"> <input ng-model="options.weixin"
+												type="checkbox" id="weixin"> <span>微信</span>
+											</label> <label class="checkbox-inline custom-checkbox nowrap"> <input ng-model="options.youjian"
+												type="checkbox" id="youjian"> <span>邮件</span>
+											</label> <label class="checkbox-inline custom-checkbox nowrap"> <input ng-model="options.zhanneixin"
+												type="checkbox" id="zhanneixin"> <span>站内信</span>
+											</label> <label class="checkbox-inline custom-checkbox nowrap"> <input ng-model="options.app" type="checkbox"
+												id="app"> <span>APP</span>
+											</label>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<p class="modal-footer" style="padding-top: 0;">
+					<button type="button" class="btn btn-default btn-with-icon" ng-click="$dismiss()">关闭</button>
+					<button type="button" class="btn btn-primary btn-with-icon" ng-click="save()">保存</button>
+				</p>
+			</form>
+		</div>
+	</div>
+</div>
+
+

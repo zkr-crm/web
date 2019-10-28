@@ -1,0 +1,14 @@
+{
+  "name": "html5media",
+  "homepage": "https://github.com/etianen/html5media",
+  "version": "1.2.2",
+  "_release": "1.2.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.2.2",
+    "commit": "6d5a0e91a8fcd700529cf83419dc308789427a2d"
+  },
+  "_source": "https://github.com/etianen/html5media.git",
+  "_target": "^1.2.2",
+  "_originalSource": "html5media"
+}

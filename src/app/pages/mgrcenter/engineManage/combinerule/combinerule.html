@@ -1,0 +1,110 @@
+<div ng-controller="combineruleCtrl">
+
+	<div class="horizontal-scroll" ba-panel ba-panel-class="with-scroll">
+		<form class="form-horizontal" name="modifyForm" novalidate>
+			<div class="row">
+				<div class="col-md-2">
+					<label class="grid-title">
+						<i class="ion-flag btn-primary"></i>
+						查询条件
+					</label>
+				</div>
+			</div>
+			<!--				<div class="col-md-2">-->
+			<!--					<label class="grid-title">组合规则配置</label>-->
+			<!--				</div>-->
+			<div class="row form-group">
+				<div class="col-md-5" >
+					<label  class="z_custdetailadd_lable">是否被使用</label>
+					<!--					<div class="form-group">-->
+					<!-- <div class="select-normal"> -->
+					<ui-select id="res_data_type" name="res_data_type"
+							   class="btn-group bootstrap-select form-control z_custdetail_inline"
+							   ng-change="showTreeInfo($select.selected)"
+							   ng-model="isUsed.value">
+						<ui-select-match>
+							<span ng-bind="$select.selected.name"></span>
+						</ui-select-match>
+						<ui-select-choices repeat="item in itemArray">
+							<span ng-bind="item.name"></span>
+						</ui-select-choices>
+					</ui-select>
+					<!-- </div> -->
+					<!--					</div>-->
+				</div>
+				<div class="col-md-5">
+					<label  class="z_custdetailadd_lable">组合规则名称</label>
+					<input type="text" class="form-control z_custdetail_inline" ng-model="searchObj.combineRuleName" placeholder="组合规则名称">
+				</div>
+			</div>
+			<div class="row split-div">
+				<HR  class="split-line">
+				<div>
+					<button class="btn btn-primary btn-with-icon" ng-click="searchBaseRule()">
+						<i class="ion-search"></i>查询
+					</button>
+					<button class="btn btn-primary btn-with-icon" ng-click="addBaseRule()">
+						<i class="ion-plus-round"></i>新增
+					</button>
+					<!-- TODO：批量删除规则，暂时注释，是否需要该功能后续斟酌
+                    <button class="btn btn-danger btn-with-icon" ng-click="batchRemoveBaseRule()">
+                        <i class="ion-trash-a"></i>删除
+                    </button> -->
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-2">
+					<label class="grid-title">
+						<i class="ion-flag btn-primary"></i>
+						组合规则列表
+					</label>
+				</div>
+			</div>
+		</form>
+
+		<table class="table  table-hover table-condensed" st-table="smartTableData" st-safe-src="BaseRuleRowCollection">
+			<thead>
+			<tr class="black-muted-bg">
+				<!-- TODO：批量删除规则，暂时注释，是否需要该功能后续斟酌
+                 <th ><label for="flag"><input id="flag" type="checkbox" ng-model="select_all" ng-change="selectAll()">
+                </label></th> -->
+				<th st-sort="ruleName" style="width:15%;"  >组合规则名称</th>
+				<th st-sort="expression"  style="width:60%;">组合规则表达式</th>
+				<th st-sort="isUsed" style="width:10%;" >是否被使用</th>
+				<th class="baserule_width">操作</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr ng-repeat="item in smartTableData" class="editable-row">
+				<!--TODO：批量删除规则，暂时注释，是否需要该功能后续斟酌
+                <td><input type="checkbox" ng-model="item.checked" ng-change="selectOne()"> <span></span></td> -->
+				<td><span>{{ item.combineRuleName }}</span></td>
+				<!--<td><span>{{item.remark }}</span></td>-->
+				<td><span>{{item.remark }}</span></td>
+
+				<td><span>{{item.isUsed }}</span></td>
+				<td>
+					<div class="buttons" >
+						<button class="btn btn-success btn-icon" ng-click="viewRule(item)">
+							<i class="ion-eye"></i>
+						</button>
+						<button class="btn btn-primary btn-icon" ng-click="updRule(item)">
+							<i class="ion-compose"></i>
+						</button>
+						<button class="btn btn-danger btn-icon" ng-click="removeRule(item)">
+							<i class="ion-trash-a"></i>
+						</button>
+					</div>
+				</td>
+			</tr>
+			</tbody>
+			<tfoot>
+			<tr>
+				<td colspan="11" class="text-center">
+					<div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
+				</td>
+			</tr>
+			</tfoot>
+		</table>
+	</div>
+</div>

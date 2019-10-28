@@ -1,0 +1,62 @@
+<div class="widgets">
+	<form class="form-horizontal" name="visForm" novalidate>
+		<loading></loading>
+		<div class="col-md-12" >
+			<div class="panel panel-primary">
+			 <div class="panel-heading"><font color="white">拜访</font></div>
+                <div class="panel-body">
+
+		                                            <div class="panel-body z_insured_pano">
+		                                                <div class="row z_row_flex">
+		                                                    <div class="col-md-2 z_dynamic_phone">
+		                                                   	 	<p class="input-group">		
+		                                                        	<select ng-model="dyncTrackTel.trackSubTyp" class="form-control" ng-options="x.label for x in trackEnum" ng-change="selectTrackSubTyp(dyncTrackTel.trackSubTyp)"  id="trackSubTyp" placeholder="记录内容"></select>
+		                                                    	</p>
+		                                                    </div>
+		                                                    <div class="col-md-2 z_dynamic_phone">
+		                                                    	<p class="input-group">	
+																	<select ng-model="dyncTrackTel.whtThrough" class="form-control" ng-options="x.label for x in YesNoFlg" ng-change="selectWhtThrough(dyncTrackTel.whtThrough)"  id="whtThrough" placeholder="是否接通"></select>
+																</p>
+		                                                    </div>
+		                                                </div>
+		                                                <div class="row z_row_flex">
+		                                                	<div class="col-md-2 z_dynamic_phone">
+							                                    <p class="input-group">
+							                                        <input type="text" class="form-control input-normal" uib-datepicker-popup="yyyy-MM-dd" datepicker-options="options" ng-model="dyncTrackTel.nextFollowUpTm" 
+							                                        			is-open="nextFpOpened" ng-required="false" close-text="Close" alt-input-formats="altInputFormats" show-button-bar="false" id="nextFollowUpTm" placeholder="下次跟进日期"/>
+							                                      <span class="input-group-btn">
+							                                        <button type="button" class="btn btn-default" ng-click="nextFpOpen()"><i class="glyphicon glyphicon-calendar"></i></button>
+							                                      </span>
+							                                    </p>
+		                                                    </div>
+		                                                    <div class="col-md-2 z_dynamic_phone">
+		                                                    	<p class="input-group">
+		                                                       	 	<input type="text" class="form-control" ng-model="dyncTrackTel.contacts" placeholder="联系人">
+		                                                       	 </p>
+		                                                    </div>
+		                                                </div>
+		                                                <div class="row">
+					                              	  	    <div class="col-sm-12" style="width:99%;padding-left:19px;">
+														        <textarea ng-model="dyncTrackTel.trackContent" class="form-control" id="message" rows="2" placeholder="请输入详细内容"></textarea>
+														    </div>
+		                                                </div>
+														<div class="row"> <div class="row"><br/></div></div>
+														<div class="col-md-12" >
+															<div class="row">
+																<div class="col-sm-12">
+																	<div class="form-group">
+																		<div class="z_col-sm-offset-8 col-sm-4" >
+																			<button type="button" class="btn btn-danger btn-with-icon" ng-click="$dismiss()"><i class="ion-power"></i>关闭</button>
+																			<button type="button" class="btn btn-success btn-with-icon" ng-click="addTrackTel()"><i class="ion-android-checkmark-circle"></i>保存</button>
+					                                                        <button class="btn btn-primary btn-with-icon" ng-click="resetTrackTel()"><i class="ion-refresh"></i>重置</button>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+
+			</div>
+			</div>
+		</div>
+	</form>
+</div>

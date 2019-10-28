@@ -1,0 +1,79 @@
+<div class="widgets">
+	<form class="form-horizontal" name="addForm" novalidate>
+		<loading></loading>
+		<div class="modal-content" ng-controller="addAppMailCtrl">
+				<div class="modal-header">
+					<button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+						<em class="ion-ios-close-empty sn-link-close"></em>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">站内信群发</h4>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="sendObj" class="col-sm-4 control-label">发送对象</label>
+								<div ng-show="true" class="col-sm-8">
+									<p class="input-group">
+										<input type="text" class="form-control" id="receiveUsers" name="receiveUsers" ng-model="receiveUsers" readOnly><span
+											class="input-group-btn">
+											<button type="button" class="btn btn-default " ng-click="getEmployee()">
+												<i class="ion-search"></i>
+											</button>
+										</span>
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="options" class="col-sm-4 control-label">信息类型</label>
+								<div class="col-sm-8">
+									<select ng-model="selectedMailType" class="form-control input-normal" ng-options="x.label for x in mailType"
+										ng-change="selectMailType(selectedMailType)">
+										<option value="" hidden> </option></select>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="mailTitle" class="col-sm-4 control-label">信息标题</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" id="mailTitle" name="mailTitle" maxlength="50"
+										ng-model="sysMail.mailTitle">
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="options" class="col-sm-4 control-label">发送渠道</label>
+								<div class="col-sm-8">
+									 <label for="options" class="control-label"><span><i class="ion-checkmark-circled"></i>  站内信</span></label>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12" style="float: left">
+							<div class="form-group">
+								<label for="mailContent" class="col-sm-2 control-label">信息内容</label>
+								<div class="col-sm-9" style="padding-right:0;">
+									<textarea ng-model="sysMail.mailContent" class="form-control" id="mailContent"
+											  maxlength="200" placeholder="最多输入200字！"></textarea>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary btn-with-icon" ng-click="sendValue()">
+							发送
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

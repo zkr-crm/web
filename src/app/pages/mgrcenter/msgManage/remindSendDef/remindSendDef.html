@@ -1,0 +1,76 @@
+<div ng-controller="remindSendDefCtrl">
+
+	<div class="horizontal-scroll" ba-panel ba-panel-class="with-scroll">
+		<form class="form-horizontal" name="modifyForm" novalidate>
+			<div class="row">
+				<div class="col-md-2">
+					<label class="grid-title">信息列表</label>
+				</div>
+				<div class="add-row-editable-table zmarg_right" style="float: right">
+					<button class="btn btn-primary btn-with-icon" ng-click="getAllRemindDef()">
+						<i class="ion-search"></i>查询
+					</button>
+					<button class="btn btn-primary btn-with-icon" ng-click="addRemindDef()">
+						<i class="ion-plus-round"></i>新增
+					</button>
+				</div>
+				<div class="col-sm-3" style="float: right">
+					<input type="text" class="form-control" ng-model="searchObj.remindTopic" placeholder="提醒主题">
+				</div>
+			</div>
+		</form>
+
+		<table class="table  table-hover table-condensed" st-table="smartTableData" st-safe-src="RemindDefRows">
+			<thead>
+				<tr class="black-muted-bg">
+					<th st-sort="ruleId">规则编码</th>
+					<th st-sort="advanceDays">提前天数</th>
+					<th st-sort="isSameDay">是否当日</th>
+					<th st-sort="overdueDays">逾期天数</th>
+					<th st-sort="remindTopic">提醒主题</th>
+					<th st-sort="remindTpl">消息模板</th>
+					<th st-sort="remindLevel">提醒级别</th>
+					<th class="zwidth_operation">操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in smartTableData" class="editable-row">
+					<td><span>{{ item.ruleId }}</span></td>
+					<td><span>{{item.advanceDays }}</span></td>
+					<td><span> {{ShowIsSameDay(item) }}</span></td>
+					<td><span> {{item.overdueDays }}</span></td>
+					<td><span>{{item.remindTopic }}</span></td>
+					<td><span> {{item.remindTpl }}</span></td>
+					<td><span> {{ShowremindLevel(item) }}</span></td>
+					<td>
+						<div class="buttons" ng-show="!rowform.$visible">
+							<button title="修改" class="btn btn-primary btn-icon" ng-click="updRemindDef(item)">
+								<i class="ion-compose"></i>
+							</button>
+							<button title="删除" class="btn btn-danger btn-icon" ng-click="removeRemindDef(item)">
+								<i class="ion-trash-a"></i>
+							</button>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+					<td colspan="12">
+						<div class="row">
+							<div class="col-md-7" style="float: right">
+								<div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
+							</div>
+							<div class="col-md-5" style="float: right">
+								每页 <label> <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
+									ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
+								</select>
+								</label> 条&nbsp;&nbsp;&nbsp; 共{{total||0}}条
+							</div>
+						</div>
+					</td>
+				</tr>
+			</tfoot>
+		</table>
+	</div>
+</div>

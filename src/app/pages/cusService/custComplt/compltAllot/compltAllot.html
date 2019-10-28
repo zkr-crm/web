@@ -1,0 +1,108 @@
+<div ng-controller="compltAllotCtrl">
+	<div class="row" >
+	    <div class="col-md-12">
+	      <div ba-panel ba-panel-title="" ba-panel-class="with-scroll">
+        <form class="form-horizontal" name="modifyForm" novalidate>
+            <div class="row">
+                <div class="col-md-2">
+                    <label class="grid-title">投诉分配列表</label>
+                </div>
+                <div class="add-row-editable-table z_cusmnt" style="float: right">
+                    <button class="btn btn-primary btn-with-icon" ng-click="searchComplt()"><i class="ion-search"></i>查询</button>
+                    <button class="btn btn-primary btn-with-icon" ng-click="resetComplt()"><i class="ion-refresh"></i>重置</button>
+					<button class="btn btn-primary btn-with-icon" ng-click="allotComplt()"><i class="ion-shuffle"></i>分配</button>
+					<button class="btn btn-danger btn-with-icon" ng-click="cancelComplt()"><i class="ion-arrow-return-left"></i>取消</button>
+                </div>
+
+				<div class="col-sm-3 z_custmnt_padding" style="float: right;">
+					<input type="text" class="form-control" ng-model="searchObj.custName" placeholder="客户名称/客户编号">
+				</div>
+				<div class="col-sm-3 z_custmnt_padding" style="float: right;">
+					<input type="text" class="form-control" ng-model="searchObj.complainNo" placeholder="投诉编号">
+				</div>
+            </div>
+        </form>
+			  <table class="table table-bordered table-hover table-condensed" st-table="complt" st-safe-src="compltData">
+			    <thead>
+				    <tr class="sortable">
+						<th><label for="flag" style="float: left;"><input id="checked" type="checkbox" ng-model="select_all" ng-change="selectAll()"></label></th>
+						<th st-sort="complainNo">投诉编号</th>
+						<th st-sort="complainDate">投诉日期</th>
+						<!-- <th st-sort="custNo">客户号</th> -->
+						<th st-sort="custNam">客户姓名</th>
+						<th st-sort="complainTyp">投诉类型</th>
+						<th st-sort="complainSts">投诉状态</th>
+<!-- 						<th st-sort="complainDets">投诉内容</th>
+ -->						<th st-sort="agentNo">坐席编号</th>
+						<th st-sort="agentNam">坐席姓名</th>
+<!-- 						<th st-sort="caseRegiDate">立案日期</th>
+						<th st-sort="caseNo">案件编号</th>
+						<th st-sort="transfOrderNo">转办单号码</th>
+						<th st-sort="caseTyp">案件类型</th>
+						<th st-sort="caseSts">案件状态</th> -->
+						<th st-sort="principal">跟进人编号</th>
+						<th st-sort="principalNam">跟进人姓名</th>
+						<th>操作</th>
+				    </tr>
+			    </thead>
+			    <tbody>
+			    <tr ng-repeat="item in complt">
+					<td>
+						<span>
+							<input type="checkbox" ng-model="item.checked" ng-change="selectOne()">
+						</span>
+					</td>
+			      <td>{{item.complainNo}}</td>
+			      <td>{{item.complainDate}}</td>
+			      <!-- <td>{{item.custNo}}</td> -->
+			      <td><a href="" ng-click="openDetail(item.custNo)">{{item.custNam}}</a></td>
+			      <td>{{item.complainTypNam}}</td>
+			      <td>{{item.complainStsNam}}</td>
+<!--			      <td>{{item.complainDets}}</td> -->
+			      <td>{{item.agentNo}}</td>
+			      <td>{{item.agentNam}}</td>
+<!--			      <td>{{item.caseRegiDate}}</td>
+			      <td>{{item.caseNo}}</td>
+			      <td>{{item.transfOrderNo}}</td> 
+			      <td>{{item.caseTypNam}}</td>
+			      <td>{{item.caseStsNam}}</td>-->
+			      <td>{{item.principal}}</td>
+			      <td>{{item.principalNam}}</td>
+			      <td>
+	                    <div class="buttons" ng-show="!rowform.$visible">
+                           <button title="查看" class="btn btn-info btn-icon" ng-click="getComplt(item)"><i class="ion-eye"></i></button>
+                           <button title="分配" class="btn btn-primary btn-icon" ng-click="allotCompltOne(item)"><i class="ion-shuffle"></i></button>
+                           <button title="取消" class="btn btn-danger btn-icon" ng-click="cancelCompltOne(item)"><i class="ion-arrow-return-left"></i></button>
+	                    </div>
+			      </td>
+
+			    </tr>
+			    </tbody>
+			    <tfoot>
+				<tr>
+					<td colspan="17" class="text-left">
+					<div class="row">
+						<div class="col-md-5">
+							<div>
+							每页
+							<label>
+								<select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
+										ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
+								</select>
+							</label>
+							条&nbsp;&nbsp;&nbsp;
+							共{{total}}条
+						</div>
+						</div>
+						<div class="col-md-7">
+							<div st-pagination="" st-items-by-page="10" st-displayed-pages="5"></div>
+						</div>
+					</div>
+					</td>
+				</tr>
+			    </tfoot>
+			  </table>
+		</div>
+		</div>
+	</div>
+</div>

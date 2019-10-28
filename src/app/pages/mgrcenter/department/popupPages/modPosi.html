@@ -1,0 +1,100 @@
+<div class="widgets">
+	<form class="form-horizontal" name="modForm" novalidate>
+		<loading></loading>
+		<div class="col-md-12" ng-controller="modPosiCtrl">
+			<div ba-panel ba-panel-title="岗位信息修改" ba-panel-class="panel-primary">
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="modPosi.posiCode" class="col-sm-4 control-label">岗位代码</label>
+							<div class="col-sm-8" ng-class="{'has-error': modForm.posiCode.$invalid && modForm.$submitted }">
+								<input type="text" class="form-control input-normal" id="posiCode" name="posiCode" ng-model="modPosi.posiCode" required readonly> <span class="help-block error-block basic-block">必录</span>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="modPosi.posiName" class="col-sm-4 control-label">岗位名称</label>
+							<div class="col-sm-8" ng-class="{'has-error': modForm.posiName.$invalid && modForm.$submitted }">
+								<input type="text" class="form-control input-normal" id="posiName" name="posiName" ng-model="modPosi.posiName" required readonly> <span class="help-block error-block basic-block">必录</span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="modPosi.deptCode" class="col-sm-4 control-label">所属部门码</label>
+							<div class="col-sm-8" ng-class="{'has-error': modForm.deptCode.$invalid && modForm.$submitted }">
+								<div class="select-normal">
+									<input type="text" class="form-control input-normal" id="deptCode" name="deptCode" ng-model="modPosi.deptCode" required> <span class="help-block error-block basic-block">必录</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="modPosi.deptName" class="col-sm-4 control-label">所属部门</label>
+							<div class="col-sm-8" ng-class="{'has-error': modForm.deptName.$invalid && modForm.$submitted }">
+								<input type="text" class="form-control input-normal" id="deptName" name="deptName" ng-model="modPosi.deptName" required> <span class="help-block error-block basic-block">必录</span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="modPosi.superPosiCode" class="col-sm-4 control-label">上级岗位码</label>
+							<div class="col-sm-8">
+								<div class="select-normal">
+									<input type="text" class="form-control input-normal" id="superPosiCode" name="superPosiCode" ng-model="modPosi.superPosiCode">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="modPosi.superPosi" class="col-sm-4 control-label">上级岗位</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control input-normal" id="superPosi" name="superPosi" ng-model="modPosi.superPosi">
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="modPosi.posiDesc" class="col-sm-4 control-label">岗位描述</label>
+							<div class="col-sm-8">
+								<div class="input-long">
+									<input type="text" class="form-control input-normal" id="posiDesc" name="posiDesc" ng-model="modPosi.posiDesc">
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="form-group">
+							<div class="col-sm-offset-8 col-sm-4">
+								<button type="button" class="btn btn-danger btn-with-icon" ng-click="$dismiss()">
+									<i class="ion-power"></i>关闭
+								</button>
+								<button type="button" class="btn btn-success btn-with-icon" ng-click="modValue(modForm.$valid)">
+									<i class="ion-android-checkmark-circle"></i>保存
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</form>
+</div>

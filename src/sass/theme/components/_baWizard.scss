@@ -1,0 +1,32 @@
+.ba-wizard-progress {
+  margin:10px 15px;
+  height: 10px;
+}
+
+.ba-wizard-pager {
+  .previous {
+    float: left;
+  }
+  .next {
+    float: right;
+  }
+}
+
+.ba-wizard-navigation-container {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+  padding: 15px;
+  .ba-wizard-navigation {
+    cursor: pointer;
+    display: table-cell;
+    line-height: 1;
+    text-align: left;
+    font-weight: $font-light;
+    font-size: 18px;
+    opacity: 0.7;
+    &.active {
+      opacity: 0.95;
+    }
+  }
+}

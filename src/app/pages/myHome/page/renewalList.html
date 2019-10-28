@@ -1,0 +1,24 @@
+<div class="vertical-scroll">
+  <table class="table table-striped" style="table-layout: fixed;">
+    <thead>
+    <tr>
+      <th class="table-id">编号</th>
+      <th>保单号</th>
+      <th>终保日期</th>
+      <th>投保人名称</th>
+      <th>险种</th>
+      <th>联系电话</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="widthToo" ng-repeat="item in renwalList" ng-click="openRenewDetail(item, 'renewal')">
+      <td >{{$index+1}}</td>
+      <td title='{{item.policyNo}}'>{{item.policyNo}}</td>
+      <td title='{{item.endDate}}'>{{item.endDate}}</td>
+      <td title='{{item.custName}}'>{{item.custName}}</td>
+      <td title='{{item.riskCname}}'>{{item.riskCname}}</td>
+      <td title='{{item.mobile}}'>{{item.mobile}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

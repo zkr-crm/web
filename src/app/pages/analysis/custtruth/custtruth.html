@@ -1,0 +1,101 @@
+<div class="widgets">
+    <form class="form-horizontal" ng-controller="custtruthCtrl">
+        <div ba-panel a-panel-class="with-scroll">
+            <form class="form-horizontal" name="smsGroupForm" novalidate>
+                <div class="row">
+                    <div class="col-md-2">
+                        <label class="grid-title">
+                            <i class="ion-flag btn-primary"></i>查询条件
+                        </label>
+                    </div>
+                </div>
+				<div  class="row form-group">
+					<div  class="col-md-4">
+						<label  class="z_custdetailadd_lable">客户类型</label>
+						<ui-select ng-model="searchAnalysis.custTyp" class="btn-group z_custdetail_inline bootstrap-select form-control " search-enabled="false" >
+							<ui-select-match placeholder="客户类型">
+								<span> {{$select.selected.label}}</span>
+							</ui-select-match>
+							<ui-select-choices repeat="item in CustType">
+								<span ng-bind-html="item.label"></span>
+							</ui-select-choices>
+						</ui-select>
+					</div>
+					<div  class="col-md-4">
+						<label  class="z_custdetailadd_lable">客户来源</label>
+						<ui-select ng-model="searchAnalysis.custSource" class="btn-group z_custdetail_inline bootstrap-select form-control " search-enabled="false" >
+							<ui-select-match placeholder="客户来源">
+								<span> {{$select.selected.label}}</span>
+							</ui-select-match>
+							<ui-select-choices repeat="ds in DataSource">
+								<span ng-bind-html="ds.label"></span>
+							</ui-select-choices>
+						</ui-select>
+					</div>
+					<div  class="col-md-4">
+						<label  class="z_custdetailadd_lable">重点客户</label>
+						<ui-select ng-model="searchAnalysis.keyCustFlg" class="btn-group z_custdetail_inline bootstrap-select form-control " search-enabled="false" >
+							<ui-select-match placeholder="重点客户">
+								<span> {{$select.selected.label}}</span>
+							</ui-select-match>
+							<ui-select-choices repeat="yn in YesNoFlg">
+								<span ng-bind-html="yn.label"></span>
+							</ui-select-choices>
+						</ui-select>
+					</div>
+				</div>
+				<div  class="row form-group">
+					<div class="col-md-4">
+						<label  class="z_custdetailadd_lable">起始日期</label>
+						<div  class="z_custdetail_inline">
+							<p class="input-group">
+								<input type="text" class="form-control" uib-datepicker-popup="yyyy-MM-dd" datepicker-options="options" ng-model="searchAnalysis.startDate"  ng-change="startChange()" placeholder="起始日期" is-open="startOpened.opened" close-text="Close" alt-input-formats="altInputFormats" show-button-bar="false" />
+								<span class="input-group-btn">
+	                          <button type="button" class="btn btn-default" ng-click="startOpen()"><i class="glyphicon glyphicon-calendar"></i></button>
+	                       </span>
+							</p>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<label  class="z_custdetailadd_lable">终止日期</label>
+						<div  class="z_custdetail_inline">
+							<p class="input-group">
+								<input type="text" class="form-control " uib-datepicker-popup="yyyy-MM-dd" datepicker-options="options" ng-model="searchAnalysis.endDate" ng-change="endChange()" placeholder="终止日期" is-open="endOpened.opened" close-text="Close" alt-input-formats="altInputFormats" show-button-bar="false" />
+								<span class="input-group-btn">
+	                          <button type="button" class="btn btn-default" ng-click="endOpen()"><i class="glyphicon glyphicon-calendar"></i></button>
+	                       </span>
+							</p>
+						</div>
+					</div>
+				</div>
+                <div class="row split-div">
+                    <HR class="split-line">
+                    <div>
+                        <button class="btn btn-primary btn-with-icon" ng-click="search()">
+                            <i class="ion-search"></i>查询
+                        </button>
+						<button class="btn btn-primary btn-with-icon" ng-click="resetSearch()"><i class="ion-refresh"></i>重置</button>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <label class="grid-title">
+                            <i class="ion-flag btn-primary"></i>分析图表</label>
+                    </div>
+                </div>
+            </form>
+            <div class="panel-body"> 
+				<div class="row">
+				    <div class="col-md-12" ng-show="hasAgesBar"
+				         ba-panel
+				         ba-panel-title="客户真实性"
+				         ba-panel-class="with-scroll">
+				        <div id="barChartAges" class="admin-chart" ng-init="initBarByAges()"
+				             style="height: 300px;-webkit-tap-highlight-color: transparent; user-select: none;"></div>
+				    </div>
+				</div>
+            </div> 
+        </div>
+    </form>
+</div>

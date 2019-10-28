@@ -1,0 +1,81 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<div ng-controller="custContractCtrl">
+	<div class="horizontal-scroll" ba-panel ba-panel-class="with-scroll" >
+        <form class="form-horizontal" name="modifyForm" novalidate>
+            <div class="row">
+                <div class="col-md-2">
+                    <label class="grid-title">联系人列表</label>
+                </div>
+                <div class="add-row-editable-table z_cusmnt" style="float: right">
+                    <button class="btn btn-primary btn-with-icon" ng-click="search()"><i class="ion-search"></i>查询</button>
+					<button class="btn btn-primary btn-with-icon" ng-click="add()"><i class="ion-person-add"></i>新增联系人</button>
+                </div>
+				<div class="col-sm-3 z_custmnt_padding" style="float: right;">
+					<input type="text" class="form-control" ng-model="searchObj.mobile" placeholder="电话">
+				</div>
+				<div class="col-sm-3 z_custmnt_padding" style="float: right">
+					<input type="text" class="form-control" ng-model="searchObj.contractName" placeholder="联系人姓名">
+				</div>
+            </div>
+        </form>
+
+		<table class="table table-bordered table-hover table-condensed" st-table="custs" st-safe-src="RowCollection">
+			<thead>
+				<tr class="black-muted-bg">
+					<th st-sort="contractName">联系人姓名</th>
+					<th st-sort="blnCustNo">所属客户</th>
+					<th st-sort="blnCustType">所属客户类型</th>
+					<th st-sort="mobile">手机号码</th>
+					<th st-sort="otherPhone">其他电话</th>
+					<th st-sort="birthDate">生日</th>
+					<th st-sort="emailAddr">电子邮箱</th>
+					<th st-sort="eduDegree">教育程度</th>
+					<th st-sort="annualIncome">年收入</th>
+					<th st-sort="blnBusiness">所属行业</th>
+					<th st-sort="occupationCode">职业</th>
+<!-- 					<th st-sort="blnProvince">所属省份</th>
+					<th st-sort="blnCity">所属市</th>
+					<th st-sort="blnCounty">所属区县</th>
+					<th st-sort="streetAddr">街道</th>
+					<th st-sort="detailAddr">详细地址</th>
+ -->					<th st-sort="operation" class="z_opation_width">操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in custs">
+					<td>{{item.contractName}}</td>
+					<td>{{item.blnCustNo}}</td>
+					<td>{{showblnCustType(item)}}</td>
+					<td>{{item.mobile}}</td>
+					<td>{{item.otherPhone}}</td>
+					<td>{{item.birthDate}}</td>
+					<td>{{item.emailAddr}}</td>
+					<td>{{showeduDegree(item)}}</td>
+					<td>{{item.annualIncome}}</td>
+					<td>{{showblnBusiness(item)}}</td>
+					<td>{{item.occupationCode}}</td>
+<!-- 					<td>{{item.blnProvince}}</td>
+					<td>{{item.blnCity}}</td>
+					<td>{{item.blnCounty}}</td>
+					<td>{{item.streetAddr}}</td>
+					<td>{{item.detailAddr}}</td>
+ -->					<td>
+						<div class="buttons" ng-show="!rowform.$visible">
+							<button class="btn btn-info btn-icon" ng-click="openDetail(item)"><i class="ion-eye"></i></button>
+							<button class="btn btn-primary btn-icon" ng-click="cusDetail(item)"><i class="ion-compose"></i></button>
+							<button class="btn btn-danger btn-icon" ng-click="removeUser(item)"><i class="ion-trash-a"></i></button>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+			<tfoot>
+				    <tr>
+				      <td colspan="17" class="text-center">
+            	        <!-- <st-pager opts = "queryOptions" pageSize = "10" ></st-pager> -->
+            	        <st-pager opts = "queryOptions"></st-pager>
+				      </td>
+				    </tr>
+			</tfoot>
+		</table>
+	</div>
+</div>

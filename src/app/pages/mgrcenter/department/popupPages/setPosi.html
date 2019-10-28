@@ -1,0 +1,80 @@
+<div ng-controller="setPosiCtrl" class="col-sm-12">
+	<div>
+		<!-- <div ba-panel ba-panel-title="部门岗位设置" ba-panel-class="panel-primary"> -->
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<font color="white">部门岗位设置</font>
+			</div>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-sm-5" ba-panel ba-panel-title="未设置岗位" ba-panel-class="with-scroll medium-panel" >
+						<table class="table table-bordered table-hover table-condensed" st-table="notSetPosi" st-safe-src="LeftRowCollection">
+							<thead>
+								<tr class="black-muted-bg ">
+									<th st-sort="enterCode"></th>
+									<th st-sort="enterHead">岗位名称</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="x in LeftRowCollection">
+									<td><input type="checkbox" ng-model="x.checked" ng-change="selectLeftOne()"></td>
+									<td class="ng-hide">{{ x.value }}</td>
+									<td>{{ x.label }}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<div class="col-sm-2">
+						<div class="buttons" style="margin-top: 50px;margin-left: 60px">
+							<button class="btn btn-success" ng-click="addPosi()" ng-disabled="state.addPosi">
+								&nbsp;<i class="ion-chevron-right"></i>&nbsp;
+							</button>
+							<br />
+							<br />
+							<button class="btn btn-success" ng-click="addAllPosi()" ng-disabled="state.addAllPosi">
+								<i class="ion-chevron-right"></i><i class="ion-chevron-right"></i>
+							</button>
+							<br />
+							<br />
+							<button class="btn btn-danger" ng-click="delPosi()" ng-disabled="state.delPosi">
+								&nbsp;<i class="ion-chevron-left"></i>&nbsp;
+							</button>
+							<br />
+							<br />
+							<button class="btn btn-danger" ng-click="delAllPosi()" ng-disabled="state.delAllPosi">
+								<i class="ion-chevron-left"></i><i class="ion-chevron-left"></i>
+							</button>
+						</div>
+					</div>
+
+					<div class="col-sm-5" ba-panel ba-panel-title="已设置岗位" ba-panel-class="with-scroll medium-panel">
+						<table class="table table-bordered table-hover table-condensed" st-table="onSetPosi" st-safe-src="RightRowCollection">
+							<thead>
+								<tr class="black-muted-bg ">
+									<th st-sort="enterCode"></th>
+									<th st-sort="enterHead">岗位名称</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="x in RightRowCollection">
+									<td><input type="checkbox" ng-model="x.checked" ng-change="selectRightOne()"></td>
+									<td class="ng-hide">{{ x.value }}</td>
+									<td>{{ x.label }}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="row zaddperassets_textcenter">
+					<button type="button" class="btn btn-default btn-with-icon" ng-click="$dismiss()">
+						关闭
+					</button>
+					<button type="button" class="btn btn-primary btn-with-icon" ng-click="saveDeptPosi()">
+						保存
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

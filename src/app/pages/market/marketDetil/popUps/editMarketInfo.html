@@ -1,0 +1,204 @@
+<div class="col-md-12" ng-controller="editMarketInfoCtrl">
+	<div class="modal-content" style="box-shadow: none;">
+		<div class="modal-body" style="padding: 0; padding-bottom: 1px;">
+			<div class="panel-heading">
+				<font color="#666">基本信息</font>
+				<button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+					<em class="ion-ios-close-empty sn-link-close"></em>
+				</button>
+			</div>
+
+			<div class="z_custdetaiadd_box" style="height: 400px;">
+				<span class="z_custdetaladd_title"> <a href="javascript:;" ng-repeat="x in information"
+					ng-click="fan_information($index)" ng-class="{'z_custdetail_bg':information_a == $index}">{{x}}</a>
+				</span>
+				<div class="custdetailadd">
+					<div class="panel-body" ng-class="{'z_custDetail_show':0 == information_a}">
+						<form name="custDetailAddForm" class="form-horizontal" novalidate>
+							<div class="row">
+								<div class="col-md-6 col-lg-6">
+									<div class="form-group">
+										<label for="custName" class="col-sm-4 control-label">活动名称</label>
+										<div class="col-sm-8">
+											<input type="text" class="form-control input-normal" id="custName" ng-model="custom.custName">
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6 col-lg-6">
+									<div class="form-group">
+										<label for="phoneNumber" class="col-sm-4 control-label">活动简介</label>
+										<div class="col-sm-8">
+											<input type="text" class="form-control input-normal" id="phoneNumber" ng-model="custom.phoneNumber">
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- <div class="row">
+									<div class="col-md-6 col-lg-6">
+										<div class="form-group">
+											<label for="phoneNumber" class="col-sm-4 control-label">首页图片</label>
+											<div class="col-sm-8">
+												<img ng-src="data:image/jpg;base64,{{perIconImg}}" height="90" width="190" />
+												<button type="file" ngf-select="uploadFiles($file, $invalidFiles)" accept="image/*" ngf-max-height="1000"
+													ngf-max-size="1MB">更改</button>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6 col-lg-6">
+										<div class="form-group">
+											<label for="phoneNumber" class="col-sm-4 control-label">活动规则</label>
+											<div class="col-sm-8">
+												<textarea ng-model="blacklistDts.reason" class="form-control input-normal" id="message" rows="5" col="2"
+													placeholder=""></textarea>
+											</div>
+										</div>
+									</div>
+								</div> -->
+							<div class="row">
+								<div class="col-md-6 col-lg-6">
+									<div class="form-group">
+										<label for="phoneNumber" class="col-sm-4 control-label">开始时间</label>
+										<div class="col-sm-8">
+											<input type="text" class="form-control input-normal" id="phoneNumber" ng-model="custom.phoneNumber">
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6 col-lg-6">
+									<div class="form-group">
+										<label for="phoneNumber" class="col-sm-4 control-label">结束时间</label>
+										<div class="col-sm-8">
+											<input type="text" class="form-control input-normal" id="phoneNumber" ng-model="custom.phoneNumber">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6 col-lg-6">
+									<div class="form-group">
+										<label for="phoneNumber" class="col-sm-4 control-label">活动地点</label>
+										<div class="col-sm-8">
+											<input type="text" class="form-control input-normal" id="phoneNumber" ng-model="custom.phoneNumber">
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6 col-lg-6">
+									<div class="form-group">
+										<label for="phoneNumber" class="col-sm-4 control-label">在线报名地址</label>
+										<div class="col-sm-8">
+											<input type="text" class="form-control input-normal" id="phoneNumber" ng-model="custom.phoneNumber"
+												placeholder="http://xxx.com/xxx.html">
+										</div>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="panel-body" ng-class="{'z_custDetail_show':1 == information_a}">
+						<form name="custDetailAddForm" class="form-horizontal" novalidate>
+							<div class="row">
+								<div class="col-md-6 col-lg-6">
+									<div class="form-group">
+										<label for="phoneNumber" class="col-sm-4 control-label">负责人</label>
+										<div class="col-sm-8">
+											<input type="text" class="form-control input-normal" id="phoneNumber" ng-model="custom.phoneNumber">
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6 col-lg-6">
+									<div class="form-group">
+										<label for="phoneNumber" class="col-sm-4 control-label">联系电话</label>
+										<div class="col-sm-8">
+											<input type="text" class="form-control input-normal" id="phoneNumber" ng-model="custom.phoneNumber">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6 col-lg-6">
+									<div class="form-group">
+										<label for="phoneNumber" class="col-sm-4 control-label">工作人员</label>
+										<div class="col-sm-8">
+											<input type="text" class="form-control input-normal" id="phoneNumber" ng-model="custom.phoneNumber">
+										</div>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="panel-body" ng-class="{'z_custDetail_show':2 == information_a}">
+						<form name="custDetailAddForm" class="form-horizontal" novalidate>
+							<div class="row">
+								<div class="form-group">
+									<div class="col-md-12 col-lg-12">
+										<label for="custName" class="col-sm-3 control-label">目标客群选择</label>
+										<div class="col-md-6 col-lg-6">
+											<p class="input-group">
+												<input type="text" class="form-control input-normal" ng-model="custGroup.groupName" /> <span
+													class="input-group-btn">
+													<button type="button" class="btn btn-default" ng-click="openStaticCustList()">
+														<i class="ion-search"></i>
+													</button>
+												</span>
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12 col-lg-12">
+									<div class="form-group">
+										<label for="custName" class="col-sm-3 control-label">消息推送渠道</label>
+										<div class="col-md-6 col-lg-6">
+											<label class="checkbox-inline custom-checkbox nowrap"> <input ng-model="options.duanxin"
+												type="checkbox" id="duanxin"> <span>短信</span>
+											</label> <label class="checkbox-inline custom-checkbox nowrap"> <input ng-model="options.weixin"
+												type="checkbox" id="weixin"> <span>微信</span>
+											</label> <label class="checkbox-inline custom-checkbox nowrap"> <input ng-model="options.youjian"
+												type="checkbox" id="youjian"> <span>邮件</span>
+											</label> <label class="checkbox-inline custom-checkbox nowrap"> <input ng-model="options.zhanneixin"
+												type="checkbox" id="zhanneixin"> <span>Web</span>
+											</label> <label class="checkbox-inline custom-checkbox nowrap"> <input ng-model="options.app" type="checkbox"
+												id="app"> <span>APP</span>
+											</label> </label> <label class="checkbox-inline custom-checkbox nowrap"> <input ng-model="options.app"
+												type="checkbox" id="app"> <span>电话</span>
+											</label> </label> <label class="checkbox-inline custom-checkbox nowrap"> <input ng-model="options.app"
+												type="checkbox" id="app"> <span>人工</span>
+											</label>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12 col-lg-12">
+									<div class="form-group">
+										<label for="custName" class="col-sm-3 control-label">访问客户自动标记标签</label>
+										<div class="col-md-6 col-lg-6">
+											<tags-input class="myTag" ng-model="tagData1" placeholder="添加" display-property="tagName"> <auto-complete
+												source="loadDatas($query)"> </auto-complete> </tags-input>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12 col-lg-12">
+									<div class="form-group">
+										<label for="custName" class="col-sm-3 control-label">反馈客户自动标记标签</label>
+										<div class="col-md-6 col-lg-6">
+											<tags-input class="myTag" ng-model="tagData2" placeholder="添加" display-property="tagName"> <auto-complete
+												source="loadTags($query)"></auto-complete></tags-input>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<p class="modal-footer" style="padding-top: 0;">
+				<button type="button" class="btn btn-default btn-with-icon" ng-click="$dismiss()">关闭</button>
+				<button type="button" class="btn btn-primary btn-with-icon" ng-click="save()">保存</button>
+			</p>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,99 @@
+<div class="widgets" ng-controller="dataOptCtrl">
+
+	<div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+				<em class="ion-ios-close-empty sn-link-close"></em>
+			</button>
+			<h4 class="modal-title" id="myModalLabel">编辑权限</h4>
+		</div>
+		<div class="modal-body">
+
+		<div class="col-md-3" ba-panel ba-panel-title="可选过滤项" ba-panel-class="with-scroll">
+			<div>
+				<div class=""  ng-repeat="field in fields">
+					<a class="z_authmgr" ng-class="{'z_authmgr_hr':field.fieldName == fieldObj.name}" ng-click="clickFieldBtn(field.fieldCode)">{{field.fieldName}}</a>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-9" ba-panel ba-panel-title="配置过滤规则">
+			<form class="form-horizontal" name="addForm" novalidate>
+				<loading></loading>
+				<div class="">
+					<label ng-model="fieldObj.name">{{fieldObj.name}}</label>
+				</div>
+				<div class="">
+					<div class="col-sm-8">
+						<div class="form-group">
+							<label for="res_data_type" class="zpercusportra_paleft float">类别</label>
+							<div class="col-sm-9" ng-class="{'has-error': addForm.sex.$invalid && addForm.$submitted }">
+								<div class="select-normal">
+									<ui-select id="res_data_type" name="res_data_type"
+											   class="btn-group bootstrap-select form-control"
+											   ng-change="showTreeInfo($select.selected)"
+											   ng-model="resDataType.value">
+										<ui-select-match>
+											<span ng-bind="$select.selected.name"></span>
+										</ui-select-match>
+										<ui-select-choices repeat="item in itemArray">
+											<span ng-bind="item.name"></span>
+										</ui-select-choices>
+									</ui-select>
+									<span class="help-block error-block basic-block">必录</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div ng-switch on="current">
+					<div ng-switch-when="orgTreeDiv">
+						<div class="" >
+							<div class="col-sm-8">
+								<div class="form-group">
+									<label for="orgTreeSelect" class="zpercusportra_paleft float">组织</label>
+									<div class="col-sm-9" >
+										<input type="text" class="form-control" id="orgTreeSelect" ng-model="treeModel.orgTree" name="orgTreeSelect" ng-click="showOrgTreeMenu()" >
+										<span class="help-block error-block basic-block">必录</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div ng-switch-when="posTreeDiv">
+						<div class="" >
+							<div class="col-sm-8">
+								<div class="form-group">
+									<label for="posTreeSelect" class="zpercusportra_paleft float">职位</label>
+									<div class="col-sm-9" >
+										<input type="text" class="form-control" id="posTreeSelect" ng-model="treeModel.posTree" name="posTreeSelect" ng-click="showPosTreeMenu()" >
+										<span class="help-block error-block basic-block">必录</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--<div ng-switch-when="enterTreeDiv">
+						<div class="col-sm-8" >
+							<div class="form-group">
+								<label for="enterTreeSelect" class="zpercusportra_paleft float">岗位</label>
+								<div class="col-sm-9" >
+									<input type="text" class="form-control" id="enterTreeSelect" ng-model="treeModel.enterTree" name="enterTreeSelect" ng-click="showEnterTreeMenu()" >
+									<span class="help-block error-block basic-block">必录</span>
+								</div>
+							</div>
+						</div>
+					</div>-->
+				</div>
+
+
+			</form>
+
+		</div>
+
+	</div>
+	<div class="modal-footer">
+<!--		<button type="button" class="btn btn-default btn-with-icon" ng-click="cancelDataPage()">取消</button>-->
+		<button type="button" class="btn btn-primary btn-with-icon" ng-click="closeDataPage()">确定</button>
+	</div>
+	</div>
+</div>

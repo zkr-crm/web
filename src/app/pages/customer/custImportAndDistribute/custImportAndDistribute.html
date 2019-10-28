@@ -1,0 +1,218 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<div class="widgets">
+	<div class="col-md-12" ng-controller="custImportAndDistributeCtrl">
+		<uib-tabset active="$tabSetStatus.activeTab">
+			<uib-tab heading="客户导入">
+				<div ba-panel ba-panel-class="with-scroll">
+					<form class="form-horizontal">
+						<div class="row" >
+							<div class="col-md-12 zblack_posire">
+								<div class="zblacklist_posi">
+									 <!-- 最近上传 ：{{time||"没有上传文件"}} -->
+									<a href="app/pages/customer/custImportAndDistribute/客户导入模板.xls" >下载模板<i class="ion-archive"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<a href type="file" ngf-select="uploadFiles($file, $invalidFiles)" accept="/*" ngf-max-size="10MB">上传<i class="ion-arrow-up-c"></i></a>
+								</div>
+								<div ba-panel ba-panel-title="导入记录" ba-panel-class="with-scroll" >
+									<table class="table table-bordered table-hover table-condensed" st-table="smartTableData" st-safe-src="rowCollection">
+										<thead>
+											<tr class="sortable ">
+												<th st-sort="fileNam">文件名称</th>
+												<th st-sort="importTime">导入时间</th>
+												<th st-sort="fileTyp">文件类型</th>
+												<th st-sort="fileTtlRow">文件条数</th>
+												<th st-sort="importSts">状态</th>
+												<th st-sort="importObjTyp">导入对象类型</th>
+												<th st-sort="opration">操作</th>
+											</tr>
+										</thead>
+										<tbody>
+										<tr ng-repeat="item in smartTableData">
+											<!-- <td class="table-id">{{item.importCd}}</td> -->
+											<td>{{item.fileNam}}</span></td>
+											<td>{{item.importTime}}</td>
+											<td>{{item.fileTyp}}</td>
+											<td>{{item.fileTtlRow}}</a></td>
+											<td>{{ ShowImportSts(item) }}</td>
+											<td>{{ ShowImportObjType(item) }}</td>
+<!-- 											<td>
+												<div class="btn-group" uib-dropdown dropdown-append-to-body>
+													<button type="button" class="btn btn-primary " uib-dropdown-toggle>
+														操作 <span class="caret"></span>
+													</button>
+													<ul uib-dropdown-menu>
+														<li><a href ng-click="download(item)">下载原始数据文件</a></li>
+														<li role="separator" class="divider"></li>
+														<li><a href ng-click="downloadErr(item)">下载错误数据文件</a></li>
+														<li role="separator" class="divider"></li>
+														<li><a href ng-click="delPrdLog(item)">删除</a></li>
+													</ul>
+												</div>
+											</td> -->
+											<td>
+												<div class="buttons" ng-show="!rowform.$visible">
+													<button title="下载错误数据文件" class="btn btn-danger btn-icon" ng-click="downloadErr(item)"><i class="ion-archive"></i></button>
+													<button title="下载原始数据文件" class="btn btn-success btn-icon" ng-click="download(item)"><i class="ion-archive"></i></button>
+													<button title="删除" class="btn btn-danger btn-icon" ng-click="delPrdLog(item)"><i class="ion-trash-a"></i></button>
+												</div>
+											</td>
+										</tr>
+										</tbody>
+										<tfoot>
+										<tr>
+											<td colspan="10" class="text-center">
+												<st-pager opts = "queryProductOptions" pageSize = "5"></st-pager>
+											</td>
+										</tr>
+										</tfoot>
+									</table>
+								</div>
+							</div>
+						</div>
+					</form>
+
+				</div>
+			</uib-tab>
+			<uib-tab heading="待分配客户">
+				<div ba-panel ba-panel-class="with-scroll">
+					<form class="form-horizontal" name="modifyForm" novalidate>
+						<div class="row">
+							<div class="col-md-2">
+								<label class="grid-title"></label>
+							</div>
+							<div class="add-row-editable-table" style="float: right;margin-right:15px;">
+								<button class="btn btn-primary btn-with-icon" ng-click="search1()"><i class="ion-search"></i>查询</button>
+								<button class="btn btn-primary btn-with-icon" ng-click="addUser(1)"><i class="ion-ios-shuffle-strong"></i>分配</button>
+							</div>
+							<div class="col-sm-2" style="float: right">
+								<input type="text" class="form-control" ng-model="searchObj1.custName" placeholder="客户名称">
+							</div>
+						</div>
+					</form>
+					<table class="table table-bordered table-hover table-condensed" st-table="custs" st-safe-src="rowCollection1">
+						<thead>
+						<tr  class="black-muted-bg">
+							<!--<th class="table-id" st-sort="id" st-sort-default="true">#</th>-->
+							<th><label for="flag"><input id="flag" type="checkbox" ng-model="select_all" ng-change="selectAll1(select_all)">
+							<th st-sort="customerNo">客户号</th>
+							<th st-sort="name">客户名称</th>
+							<th st-sort="phoneNumber">电话号码</th>
+							<th st-sort="IdType">证件类型</th>
+							<th st-sort="certNo">证件号码</th>
+							<th st-sort="retentionReason">待分配原因</th>
+							<th st-sort="dateDiff">滞留时间</th>
+						</tr>
+
+						</thead>
+						<tbody>
+						<tr ng-repeat="item in custs" class="editable-row">
+							<!--<td class="table-id">{{item.id}}</td>-->
+							<td><input type="checkbox" ng-model="item.checked" ng-change="selectOne1()"> <span></span>
+							<td>{{item.custNo}}</td>
+							<td>{{item.custName}}</td>
+							<td>{{item.phoneNumber}}</td>
+							<td>{{item.certTyp}}</td>
+							<td>{{item.certNo}}</td>
+							<td>{{item.retentionReason}}</td>
+							<td>{{item.dateDiff}}</td>
+							
+						</tr>
+						</tbody>
+						<tfoot>
+						<tr>
+							<td colspan="12">
+								<div class="row">
+									<div class="col-md-7" style="float: right">
+										<div st-pagination="" st-items-by-page="impsmartTabPgSize" st-displayed-pages="5"></div>
+									</div>
+									<div class="col-md-5" style="float: right">
+										每页
+										<label>
+											<select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
+													ng-model="impsmartTabPgSize" ng-options="i for i in [5,10,15,20,25]">
+											</select>
+										</label>
+										条&nbsp;&nbsp;&nbsp;
+										共{{total||0}}条
+									</div>
+								</div>
+							</td>
+						</tr>
+						</tfoot>
+					</table>
+				</div>
+			</uib-tab>
+			
+			<uib-tab heading="已分配客户">
+				<div ba-panel ba-panel-class="with-scroll">
+					<form class="form-horizontal" name="modifyForm" novalidate>
+						<div class="row">
+							<div class="col-md-2">
+								<label class="grid-title"></label>
+							</div>
+							<div class="add-row-editable-table zmargin_right" style="float: right">
+								<button class="btn btn-primary btn-with-icon" ng-click="search2()"><i class="ion-search"></i>查询</button>
+								<button class="btn btn-primary btn-with-icon" ng-click="addUser_(2)"><i class="ion-ios-shuffle-strong"></i>分配</button>
+							</div>
+							<div class="col-sm-2" style="float: right">
+								<input type="text" class="form-control" ng-model="searchObj2.custName" placeholder="客户名称" >
+							</div>
+						</div>
+					</form>
+		
+					<table class="table table-bordered table-hover table-condensed" st-table="custs" st-safe-src="custCollection_">
+						<thead>
+						<tr class="black-muted-bg">
+							<th><label for="flag"><input id="flag" type="checkbox" ng-model="select_all2" ng-change="selectAll2(select_all2)">
+							</label></th>
+							<th st-sort="custNo">客户号</th>
+							<th st-sort="name">客户名称</th>
+							<th st-sort="sex">性别</th>
+							<th st-sort="phoneNumber">电话号码</th>
+							<th st-sort="IdType">证件类型</th>
+							<th st-sort="name">证件号码</th>
+							<th st-sort="custSource">客户标签</th>
+							<th st-sort="custAgent">客户经理</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr ng-repeat="item_ in custs">
+							<td><input type="checkbox" ng-model="item_.checked" ng-change="selectOne2()"> <span></span>
+							<td>{{item_.custNo}}</td>
+							<td>{{item_.custName}}</td>
+							<td>{{item_.sex}}</td>
+							<td>{{item_.phoneNumber}}</td>
+							<td>{{item_.certTyp}}</td>
+							<td>{{item_.certNo}}</td>
+							<td>{{item_.custSource}}</td>
+							<td>{{item_.custAgent}}</td>
+						</tr>
+						</tbody>
+						<tfoot>
+						<tr>
+							<td colspan="12">
+								<div class="row">
+									<div class="col-md-7" style="float: right">
+										<div st-pagination="" st-items-by-page="smartTablePageSize2" st-displayed-pages="5"></div>
+									</div>
+									<div class="col-md-5" style="float: right">
+										每页
+										<label>
+											<select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
+													ng-model="smartTablePageSize2" ng-options="i for i in [5,10,15,20,25]">
+											</select>
+										</label>
+										条&nbsp;&nbsp;&nbsp;
+										共{{total_||0}}条
+									</div>
+								</div>
+							</td>
+						</tr>
+						</tfoot>
+					</table>
+
+				</div>
+			</uib-tab>
+			
+		</uib-tabset>
+	</div>
+</div>

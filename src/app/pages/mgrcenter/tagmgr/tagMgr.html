@@ -1,0 +1,114 @@
+<div ng-controller="tagMgrCtrl" class="col-sm-12" style="padding:0;">
+	<div>
+		<div>
+			<div class="row">
+				<div class="col-sm-4" ba-panel ba-panel-title="标签类别信息" ba-panel-class="with-scroll viewport100" style="padding-left:0;">
+					<div class="control-side" style="overflow:hidden;">
+						<div style="float:left;">
+							<b title="新增" class="ion-android-add tag_font_size tag_color" ng-click="addNode()" ng-disabled="typeState.addDis"></b>
+							<b title="删除" class="ion-trash-a tag_font_size tag_color" ng-click="delNode();" ng-disabled="typeState.delDis"></b>
+						</div>
+						<div style="float:right;">
+							<b title="修改" class="ion-compose tag_font_size tag_color" ng-click="modNode()" ng-disabled="typeState.modDis"></b>
+						</div>
+					</div>
+					<div ng-if="isJsTreeShow"js-tree="basicConfig" ng-model="tagTreeData" should-apply="applyModelChanges()" tree="basicTree" ng-click="detShow()"></div>
+				</div>
+
+				<div ng-show="true" class="col-sm-8 ng-hide" style="padding:0;" ba-panel ba-panel-title="标签列表信息" ba-panel-class="with-scroll viewport100">
+					<div>
+						<form class="form-horizontal" name="tagForm" novalidate>
+							<div class="">
+								<div class="add-row-editable-table" style="float: right">
+									<button class="btn btn-primary btn-with-icon" ng-click="searchTag()"><i class="ion-search"></i>查询</button>
+									<button class="btn btn-primary btn-with-icon" ng-click="addTag()"><i class="ion-plus-round"></i>新增</button>
+								</div>	
+								<!-- <div class="col-sm-3 zpercusportra_paleft">
+									<div class="">
+											<ui-select ng-model="searchObj.parentTagId1" class="btn-group bootstrap-select form-control" 
+											 append-to-body="true" id="parentTagId"  name="parentTagId" search-enabled="false" > 
+												 <ui-select-match  placeholder="父级标签"> 
+												 	<span> {{$select.selected.label}}</span> 
+												 </ui-select-match> 
+												 <ui-select-choices repeat="fType in parentTagId"> 
+												 	<span ng-bind-html="fType.label"></span> 
+												 </ui-select-choices> 
+											 </ui-select>
+										</div>
+								</div> -->
+								<div class="col-sm-3 zpercusportra_paleft" >
+									<input type="text" class="form-control" ng-model="searchObj.tagName" placeholder="标签名称">
+								</div>
+								<div class="col-sm-3 zpercusportra_paleft" >
+									<div>
+										<ui-select ng-model="searchObj.tagTypeId1" class="btn-group bootstrap-select form-control" 
+										 append-to-body="true" id="tagTypeId"  name="tagTypeId" search-enabled="false" > 
+											 <ui-select-match  placeholder="标签类别"> 
+											 	<span> {{$select.selected.label}}</span> 
+											 </ui-select-match> 
+											 <ui-select-choices repeat="fType in tagTypeId"> 
+											 	<span ng-bind-html="fType.label"></span> 
+											 </ui-select-choices> 
+										 </ui-select>
+									</div>
+								</div>
+							</div>
+							
+						</form>
+						<br/>
+						<table class="table  table-hover table-condensed" st-table="smartTableData" st-safe-src="TagRowCollection">
+							<thead>
+								<tr class="black-muted-bg">
+									<th st-sort="tagId">序号</th>
+									<th st-sort="tagName">标签名称</th>
+									<th st-sort="tagTypeId">标签类别</th>
+									<!-- <th st-sort="parentTagId">父标签</th> -->
+									<th st-sort="remark">标签说明</th>
+									<th st-sort="recStat">标签使用状态</th>
+									<th st-sort="userName">标签创建者</th>
+									<th>操作</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="item in smartTableData" class="editable-row">
+									<td><span>{{ item.tagId }}</span></td>
+									<td title="{{ item.tagName }}"><span class="nowap-ellipsis enterName">{{ item.tagName }}</span></td>
+									<td><span>{{ item.tagTypeId }}</span></td>
+									<!-- <td><span> {{ item.parentTagId }} </span></td> -->
+									<td title="{{item.remark}}"><span class="nowap-ellipsis enterName">{{ item.remark }}</span></td>
+									<td><span>{{ item.recStat }}</span></td>
+									<td><span>{{ item.userName}}</span></td>
+									<td>
+										<div class="buttons" ng-show="!rowform.$visible">
+											<button class="btn btn-primary btn-icon" ng-click="updTag(item)"><i class="ion-compose"></i></button>
+											<button class="btn btn-danger btn-icon" ng-click="removeTag($index)"><i class="ion-trash-a"></i></button>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+							<tfoot>
+								<tr>
+									<td colspan="12">
+										<div class="row">
+											<!--<div class="col-md-7" style="float: right">
+												<div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
+											</div>
+											<div class="col-md-5" style="float: right">
+												每页 <label> <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
+												</select>
+												</label> 条&nbsp;&nbsp;&nbsp; 共{{total||0}}条
+											</div>-->
+											<st-pager opts="tagMgrOpts"></st-pager>
+										</div>
+									</td>
+								</tr>
+							</tfoot>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
