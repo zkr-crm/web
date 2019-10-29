@@ -45,12 +45,12 @@ function browserSyncInit(baseDir, browser) {
     // proxyMiddleware('/crm/manage', {target: 'http://10.16.8.142:8082', changeOrigin: true}),
     // proxyMiddleware('/crm/ocrm', {target: 'http://10.16.8.142:8083', changeOrigin: true}),
     // proxyMiddleware('/crm/supply', {target: 'http://10.16.8.142:8086', changeOrigin: true}),
-    proxyMiddleware('/crm/ecif', {target: 'http://127.0.0.1:8080', changeOrigin: true}),
-    proxyMiddleware('/crm/scheduler', {target: 'http://127.0.0.1:8000', changeOrigin: true}),
-    proxyMiddleware('/crm/query', {target: 'http://127.0.0.1:8085', changeOrigin: true}),
-    proxyMiddleware('/crm/manage', {target: 'http://127.0.0.1:8082', changeOrigin: true}),
-    proxyMiddleware('/crm/ocrm', {target: 'http://127.0.0.1:8083', changeOrigin: true}),
-    proxyMiddleware('/crm/supply', {target: 'http://127.0.0.1:8086', changeOrigin: true}),
+    proxyMiddleware('/crm/ecif', {target: 'http://127.0.0.1:8088/crm-ecif', changeOrigin: true}),
+    proxyMiddleware('/crm/scheduler', {target: 'http://127.0.0.1:8088/crm-scheduler', changeOrigin: true}),
+    proxyMiddleware('/crm/query', {target: 'http://127.0.0.1:8088/crm-query', changeOrigin: true}),
+    proxyMiddleware('/crm/manage', {target: 'http://127.0.0.1:8088/crm-manage', changeOrigin: true}),
+    proxyMiddleware('/crm/ocrm', {target: 'http://127.0.0.1:8088/crm-ocrm', changeOrigin: true}),
+    proxyMiddleware('/crm/supply', {target: 'http://127.0.0.1:8088/crm-supply', changeOrigin: true}),
   ];
   browserSync.instance = browserSync.init({
     startPath: '/',
