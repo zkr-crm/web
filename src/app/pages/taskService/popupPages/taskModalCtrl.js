@@ -13,6 +13,17 @@
 	        $scope.opened = true;
 	    }
 
+		$scope.endDateChange=function(){
+			if ($scope.saveTask.taskEndDate != null && $scope.saveTask.taskEndDate != '') {
+				var endDate = new Date($scope.saveTask.taskEndDate);
+				var date=new Date();
+				if(date>=endDate){
+					$scope.saveTask.taskEndDate=null;
+					Alert.error('任务截止日期必须大于当前日期');
+				}
+			}
+		}
+
 		$scope.onload = function(){
 			$scope.isPerCusPortrayal = false;
 			$scope.taskStatv = EnumType.TaskStat.getEnumByValue($scope.saveTask.taskStat||EnumType.TaskStat.in_progress.value);

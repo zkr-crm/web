@@ -43,6 +43,27 @@
                 $scope.opened4.opened = !$scope.opened4.opened;
             }
 
+			$scope.startDateChange=function(){
+				if ($scope.smsShearchObj.startDatePick != null && $scope.smsShearchObj.startDatePick != '') {
+					var endDate = new Date($scope.smsShearchObj.endDatePick);
+					var startDate = new Date($scope.smsShearchObj.startDatePick);
+					if(startDate>endDate){
+						$scope.smsShearchObj.startDatePick=null;
+						Alert.error('起始日期不能大于终止日期');
+					}
+				}
+			}
+
+			$scope.endDateChange=function(){
+				if ($scope.smsShearchObj.endDatePick != null && $scope.smsShearchObj.endDatePick != '') {
+					var endDate = new Date($scope.smsShearchObj.endDatePick);
+					var startDate = new Date($scope.smsShearchObj.startDatePick);
+					if(startDate>endDate){
+						$scope.smsShearchObj.endDatePick=null;
+						Alert.error('起始日期不能大于终止日期');
+					}
+				}
+			}
 
 			$scope.chooseModal = function (role) {
 				$scope.roleObj.msgTopic = role.tplTitle
