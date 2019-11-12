@@ -93,6 +93,31 @@
                             $scope.searchUser();
                         });
                     };
+                    // 上传文件
+                    $scope.uploadFiles = function (file, errFiles) {
+                        if(this.queryPage && !$scope.queryPage){
+                            $scope.queryPage=this.queryPage;
+                        }
+                        if (!file) {
+                            return;
+                        }
+                        var fd = new FormData();
+                        fd.append('file', file);
+                        fd.append('fileName',file.name);
+                        fd.append('custAgent',$rootScope.global.employeeId);
+                        HttpService.linkHttp({
+                            url: '/crm/ecif/cust/upload',
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': undefined
+                            },
+                            data: fd
+                        }).then(function (response) {
+                            console.log(response)
+                            Alert.success(response)
+                            $scope.search();
+                        });
+                    }
                     // 查询事件
                     $scope.search = function(page,custTyp) {
                     	if(this.queryPage && !$scope.queryPage){
