@@ -113,8 +113,29 @@
                             },
                             data: fd
                         }).then(function (response) {
-                            console.log(response)
                             Alert.success(response)
+                            $scope.search();
+                        });
+                    }
+                    // 导出客户信息
+                    $scope.export = function () {
+                        if(this.queryPage && !$scope.queryPage){
+                            $scope.queryPage=this.queryPage;
+                        }
+                        var baseinfo=$scope.checkedRow;
+                        if(baseinfo.length==0){
+                            Alert.error('请选择用户！')
+                            return;
+                        }
+                        HttpService.linkHttp({
+                            url: '/crm/ecif/cust/accountFile',
+                            method: 'GET',
+                            headers: {
+                                'Content-Type': undefined
+                            },
+                            param:baseinfo
+                        }).then(function () {
+                            Alert.success('导出成功！')
                             $scope.search();
                         });
                     }
