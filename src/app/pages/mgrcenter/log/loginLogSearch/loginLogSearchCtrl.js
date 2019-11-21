@@ -38,7 +38,6 @@
                 var startDate = new Date($scope.searchLogin.startDate);
                 if(startDate>endDate){
                    $scope.searchLogin.startDate=null;
-                   Alert.error('起始日期不能大于终止日期');
                }
             }
         }
@@ -49,7 +48,6 @@
                 var startDate = new Date($scope.searchLogin.startDate);
                 if(startDate>endDate){
                     $scope.searchLogin.endDate=null;
-                    Alert.error('起始日期不能大于终止日期');
                 }
             }
         }

@@ -1,80 +1,76 @@
-<div class="modal-content">
+<div class="widgets">
 	<form class="form-horizontal" name="addForm" novalidate>
 		<loading></loading>
-		<div class="modal-content" >
-			<!--            <div class="panel panel-primary">-->
-			<!--                <div class="panel-heading">-->
-			<!--                    <font color="white">客户列表</font>-->
-			<!--                </div>-->
-			<div class="modal-header">
-				<button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
-					<em class="ion-ios-close-empty sn-link-close"></em>
-				</button>
-				<h4 class="modal-title" id="myModalLabel">客户列表</h4>
-			</div>
-			<div class="panel-body">
-				<form class="form-horizontal" name="modifyForm" novalidate>
-					<div class="row">
-						<div class="add-row-editable-table z_cusmnt" style="float: right">
-							<button class="btn btn-primary btn-with-icon" ng-click="search()">
-								<i class="ion-search"></i>查询
-							</button>
-						</div>
-						<div class="col-sm-3 z_custmnt_padding" style="float: right;">
-							<input type="text" class="form-control" ng-model="searchObj.custName" placeholder="客户名称">
-						</div>
-					</div>
-				</form>
-				<table class="table  table-hover table-condensed" st-table="custs" st-safe-src="custCollection">
-					<thead>
-					<tr class="black-muted-bg">
-						<th>
-							<label for="flag" class="checkbox-inline custom-checkbox nowrap">
-								<input id="flag" type="checkbox" ng-model="select_all" ng-change="selectAll1(select_all)">
-								<span></span>
-							</label>
-						<th st-sort="customerNo">客户号</th>
-						<th st-sort="custName">客户名称</th>
-						<th st-sort="custTyp">客户类型</th>
-						<th st-sort="certTyp">证件类型</th>
-						<th st-sort="certNo">证件号码</th>
-						<!--        <th st-sort="custMark">标签</th> -->
-						<th st-sort="phoneNumber">电话号码</th>
-						<th st-sort="custSource">客户来源</th>
-						<th st-sort="custAgent">客户经理</th>
-					</tr>
-					</thead>
-					<tbody>
-					<tr ng-repeat="item in custs" ng-click="selectRow(item)">
-						<td>
-							<label  class="checkbox-inline custom-checkbox nowrap">
-								<input type="checkbox" ng-model="item.checked" ng-change="selectOne1()">
-								<span></span>
-							</label>
-						<td>{{item.custNo}}</td>
-						<td>{{item.custName}}</td>
-						<td>{{item.custTypNam}}</td>
-						<td>{{item.certTypNam}}</td>
-						<td>{{item.certNo}}</td>
-						<td>{{item.phoneNumber}}</td>
-						<td>{{item.custSourceNam}}</td>
-						<td>{{item.custAgentNam}}</td>
-					</tr>
-					</tbody>
-					<tfoot>
-					<tr>
-						<td colspan="11" class="text-left">
-							<div class="row">
-								<div class="col-md-12">
-									<st-pager opts="queryCustList"></st-pager>
-								</div>
+		<div class="col-md-12" ng-controller="showCustListCtrl">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<font color="white">客户列表</font>
+				</div>
+				<div class="panel-body">
+
+					<form class="form-horizontal" name="modifyForm" novalidate>
+						<div class="row">
+							<div class="col-md-2">
+								<label class="grid-title">客户列表</label>
 							</div>
-						</td>
-					</tr>
-					</tfoot>
-				</table>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" ng-click="addGroupMember()">确定</button>
+							<div class="add-row-editable-table z_cusmnt" style="float: right">
+								<button class="btn btn-primary btn-with-icon" ng-click="searchUser()">
+									<i class="ion-search"></i>查询
+								</button>
+							</div>
+							<div class="col-sm-3 z_custmnt_padding" style="float: right;">
+								<input type="text" class="form-control" ng-model="searchObj.custName" placeholder="客户名称">
+							</div>
+						</div>
+					</form>
+
+					<table class="table table-bordered table-hover table-condensed" st-table="custs" st-safe-src="custCollection">
+						<thead>
+							<tr class="black-muted-bg">
+								<th><input id="flag" type="checkbox" ng-model="select_all" ng-change="selectAll()"></th>
+								<th st-sort="custNo">客户号</th>
+								<th st-sort="custName">客户名称</th>
+								<th st-sort="custTyp">客户类型</th>
+								<th st-sort="phoneNumber">电话号码</th>
+								<th st-sort="custSource">客户来源</th>
+								<th st-sort="custAgent">客户经理</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="item in custs" ng-click="selectRow($index)">
+								<td><input type="checkbox" ng-model="item.isChecked" ng-change="selectOne()"></td>
+								<td>{{item.custNo}}</td>
+								<td>{{item.custName}}</td>
+								<td>{{item.custTyp}}</td>
+								<td>{{item.phoneNumber}}</td>
+								<td>{{item.custSource}}</td>
+								<td>{{item.custAgent}}</td>
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr>
+								<td colspan="10" class="text-left">
+									<div class="row">
+										<div class="col-md-5">
+											<div>
+												每页 <label> <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
+													ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
+												</select>
+												</label> 条&nbsp;&nbsp;&nbsp; 共{{total}}条
+											</div>
+										</div>
+										<div class="col-md-7">
+											<div st-pagination="" st-items-by-page="5" st-displayed-pages="5"></div>
+										</div>
+									</div>
+								</td>
+							</tr>
+						</tfoot>
+					</table>
+					<div class="row zaddperassets_textcenter">
+						<button type="button" class="btn btn-default btn-with-icon" ng-click="$dismiss()">关闭</button>
+						<button type="button" class="btn btn-primary btn-with-icon" ng-click="addGroupMember()">确定</button>
+					</div>
 				</div>
 			</div>
 		</div>

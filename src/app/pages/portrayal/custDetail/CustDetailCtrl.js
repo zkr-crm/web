@@ -58,7 +58,7 @@
 		$scope.fan_information=function(e){
 			$scope.information_a=e;
 		}
-		
+
         /*联动查询*/
 		var provOpt = {};
 		provOpt.url = '/crm/manage/cm/getProv';
@@ -107,9 +107,9 @@
             $scope.custom.liveProvince = {}
 			$scope.custom.liveCity = {};
 			$scope.custom.liveCounty = {};
-            
+
 //            var birthDate = new Date(response.data.birthDate);
-//            $scope.custom.birthDate = $filter('date')(birthDate, 'yyyy-MM-dd HH:mm:ss'); 
+//            $scope.custom.birthDate = $filter('date')(birthDate, 'yyyy-MM-dd HH:mm:ss');
             if(response.data.birthDate != null) {
             	var v = new Date(response.data.birthDate);
                 $scope.custom.birthDate = v;
@@ -144,7 +144,7 @@
 			HttpService.linkHttp(opts).then(function(response) {
 				$scope.custom.custAgentNam = response.data.userName;
 			});
-		
+
         });
 
 		$scope.getCityByProv = function(item){
@@ -175,7 +175,7 @@
 			$scope.liveCountyList[item.id] = [];
 			$scope.liveCountyListObj = [];
 			var ctyOpt = {};
-			ctyOpt.url = '/crm/manage/cm/getCountyByProvCity';    
+			ctyOpt.url = '/crm/manage/cm/getCountyByProvCity';
 			ctyOpt.method = 'GET';
 			console.log($scope.custom.liveProvince[item.id].value)
 			ctyOpt.params = {
@@ -207,7 +207,7 @@
 			function(item) {
 				if (item.value == provCd) {
 					// 省赋值
-					
+
 					$scope.custom.liveProvince[addrTyp] = item;
 					var cityOpt = {};
 					cityOpt.url = '/crm/manage/cm/getCityByProv';
@@ -274,7 +274,7 @@
 						});
 				}
 			})
-			
+
 		}
 
 		  // 选择客户经理 开始
@@ -283,7 +283,7 @@
                   animation: true,
                   templateUrl: 'app/pages/mgrcenter/usermanagement/popupPages/selectAgentDlg.html',
                   controller: 'selectAgentDlgCtrl',
-                  size: 'midle-900', // 
+                  size: 'midle-900', //
                   backdrop:'static',
                   resolve: {
                       'checkedRow': function () {
@@ -297,9 +297,9 @@
             	  $scope.custom.custAgent = result.employeeId;
             	  $scope.custom.custAgentNam = result.userName;
               });
-          
+
         }
-	  
+
 	  // 选择客户经理 结束
 
 		$scope.save = function(){
@@ -323,10 +323,10 @@
             	return;
             }
 
-            if (customObj.phoneNumber == null || customObj.phoneNumber == '') {
+           /* if (customObj.phoneNumber == null || customObj.phoneNumber == '') {
             	Alert.error("手机号码不能为空");
             	return;
-            }
+            }*/
 
             // if (customObj.sex == null || customObj.sex == '') {
             // 	Alert.error("性别不能为空");
@@ -347,10 +347,10 @@
             }
 
             customObj.certTyp = customObj.certTyp.value;
-            if (customObj.custTyp.value=="01"&&(customObj.certNo == null || customObj.certNo == '')) {
+            /*if (customObj.custTyp.value=="01"&&(customObj.certNo == null || customObj.certNo == '')) {
             	Alert.error("证件号码不能为空");
             	return;
-            }
+            }*/
 
             if (customObj.custTyp == null || customObj.custTyp == '') {
             	Alert.error("客户类型不能为空");
@@ -392,9 +392,9 @@
             customObj.trade = customObj.trade == undefined ? null:customObj.trade.value;
             customObj.sex = customObj.sex.value;
             var birthDate = new Date($scope.custom.birthDate);
-            customObj.birthDate =  $filter('date')(birthDate, 'yyyy-MM-dd'); 
+            customObj.birthDate =  $filter('date')(birthDate, 'yyyy-MM-dd');
             var certDate = new Date($scope.custom.certDate);
-            customObj.certDate =  $filter('date')(certDate, 'yyyy-MM-dd'); 
+            customObj.certDate =  $filter('date')(certDate, 'yyyy-MM-dd');
             customObj.keyCustFlg = customObj.keyCustFlg.value == true? '1' : '0';
             customObj.liveAddrTyp = EnumType.AddrTyp.home_addr.value;
             customObj.unitAddrTyp = EnumType.AddrTyp.company_addr.value;
@@ -430,7 +430,7 @@
                 $scope.perIconImg = response.data;
                 $uibModalInstance.close();
             });
-            
+
         };
 
         $scope.uploadFiles = function (file, errFiles) {
@@ -457,7 +457,7 @@
 
 
         }
-   
+
         // 打开日期控件
         $scope.open1 = function () {
             $scope.open1.opened = !$scope.open1.opened;
@@ -496,7 +496,7 @@
         };
 
         //电话
-        var p = -1 
+        var p = -1
         $scope.phoneList = function () {
             var phone = {
                 phoneNo:'',
@@ -522,7 +522,7 @@
         //选择默认地址
         $scope.setAddrDefault = function (id,itemList) {
             itemList.forEach(function (item, index) {
-                if (id == item.id) { 
+                if (id == item.id) {
                     item.whtDefaultAddr = '1';
                 }else {
                     item.whtDefaultAddr = '0';
@@ -533,7 +533,7 @@
         //选择默认电话
         $scope.setPhoneDefault = function (id,itemList) {
             itemList.forEach(function (item, index) {
-                if (id == item.id) { 
+                if (id == item.id) {
                     item.isDeault = '1';
                 }else {
                     item.isDeault = '0';

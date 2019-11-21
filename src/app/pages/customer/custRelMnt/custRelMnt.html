@@ -84,6 +84,7 @@
 					</td>
 					<td>
 						<div class="buttons" ng-show="!rowform.$visible">
+							<button title="查看" class="btn btn-info btn-icon" ng-click="openDetail(item.custNo)"><i class="ion-eye"></i></button>
 							<button title="编辑" class="btn btn-primary btn-icon" ng-click="getCustRelation(item.custNo, item.relationTyp, item.refCustNo)"><i class="ion-compose"></i></button>
 							<button title="删除" class="btn btn-danger btn-icon" ng-click="delCustRelation(item.custNo, item.relationTyp, item.refCustNo)"><i class="ion-trash-a"></i></button>
 							<button title="关系图谱" class="btn btn-primary btn-icon" ng-click="viewRelGraph(item.custNo)"><i class="ion-asterisk"></i></button>

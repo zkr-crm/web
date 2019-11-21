@@ -1,4 +1,4 @@
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <div ng-controller="custMntCtrl">
 	<div  ng-if="isInitFinash" >
 		<uib-tabset active="$tabSetStatus.activeTab">
@@ -62,18 +62,12 @@
 					</div>
 				</div>
 	            <div class="row">
-	                <div class="col-md-12">
+	                <div class="col-md-2">
 	                    <label class="grid-title">
 							<i class="ion-flag btn-primary"></i>
 							客户列表
 						</label>
-						<a href="" ng-click="export()" style="float: right">导出选中用户<i class="ion-arrow-up-c"></i></a>
 	                </div>
-					<div class="zblacklist_posi" ng-show="searchObj.custTyp!='01'">
-						<!-- 最近上传 ：{{time||"没有上传文件"}} -->
-						<a href="app/pages/customer/custMnt/潜在客户导入模板.xls" >下载模板<i class="ion-archive"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<a href type="file" ngf-select="uploadFiles($file, $invalidFiles)" accept="/*" ngf-max-size="10MB">上传<i class="ion-arrow-up-c"></i></a>
-					</div>
 					<!--<div class="add-row-editable-table z_cusmnt" style="float: right">
 						<button class="btn btn-primary btn-with-icon" ng-click="search()"><i class="ion-search"></i>查询</button>
 						<button class="btn btn-primary btn-with-icon" ng-click="clearUserSearch()"><i class="ion-refresh"></i>重置</button>

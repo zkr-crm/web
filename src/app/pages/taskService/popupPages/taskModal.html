@@ -20,7 +20,7 @@
 				<div class="row">
 					<div class="col-sm-6">
 						<div class="form-group">
-							<label for="taskName" class="col-sm-4 control-label"><span class="requiredFlag">*</span>任务名称</label>
+							<label for="taskName" class="col-sm-4 control-label">任务名称</label>
 							<div class="col-sm-8" ng-class="{'has-error': addForm.taskName.$invalid && addForm.$submitted}">
 								<input type="text" class="form-control input-normal" id="taskName" name="taskName" ng-model="saveTask.taskName"maxlength="50"
 									required> <span class="help-block error-block basic-block">必录</span>
@@ -75,10 +75,10 @@
 					</div>
 					<div class="col-sm-6">
 						<div class="form-group">
-							<label class="col-sm-4 control-label "><span class="requiredFlag">*</span>任务截止时间</label>
+							<label class="col-sm-4 control-label ">任务截止时间</label>
 							<div class="col-sm-8 " ng-class="{'has-error': addForm.taskEndDate.$invalid && addForm.$submitted }">
-								<div class="input-normal" >
-                                 <input type="text" style="float:left;width:83%;border-right:none;" class="form-control " uib-datepicker-popup="yyyy-MM-dd" datepicker-options="options" ng-model="saveTask.taskEndDate" ng-change="endDateChange()" is-open="opened" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" show-button-bar="false" readonly/>
+								<div class="input-normal " >
+                                 <input type="text" style="float:left;width:83%;border-right:none;" class="form-control " uib-datepicker-popup="yyyy-MM-dd" datepicker-options="options" ng-model="saveTask.taskEndDate" is-open="opened" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" show-button-bar="false" readonly/>
 	                             <button type="button"  style="float:left;width:17%" class="btn btn-default" ng-click="open()"><i class="glyphicon glyphicon-calendar"></i></button>
 								</div>
 							</div>
@@ -89,7 +89,7 @@
 				<div class="row">
 					<div class="col-sm-6">
 						<div class="form-group">
-							<label for="oppertName" class="col-sm-4 control-label"><span class="requiredFlag">*</span>关联客户</label>
+							<label for="oppertName" class="col-sm-4 control-label">关联客户</label>
 							<div class="col-sm-8">
 								<div  class="input-normal" >
 									<input type="hidden" id="custId" name="custId" ng-model="saveTask.custId">
@@ -101,7 +101,7 @@
 					</div>
 					<div class="col-sm-6">
 						<div class="form-group">
-							<label for="responsName" class="col-sm-4 control-label"><span class="requiredFlag">*</span>负责人</label>
+							<label for="responsName" class="col-sm-4 control-label">负责人</label>
 							<div class="col-sm-8">
 								<div  class="input-normal" >
 									<input type="hidden" id="responsId" name="responsId" ng-model="saveTask.responsId" >

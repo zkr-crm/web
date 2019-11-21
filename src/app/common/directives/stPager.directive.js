@@ -28,15 +28,18 @@ angular.module('BlurAdmin.common')
                     var targetCallback = angular.copy(opts.success);
                     opts.success = function (response) {
                         if (response.status === '1') {
+
                             $scope.pagination[$scope.optsType].totalItems = response.data?response.data.total:0;
                             $scope.pagination[$scope.optsType].maxText = Math.ceil($scope.pagination[$scope.optsType].totalItems / $scope.pagination[$scope.optsType].pageSize); //计算最大页数
                             $scope.pagination[$scope.optsType].pageIndex = !$scope.pagination[$scope.optsType].pageNewIndex ?  $scope.pagination[$scope.optsType].pageIndex : ( $scope.pagination[$scope.optsType].pageIndex > $scope.pagination[$scope.optsType].maxText ? $scope.pagination[$scope.optsType].maxText : $scope.pagination[$scope.optsType].pageNewIndex);
                             $scope.pagination[$scope.optsType].pageNewIndex = ''; //清空跳转数
+                            console.log("共"+$scope.pagination[$scope.optsType].totalItems+"条数据")
+                            //
                             targetCallback(response);
                         } else if (response.status === '0') {
                             Alert.error(response.message)
                         }
-                        
+
                     };
                 }
 
@@ -54,6 +57,8 @@ angular.module('BlurAdmin.common')
                     opts.params.sys = {};
                     opts.params.sys.pageNum = n||1;
                     opts.params.sys.pageSize = $scope.pagination[$scope.optsType].pageSize
+                    console.log("显示"+opts.params.sys.pageNum+"到"+(opts.params.sys.pageSize)+"页")
+
                     // if (!!opts.pageSize) {
                     //     opts.params.sys.pageSize = opts.pageSize;
 
@@ -70,7 +75,7 @@ angular.module('BlurAdmin.common')
                     return
                 }
                 $scope.queryPage(1);
-                
+
                 /****临时解决方案**解决在其他页面使用this.queryPage调用该插件时queryPage未定义的问题******/
                 $scope.$parent.queryPage=function(){
                     $scope.queryPage();
@@ -79,7 +84,7 @@ angular.module('BlurAdmin.common')
                     $scope.refreshPage(n,option);
                 }
                 /****临时解决方案**解决在其他页面使用this.queryPage调用该插件时queryPage未定义的问题******/
-                
+
                 $scope.refreshPage = function (n,option) {
                     if (n != 1) {
                         if (n > $scope.totalPages || n < 1) {
@@ -102,7 +107,7 @@ angular.module('BlurAdmin.common')
 
                 };
                 $scope.$emit('refreshPage',$scope.refreshPage)
-                
+
             }
         };
     })

@@ -28,10 +28,15 @@
                     $scope.custListOpts.url = '/crm/ecif/cust/getPerCustListByRole';
                     $scope.custListOpts.method = 'POST';
                     $scope.custListOpts.params ={};
+                    console.log($scope,"$scope");
+                    if(localStorage.getItem('custAgentList')){
+                        $scope.custListOpts.params.custAgentJson=localStorage.getItem('custAgentList');
+                    }
                     $scope.custListOpts.params.sys = {
                         pageSize:'10',
                         pageNum:'1',
                     };
+                    console.log($scope.custListOpts,"$scope.custListOpts")
                     $scope.custListOpts.success = function successCallback (response) {
                         $scope.custCollection = response.data.list;
                         $scope.custCollection = response.data.list.map(function (item) {
@@ -47,7 +52,7 @@
 						if(!(result.data===undefined || result.data.length==0)){
 		                	angular.forEach(result.data, function(i) {
 		                		if(i.employeeId!==undefined){
-		                			custAgentList.push(i.employeeId);	                			
+		                			custAgentList.push(i.employeeId);
 		                		}
 		                	});
                             $scope.opts.data =custAgentList;
@@ -72,7 +77,7 @@
                     	$scope.selectCustInfo = i;
 
                     }
-                    
+
                     $scope.ok = function () {
                         // if (!($scope.selectCustInfo.sex == 1 || $scope.selectCustInfo.sex == 2)) {
                         //     Alert.error('当前用户性别未知，不能添加关系');
@@ -87,7 +92,7 @@
                     // ----------------选择客户结束--------------------
 
 
-                    
+
                     // 查询条件对象
                     $scope.searchObj = {
                         'custAgent' : '',
@@ -101,8 +106,8 @@
 
                     // 新增事件
                     $scope.smartTablePageSize = 10;
-                    
-                    
+
+
                     // 客户转交
                     $scope.checkedRow = [];
 
@@ -130,11 +135,11 @@
                         }
                         $rootScope.checkedRow = $scope.checkedRow;
                     }
-             
-                    
+
+
                     //多选
                     $scope.selectAll1 = function(e) {
-                    	
+
                         if (e) {
                             $scope.checkedRow = [];
                             var count = 0;
@@ -157,7 +162,7 @@
                             $scope.select_all = false;
                         }
                     };
-                    
+
                 }
 
 			})();

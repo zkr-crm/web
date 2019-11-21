@@ -64,7 +64,7 @@
 			$scope.information_a=e;
 		}
         //电话
-        var p = 0 
+        var p = 0
         $scope.phoneList = function () {
             var phone = {
                 phoneNo:'',
@@ -203,7 +203,7 @@
 	                  animation: true,
 	                  templateUrl: 'app/pages/mgrcenter/usermanagement/popupPages/selectAgentDlg.html',
 	                  controller: 'selectAgentDlgCtrl',
-	                  size: 'midle-900', // 
+	                  size: 'midle-900', //
 	                  backdrop:'static',
 	                  resolve: {
 	                      'checkedRow': function () {
@@ -217,9 +217,9 @@
 	            	  $scope.custom.custAgent = result.employeeId;
 	            	  $scope.custom.custAgentNam = result.userName;
 	              });
-	          
+
 	        }
-		  
+
 		  // 选择客户经理 结束
 
 		  $scope.save = function(){
@@ -321,8 +321,8 @@
             customObj.politSts = customObj.politSts  == undefined ? null:customObj.politSts.value;
             var birthDate = new Date($scope.custom.birthDate);
             var certDate = new Date($scope.custom.certDate);
-            customObj.birthDate = $filter('date')(birthDate, 'yyyy-MM-dd'); 
-            customObj.certDate = $filter('date')(certDate, 'yyyy-MM-dd'); 
+            customObj.birthDate = $filter('date')(birthDate, 'yyyy-MM-dd');
+            customObj.certDate = $filter('date')(certDate, 'yyyy-MM-dd');
             if (customObj.keyCustFlg == undefined) {
                 customObj.keyCustFlg = '0';
             } else {
@@ -363,18 +363,18 @@
                 $scope.perIconImg = response.data;
                 $uibModalInstance.close();
             });
-            
+
         };
         $scope.headImgUpload = function(){
             var modalInstance = $uibModal.open({
                 animation: true,
                 templateUrl: 'app/pages/portrayal/headImg/headImg.html',
                 controller: 'custDetailAddCtrl',
-                size: 'big-1200', 
+                size: 'big-1200',
                 backdrop:'static',
                 resolve: {
                     'custNo': function () {
-                    	
+
                     }
                 }
             });
@@ -419,7 +419,7 @@
         $scope.addrTyp = false;
         $scope.setAddrDefault = function (id,itemList) {
             itemList.forEach(function (item, index) {
-                if (id == item.id) { 
+                if (id == item.id) {
                     item.whtDefaultAddr = '1';
                 }else {
                     item.whtDefaultAddr = '0';
@@ -429,7 +429,7 @@
         //选择默认电话
         $scope.setPhoneDefault = function (id,itemList) {
             itemList.forEach(function (item, index) {
-                if (id == item.id) { 
+                if (id == item.id) {
                     item.isDeault = '1';
                 }else {
                     item.isDeault = '0';

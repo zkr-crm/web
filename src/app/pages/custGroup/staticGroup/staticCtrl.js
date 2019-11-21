@@ -2,11 +2,11 @@
 	'use strict';
 
 	angular.module('BlurAdmin.pages.custGroup').controller('staticCtrl',
-		staticCtrl);
+			staticCtrl);
 
 	/** @ngInject */
 	function staticCtrl($scope, $element, $stateParams, $uibModal, $state,
-						EnumType, layoutPaths, baConfig, HttpService, Alert) {
+			EnumType, layoutPaths, baConfig, HttpService, Alert) {
 
 		// 群组ID
 		$scope.groupId = $stateParams.groupId;
@@ -18,7 +18,7 @@
 
 		// 页面数据初始化
 		$scope.initData = function() {
-
+			
 			var opts = {}
 			opts.url = '/crm/ocrm/CustGroupMng/getCustGroupInfoByGroupId';
 			opts.method = 'GET';
@@ -45,8 +45,8 @@
 			$scope.queryCust.success = function successCallback (response) {
 				if (response.status === '1') {
 					if (!!!$scope.custList) {
-						$scope.changeFlag('queryCust')
-					}
+        				$scope.changeFlag('queryCust')
+                	}
 					$scope.custList = response.data.list;
 				}
 			}
@@ -86,7 +86,7 @@
 			});
 			return xxx;
 		}
-
+		
 		// 客户类型
 		$scope.showCustTyp = function(value) {
 			var xxx = "";
@@ -97,7 +97,7 @@
 			});
 			return xxx;
 		}
-
+		
 		// 群成员类型
 		$scope.showGroupMemberType = function(value) {
 			var xxx = "";
@@ -116,7 +116,7 @@
 			}
 			return value;
 		}
-
+		
 		// 选中行对象
 		$scope.checkedRow = [];
 		// 全选
@@ -163,9 +163,9 @@
 		// 成员页签中默认显示客户群组成员列表,及列表和图表的切换
 		$scope.type = 0;
 		$scope.showData = function(args) {
-
+			
 			$scope.index_ = args ; // 控制按钮样式变色
-
+			
 			if (args == 1) {
 				$scope.type = 1;
 			} else {
@@ -215,18 +215,18 @@
 
 		// 打开客户列表页面
 		$scope.openCustListPage = function() {
-			$scope.addGroupMemberModal = $uibModal
-				.open({
-					animation : true,
-					backdrop : 'static',
-					templateUrl : 'app/pages/custGroup/popupPage/showCustList.html',
-					size : 'midle-900',
-					controller : 'groupSelectCustListCtrl',
-					scope : $scope,
-					resolve : {
+			$uibModal
+					.open({
+						animation : true,
+						backdrop : 'static',
+						templateUrl : 'app/pages/custGroup/popupPage/showCustList.html',
+						size : 'midle-900',
+						controller : 'showCustListCtrl',
+						scope : $scope,
+						resolve : {
 
-					}
-				});
+						}
+					});
 		}
 
 		// 删除群组成员
@@ -249,19 +249,19 @@
 				});
 			});
 		}
-		$scope.delGroupOneMember = function(item) {
+        $scope.delGroupOneMember = function(item) {
 
-			Alert.confirm("确定移除？").then(function() {
-				var opts = {};
-				opts.url = '/crm/ocrm/CustGroupMng/delMultiGroupMember';
-				opts.method = 'POST';
-				opts.params = {};
-				opts.data = [item];
-				HttpService.linkHttp(opts).then(function(response) {
-					$scope.initData();
-				});
-			});
-		}
+            Alert.confirm("确定移除？").then(function() {
+                var opts = {};
+                opts.url = '/crm/ocrm/CustGroupMng/delMultiGroupMember';
+                opts.method = 'POST';
+                opts.params = {};
+                opts.data = [item];
+                HttpService.linkHttp(opts).then(function(response) {
+                    $scope.initData();
+                });
+            });
+        }
 		// 运营任务查询条件对象
 		$scope.obj = {
 			'queryCondition' : '',
@@ -293,17 +293,17 @@
 			$scope.groupOperId = item.groupOperId;
 
 			$uibModal
-				.open({
-					animation : true,
-					backdrop : 'static',
-					templateUrl : 'app/pages/custGroup/popupPage/showOperCustList.html',
-					size : 'midle-900',
-					controller : 'showOperCustCtrl',
-					scope : $scope,
-					resolve : {
+					.open({
+						animation : true,
+						backdrop : 'static',
+						templateUrl : 'app/pages/custGroup/popupPage/showOperCustList.html',
+						size : 'midle-900',
+						controller : 'showOperCustCtrl',
+						scope : $scope,
+						resolve : {
 
-					}
-				});
+						}
+					});
 		}
 
 		// 短信群发窗口
@@ -314,15 +314,15 @@
 				return;
 			}
 			$uibModal
-				.open({
-					animation : true,
-					backdrop : 'static',
-					templateUrl : 'app/pages/custGroup/popupPage/msgGroupSend.html',
-					size : 'midle-900',
-					controller : 'msgGroupSendCtrl',
-					scope : $scope,
-					resolve : {}
-				});
+					.open({
+						animation : true,
+						backdrop : 'static',
+						templateUrl : 'app/pages/custGroup/popupPage/msgGroupSend.html',
+						size : 'midle-900',
+						controller : 'msgGroupSendCtrl',
+						scope : $scope,
+						resolve : {}
+					});
 		}
 
 		// 打开外呼任务生成页面
@@ -333,15 +333,15 @@
 				return;
 			}
 			$uibModal
-				.open({
-					animation : true,
-					backdrop : 'static',
-					templateUrl : 'app/pages/custGroup/popupPage/OutboundTask.html',
-					size : 'midle-900',
-					controller : 'OutboundTaskCtrl',
-					scope : $scope,
-					resolve : {}
-				});
+					.open({
+						animation : true,
+						backdrop : 'static',
+						templateUrl : 'app/pages/custGroup/popupPage/OutboundTask.html',
+						size : 'midle-900',
+						controller : 'OutboundTaskCtrl',
+						scope : $scope,
+						resolve : {}
+					});
 		}
 		$scope.search = function (page) {
 			var page = page || '1';
@@ -353,10 +353,10 @@
 		}
 		// 切换tab时分页组件初始化
 		$scope.changeFlag = function (pageFlag) {
-			$scope.pageFlag = pageFlag;
-			// $scope.pagination.pageSize = $scope[$scope.pageFlag].pageSize || '10';
-			// $scope.pagination.totalItems = $scope[$scope.pageFlag].totalItems;
-			// $scope.pagination.pageIndex = $scope[$scope.pageFlag].pageIndex || '1';
-		}
+            $scope.pageFlag = pageFlag;
+            // $scope.pagination.pageSize = $scope[$scope.pageFlag].pageSize || '10';
+            // $scope.pagination.totalItems = $scope[$scope.pageFlag].totalItems;
+            // $scope.pagination.pageIndex = $scope[$scope.pageFlag].pageIndex || '1';
+        }
 	}
 })();

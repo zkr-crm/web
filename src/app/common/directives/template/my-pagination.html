@@ -10,6 +10,12 @@
     border: 1px solid #ccc !important;
     font-size:12px !important;
 }
+.pagination-message {
+    padding: 0px 15px;
+    border-radius: 5px;
+    font-size:12px !important;
+}
+
 </style>
 <div class="pagination-pack clearfix">
     <div class="pull-left col-md-2 pageSizeSelect-n bordercolor">
@@ -21,6 +27,7 @@
             <option value="50">50条/页</option>
         </select>
     </div>
+
     <!-- 分页  -->
     <div class="pull-left col-md-8 text-center">
         <uib-pagination ng-model="pagination[optsType].pageIndex" class="pagination-sm pagination-small pagination-n" total-items="pagination[optsType].totalItems" page="pagination[optsType].pageIndex" items-per-page="pagination[optsType].pageSize" max-size="5" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;" boundary-links="true" ng-change="search(pagination[optsType].pageIndex)" rotate="false" style='margin:0 auto'>
@@ -35,5 +42,10 @@
                 </button>
             </span>
         </div>
+    </div>
+    <div class="pull-left pagination-message">
+        <p>{{"显示第 "+(((pagination[optsType].pageIndex-1)*pagination[optsType].pageSize)==0?1:((pagination[optsType].pageIndex-1)*pagination[optsType].pageSize))+" 至 " +
+            ((pagination[optsType].pageSize*pagination[optsType].pageIndex)>(pagination[optsType].totalItems) ?(pagination[optsType].totalItems):(pagination[optsType].pageSize*pagination[optsType].pageIndex)) + " 项结果，共 "+
+            pagination[optsType].totalItems+" 项" }}</p>
     </div>
 </div>

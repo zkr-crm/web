@@ -77,7 +77,6 @@
 				var startDate = new Date($scope.searchOper.startDate);
 				if(startDate>endDate){
 					$scope.searchOper.startDate=null;
-					Alert.error('起始日期不能大于终止日期');
 				}
 			}
 		}
@@ -88,7 +87,6 @@
 				var startDate = new Date($scope.searchOper.startDate);
 				if(startDate>endDate){
 					$scope.searchOper.endDate=null;
-					Alert.error('起始日期不能大于终止日期');
 				}
 			}
 		}

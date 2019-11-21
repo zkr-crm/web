@@ -976,7 +976,7 @@
                 animation: true,
                 templateUrl: 'app/pages/portrayal/popupPages/uptPerAssets.html',
                 controller: 'uptPerAssetsCtrl',
-                size: 'midle-900', // 
+                size: 'midle-900', //
                 backdrop:'static',
                 resolve: {
                     'custNo': function () {
@@ -1471,9 +1471,9 @@
                     if (response.data[index].trackTyp == '01') {
                         response.data[index].isContShow = false;
                         response.data[index].isNextShow = false;
-                    } else {
+                    }  else {
                         response.data[index].isContShow = true;
-                        if (response.data[index].trackTyp == '05' || response.data[index].trackTyp == '03') {
+                        if (response.data[index].trackTyp == '05' || response.data[index].trackTyp == '03'|| response.data[index].trackTyp == '02') {
                             response.data[index].isNextShow = false;
                         } else {
                             response.data[index].isNextShow = true;
@@ -1536,7 +1536,7 @@
                 if (response == undefined || response.data == undefined) {
                     return;
                 }
-                //console.log("graph data" + angular.toJson(response.data)); 
+                //console.log("graph data" + angular.toJson(response.data));
                 // console.log(response);
                 // $scope.custGraph = response.data;
                 $scope.isFinsh = true;

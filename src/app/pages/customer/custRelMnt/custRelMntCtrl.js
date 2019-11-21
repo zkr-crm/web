@@ -3,7 +3,7 @@
 
     angular.module('BlurAdmin.pages.customer').controller('custRelMntCtrl', custRelMntCtrl);
     /** @ngInject */
-    function custRelMntCtrl($scope, $uibModal, $filter, $timeout, $http,
+    function custRelMntCtrl($scope,$state, $uibModal, $filter, $timeout, $http,
                          HttpService, EnumType, Alert) {
         $scope.$on('queryPage',function(event,queryPage){
             $scope.queryPage = queryPage
@@ -83,7 +83,7 @@
                 animation: true,
                 templateUrl: 'app/pages/customer/custRelMnt/newCustRelation.html',
                 controller: 'NewCustRelationCtrl',
-                size: 'midle-900', 
+                size: 'midle-900',
                 backdrop:'static',
                 resolve: {
                     'custNo': function () {
@@ -114,7 +114,11 @@
                 });
             });
         };
-
+        // 客户画像查询
+        $scope.openDetail = function (custNo) {
+            $state.go('portrayal.perCusPortrayal',{'custNo':custNo,'custAgentList':$scope.queryOptions.data});
+            // $location.path('/portrayal/perCusPortrayal').search({'custNo':custNo});
+        }
         // 查看关系图谱
         $scope.viewRelGraph = function(custNo) {
         	if (custNo == undefined) {
@@ -136,12 +140,12 @@
                 }
             });
             modalInstance.result.then(function(){
-            	
+
             });
         };
 
         //-------------客户关系结束--------------
-        
+
         // 初始化方法
         var init = function () {
             $scope.relList = EnumType.Relation;

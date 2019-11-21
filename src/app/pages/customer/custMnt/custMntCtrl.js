@@ -5,7 +5,7 @@
     				return function(e){
     					//console.log(e);
     					if(e == undefined){
-    						
+
     					}else{
     						if(e.length>=10){
                                 if (typeof e === 'object') {
@@ -16,7 +16,7 @@
         						return e;
         					}
     					}
-    					
+
     				}
     			});
 				/** @ngInject */
@@ -48,29 +48,29 @@
                                 $scope.custCollection = response.data.list;
                                 $scope.custCollection = response.data.list.map(function (item) {
                                     item.custTypNam = EnumType.CustType.getLabelByValue(item.custTyp);
-                                    item.custSourceNam = EnumType.DataSource.getLabelByValue(item.custSource);
-                                    item.certTypNam = EnumType.IdType.getLabelByValue(item.certTyp);
-                                    return item;
-                                });
-                            }
-                        }
-                        //获取用户权限
-                        var initOpts = {};
-                        initOpts.url = '/crm/manage/auth/getRoleDateAuth';
-                        initOpts.method = 'GET';
-                        initOpts.params = {
-                            userCode : $rootScope.global.user,
-                            tableCode : "T001"
-                        };
-                        HttpService.linkHttp(initOpts).then(function(result) {
-                            if(!(result.data===undefined)){
+                                item.custSourceNam = EnumType.DataSource.getLabelByValue(item.custSource);
+                                item.certTypNam = EnumType.IdType.getLabelByValue(item.certTyp);
+                                return item;
+                            });
+                    }
+                }
+    //获取用户权限
+    var initOpts = {};
+    initOpts.url = '/crm/manage/auth/getRoleDateAuth';
+    initOpts.method = 'GET';
+    initOpts.params = {
+        userCode : $rootScope.global.user,
+        tableCode : "T001"
+    };
+    HttpService.linkHttp(initOpts).then(function(result) {
+        if(!(result.data===undefined)){
 
-                                angular.forEach(result.data, function(i) {
-                                    if(i.employeeId!==undefined){
-                                        custAgentList.push(i.employeeId);
-                                    }
-                                });
-                                $scope.queryOptions.data = custAgentList;
+            angular.forEach(result.data, function(i) {
+                if(i.employeeId!==undefined){
+                    custAgentList.push(i.employeeId);
+                }
+            });
+            $scope.queryOptions.data = custAgentList;
                                 $scope.isInitFinash=true;
                             }
                         });
@@ -93,52 +93,6 @@
                             $scope.searchUser();
                         });
                     };
-                    // 上传文件
-                    $scope.uploadFiles = function (file, errFiles) {
-                        if(this.queryPage && !$scope.queryPage){
-                            $scope.queryPage=this.queryPage;
-                        }
-                        if (!file) {
-                            return;
-                        }
-                        var fd = new FormData();
-                        fd.append('file', file);
-                        fd.append('fileName',file.name);
-                        fd.append('custAgent',$rootScope.global.employeeId);
-                        HttpService.linkHttp({
-                            url: '/crm/ecif/cust/upload',
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': undefined
-                            },
-                            data: fd
-                        }).then(function (response) {
-                            Alert.success(response)
-                            $scope.search();
-                        });
-                    }
-                    // 导出客户信息
-                    $scope.export = function () {
-                        if(this.queryPage && !$scope.queryPage){
-                            $scope.queryPage=this.queryPage;
-                        }
-                        var baseinfo=$scope.checkedRow;
-                        if(baseinfo.length==0){
-                            Alert.error('请选择用户！')
-                            return;
-                        }
-                        HttpService.linkHttp({
-                            url: '/crm/ecif/cust/accountFile',
-                            method: 'GET',
-                            headers: {
-                                'Content-Type': undefined
-                            },
-                            param:baseinfo
-                        }).then(function () {
-                            Alert.success('导出成功！')
-                            $scope.search();
-                        });
-                    }
                     // 查询事件
                     $scope.search = function(page,custTyp) {
                     	if(this.queryPage && !$scope.queryPage){
@@ -185,7 +139,7 @@
                                 });
                             } else {
                                 Alert.error(response.message)
-                            } 
+                            }
                         })*/
                         $scope.search();
                     }
@@ -241,13 +195,13 @@
                         });
                     };
                     $scope.smartTablePageSize = 10;
-                    
+
                     // 客户画像查询
                     $scope.openDetail = function (custNo) {
                         $state.go('portrayal.perCusPortrayal',{'custNo':custNo,'custAgentList':$scope.queryOptions.data});
                        // $location.path('/portrayal/perCusPortrayal').search({'custNo':custNo});
                     }
-                    
+
                     // 客户转交
                     $scope.checkedRow = [];
             		$scope.transferUser = function() {
@@ -283,11 +237,11 @@
                             }
                         });
                     }
-             
-                    
+
+
                     //多选
                     $scope.selectAll1 = function(e) {
-                    	
+
                         if (e) {
                             $scope.checkedRow = [];
                             var count = 0;
@@ -333,8 +287,8 @@
                             return
                         }
                     }
-                    
+
                 }
-                
+
 
 			})();

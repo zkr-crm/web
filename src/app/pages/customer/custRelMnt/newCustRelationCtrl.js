@@ -20,6 +20,7 @@
 
         };
         $scope.custRel = {};
+        $scope.dyncTrack ={};
         $scope.custRel.custNo = "";
         $scope.custRel.Relation = "";
         $scope.custRel.custName = "";
@@ -150,6 +151,42 @@
                 method: 'PUT',
                 params: custRelObj
             }).then(function (response) {
+                var per = {};
+                per.url = 'crm/ecif/cust/addDyncTrack';
+                per.method = 'PUT';
+                per.params = angular.copy($scope.dyncTrack);
+                per.params.custNo = custRelObj.refCustNo;
+                per.params.trackTyp = '01';
+                per.params.trackSubTyp = '15';
+                console.log(per,"per");
+                per.params.trackContent = custRelObj.sys.userId+'新增了关系';
+                per.params.recordUser = custRelObj.sys.userId;
+                per.params.contacts = custRelObj.custNam;
+                // per.params.phoneNo='02';
+                // per.params.trackContent='02';
+
+                console.log(per,"per");
+                HttpService.linkHttp(per).then(function(response){
+                    console.log("成功");
+                });
+                var per = {};
+                per.url = 'crm/ecif/cust/addDyncTrack';
+                per.method = 'PUT';
+                per.params = angular.copy($scope.dyncTrack);
+                per.params.custNo = custRelObj.custNo;
+                per.params.trackTyp = '01';
+                per.params.trackSubTyp = '15';
+                console.log(per,"per");
+                per.params.trackContent = custRelObj.sys.userId+'新增了关系';
+                per.params.recordUser = custRelObj.sys.userId;
+                per.params.contacts = custRelObj.custNam;
+                // per.params.phoneNo='02';
+                // per.params.trackContent='02';
+
+                console.log(per,"per");
+                HttpService.linkHttp(per).then(function(response){
+                    console.log("成功");
+                });
                 $uibModalInstance.close();
             });
         }
